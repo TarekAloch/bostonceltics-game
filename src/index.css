@@ -1,0 +1,142 @@
+@import "tailwindcss";
+
+@theme {
+  /* Celtics Colors */
+  --color-celtics-green: #007A33;
+  --color-celtics-green-dark: #005a25;
+  --color-celtics-green-light: #00a344;
+  --color-celtics-gold: #BA9653;
+  --color-celtics-gold-light: #d4b06a;
+
+  /* Lakers Colors (Enemy) */
+  --color-lakers-purple: #552583;
+  --color-lakers-purple-dark: #3d1a5f;
+  --color-lakers-gold: #FDB927;
+
+  /* Court Colors */
+  --color-court-wood: #C4A26E;
+  --color-court-wood-dark: #a88b5a;
+  --color-court-lines: #FFFFFF;
+
+  /* UI Colors */
+  --color-dark-bg: #0A1612;
+  --color-dark-surface: #0f2018;
+  --color-dark-card: #142a1f;
+
+  /* Fonts */
+  --font-heading: 'Oswald', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
+
+  html, body, #root {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+
+  body {
+    font-family: var(--font-body);
+    background: linear-gradient(135deg, var(--color-dark-bg) 0%, var(--color-dark-surface) 100%);
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+}
+
+@layer utilities {
+  .text-shadow-glow {
+    text-shadow: 0 0 20px currentColor, 0 0 40px currentColor;
+  }
+
+  .shadow-celtics {
+    box-shadow: 0 0 30px rgba(0, 122, 51, 0.5), 0 0 60px rgba(0, 122, 51, 0.3);
+  }
+
+  .shadow-lakers {
+    box-shadow: 0 0 30px rgba(85, 37, 131, 0.5), 0 0 60px rgba(253, 185, 39, 0.3);
+  }
+
+  .gradient-celtics {
+    background: linear-gradient(135deg, var(--color-celtics-green) 0%, var(--color-celtics-green-dark) 100%);
+  }
+
+  .gradient-lakers {
+    background: linear-gradient(135deg, var(--color-lakers-purple) 0%, var(--color-lakers-purple-dark) 100%);
+  }
+
+  .court-pattern {
+    background-image:
+      repeating-linear-gradient(
+        90deg,
+        var(--color-court-wood) 0px,
+        var(--color-court-wood) 20px,
+        var(--color-court-wood-dark) 20px,
+        var(--color-court-wood-dark) 40px
+      );
+  }
+
+  .animate-pulse-slow {
+    animation: pulse 3s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  }
+
+  .animate-bounce-subtle {
+    animation: bounce-subtle 2s ease-in-out infinite;
+  }
+}
+
+@keyframes bounce-subtle {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+@keyframes ring-shrink {
+  from {
+    transform: scale(2);
+    opacity: 0.8;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes score-pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.3);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+.animate-ring-shrink {
+  animation: ring-shrink 1.5s ease-out forwards;
+}
+
+.animate-score-pop {
+  animation: score-pop 0.4s ease-out;
+}
+
+.animate-shake {
+  animation: shake 0.3s ease-in-out;
+}
