@@ -186,9 +186,8 @@ export default function GameScreen({ state, actions, sound }) {
   // Handle play call offense completion (Mode 2)
   const handlePlayCallComplete = useCallback((correct, play, questionIndex) => {
     sound?.playQuizResult?.(correct)
-    // Submit both - useEffect will handle resolution when both are set
-    actions?.selectPlay?.(play)
-    actions?.answerTrivia?.(correct, questionIndex)
+    // Use combined action to set both values atomically - prevents race condition
+    actions?.answerTriviaWithPlay?.(correct, questionIndex, play)
   }, [sound, actions])
 
   // Handle defense choice completion (Mode 1)

@@ -330,6 +330,30 @@ function gameReducer(state, action) {
       }
     }
 
+    case 'ANSWER_TRIVIA_WITH_PLAY': {
+      // Combined action for Mode 2 offense - sets both playSelection AND triviaResult atomically
+      const { correct, questionIndex, play } = action.payload
+
+      if (!state.currentQuestion) {
+        console.warn('[GAME STATE] ANSWER_TRIVIA_WITH_PLAY called without currentQuestion')
+        return newState
+      }
+
+      if (state.phase !== 'offense-play-call') {
+        console.warn('[GAME STATE] ANSWER_TRIVIA_WITH_PLAY called in wrong phase:', state.phase)
+        return newState
+      }
+
+      return {
+        ...newState,
+        triviaResult: correct ? 'correct' : 'wrong',
+        playSelection: play,
+        usedQuestionIndices: [...state.usedQuestionIndices, questionIndex],
+        currentQuestion: null,
+        phaseStartTime: Date.now(),
+      }
+    }
+
     case 'RESOLVE_CELTICS_SHOT': {
       if (!state.activePlayer) {
         console.warn('[GAME STATE] RESOLVE_CELTICS_SHOT without activePlayer')
@@ -726,6 +750,9 @@ export function useGameState() {
 
     answerTrivia: useCallback((correct, questionIndex) =>
       dispatch({ type: 'ANSWER_TRIVIA', payload: { correct, questionIndex } }), []),
+
+    answerTriviaWithPlay: useCallback((correct, questionIndex, play) =>
+      dispatch({ type: 'ANSWER_TRIVIA_WITH_PLAY', payload: { correct, questionIndex, play } }), []),
 
     resolveCelticsShot: useCallback(() =>
       dispatch({ type: 'RESOLVE_CELTICS_SHOT' }), []),
