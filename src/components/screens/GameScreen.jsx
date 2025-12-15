@@ -117,7 +117,7 @@ export default function GameScreen({ state, actions, sound }) {
         } catch (error) {
           console.error('[GameScreen] Error resolving Celtics shot:', error)
         }
-      }, 2500)
+      }, 1200)
 
       return () => clearTimeout(timer)
     }
@@ -126,7 +126,7 @@ export default function GameScreen({ state, actions, sound }) {
     if (team === 'lakers') {
       const timer = setTimeout(() => {
         actions?.resolveLakersShot?.()
-      }, 2500)
+      }, 1200)
 
       return () => clearTimeout(timer)
     }
@@ -138,7 +138,7 @@ export default function GameScreen({ state, actions, sound }) {
 
     const timer = setTimeout(() => {
       actions?.nextPossession?.()
-    }, 1500)
+    }, 800)
 
     return () => clearTimeout(timer)
   }, [phase, actions])

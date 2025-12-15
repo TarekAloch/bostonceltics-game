@@ -1,8 +1,8 @@
 import { useReducer, useCallback, useEffect, useRef } from 'react'
-import { getRandomPlayer, celtics, lakers } from '../data/players'
+import { getRandomPlayer, celtics, lakers, getRosters, ROSTER_TYPES } from '../data/players'
 import { getRandomQuestion } from '../data/questions'
 
-const QUARTER_LENGTH = 90 // seconds
+const DEFAULT_QUARTER_LENGTH = 60 // seconds
 const SHOT_CLOCK = 24
 const PHASE_TIMEOUT = 30000 // 30 seconds - auto-advance if stuck
 
@@ -13,7 +13,7 @@ const initialState = {
 
   // Score & Time
   quarter: 1,
-  timeRemaining: QUARTER_LENGTH,
+  timeRemaining: DEFAULT_QUARTER_LENGTH,
   shotClock: SHOT_CLOCK,
   score: { celtics: 0, lakers: 0 },
 
@@ -51,6 +51,12 @@ const initialState = {
   // Error guards
   phaseStartTime: Date.now(),
   stateVersion: 0, // Increment on each state change for debugging
+
+  // Player rosters
+  celticsRoster: celtics,
+  lakersRoster: lakers,
+  rosterType: "current2025",
+  quarterLength: 1,
 }
 
 /**
@@ -190,11 +196,20 @@ function gameReducer(state, action) {
     case 'SET_DIFFICULTY':
       return { ...newState, difficulty: action.payload }
 
+    case 'SET_ROSTER_TYPE':
+      return { ...newState, rosterType: action.payload }
+
+    case 'SET_QUARTER_LENGTH':
+      return { ...newState, quarterLength: action.payload }
+
     case 'START_GAME': {
       const { question, index } = getRandomQuestion([])
       return {
         ...initialState,
         difficulty: state.difficulty,
+        rosterType: state.rosterType,
+        quarterLength: state.quarterLength,
+        timeRemaining: state.quarterLength * 60,
         gameStatus: 'playing',
         phase: 'offense-trivia',
         offenseMode: 1,
@@ -244,7 +259,7 @@ function gameReducer(state, action) {
         return {
           ...newState,
           quarter: state.quarter + 1,
-          timeRemaining: QUARTER_LENGTH,
+          timeRemaining: state.quarterLength * 60,
           shotClock: SHOT_CLOCK,
           gameStatus: isHalftime ? 'halftime' : 'playing',
           possession: nextPossession,
@@ -626,6 +641,9 @@ function gameReducer(state, action) {
       return {
         ...initialState,
         difficulty: state.difficulty,
+        rosterType: state.rosterType,
+        quarterLength: state.quarterLength,
+        timeRemaining: state.quarterLength * 60,
       }
 
     case 'SET_CROWD_MOOD':
@@ -690,10 +708,15 @@ export function useGameState() {
       }
     }
   }, [state.phase, state.phaseStartTime, state.gameStatus])
-
   const actions = {
     setDifficulty: useCallback((diff) =>
       dispatch({ type: 'SET_DIFFICULTY', payload: diff }), []),
+
+    setRosterType: useCallback((type) =>
+      dispatch({ type: 'SET_ROSTER_TYPE', payload: type }), []),
+
+    setQuarterLength: useCallback((length) =>
+      dispatch({ type: 'SET_QUARTER_LENGTH', payload: length }), []),
 
     startGame: useCallback(() =>
       dispatch({ type: 'START_GAME' }), []),

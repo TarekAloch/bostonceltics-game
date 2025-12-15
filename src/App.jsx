@@ -3,7 +3,6 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { useGameState } from './hooks/useGameState'
 import { useSound } from './hooks/useSound'
 
-// Screen components
 import StartScreen from './components/screens/StartScreen'
 import GameScreen from './components/screens/GameScreen'
 import HalftimeScreen from './components/screens/HalftimeScreen'
@@ -11,24 +10,11 @@ import EndScreen from './components/screens/EndScreen'
 
 /**
  * Main App Component - Boston Celtics vs Lakers Game
- *
- * Architecture:
- * - Uses useGameState hook for game logic and state management
- * - Uses useSound hook for audio management
- * - Routes between screens based on gameStatus
- * - Manages sound effects for game events
- *
- * Screens:
- * - 'start': Difficulty selection and game start
- * - 'playing': Main gameplay (QTE, Quiz, Defense)
- * - 'halftime': Break between 2nd and 3rd quarter
- * - 'ended': Victory or defeat screen
  */
 export default function App() {
   const { state, actions } = useGameState()
   const sound = useSound()
 
-  // Handle game start - start ambient crowd sound
   useEffect(() => {
     if (state?.gameStatus === 'playing') {
       try {
@@ -39,12 +25,10 @@ export default function App() {
     }
   }, [state?.gameStatus, sound])
 
-  // Handle game end - stop ambient and play victory/defeat
   useEffect(() => {
     if (state?.gameStatus === 'ended') {
       try {
         sound?.stopAmbient?.()
-
         const celticsWon = (state?.score?.celtics ?? 0) > (state?.score?.lakers ?? 0)
         if (celticsWon) {
           sound?.playVictory?.()
@@ -57,7 +41,6 @@ export default function App() {
     }
   }, [state?.gameStatus, state?.score, sound])
 
-  // Restart handler - reset sound state
   const handleRestart = () => {
     try {
       sound?.stopAmbient?.()
@@ -68,9 +51,8 @@ export default function App() {
   }
 
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-black text-white">
+    <div className="relative w-screen min-h-dvh overflow-hidden bg-black text-white">
       <AnimatePresence mode="wait">
-        {/* Start Screen */}
         {state.gameStatus === 'start' && (
           <motion.div
             key="start"
@@ -84,13 +66,16 @@ export default function App() {
               onStart={actions.startGame}
               difficulty={state.difficulty}
               setDifficulty={actions.setDifficulty}
+              rosterType={state.rosterType || 'current2025'}
+              setRosterType={actions.setRosterType}
+              quarterLength={state.quarterLength || 1}
+              setQuarterLength={actions.setQuarterLength}
               isMuted={sound.isMuted}
               toggleMute={sound.toggleMute}
             />
           </motion.div>
         )}
 
-        {/* Game Screen */}
         {state.gameStatus === 'playing' && (
           <motion.div
             key="playing"
@@ -104,7 +89,6 @@ export default function App() {
           </motion.div>
         )}
 
-        {/* Halftime Screen */}
         {state.gameStatus === 'halftime' && (
           <motion.div
             key="halftime"
@@ -118,7 +102,6 @@ export default function App() {
           </motion.div>
         )}
 
-        {/* End Screen */}
         {state.gameStatus === 'ended' && (
           <motion.div
             key="ended"

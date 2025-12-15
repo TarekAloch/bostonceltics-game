@@ -1,359 +1,375 @@
-import { useCallback, useRef, useEffect, useState } from 'react'
-import { Howl, Howler } from 'howler'
+import { useCallback, useRef, useState, useEffect } from 'react'
 
-// Sound URLs - using free sound effects
-const SOUND_URLS = {
-  // Crowd sounds (original)
-  crowdCheer: 'https://assets.mixkit.co/active_storage/sfx/2580/2580-preview.mp3',
-  crowdBoo: 'https://assets.mixkit.co/active_storage/sfx/2570/2570-preview.mp3',
-  crowdAmbient: 'https://assets.mixkit.co/active_storage/sfx/1204/1204-preview.mp3',
+/**
+ * Web Audio API Sound System
+ * All sounds are synthesized - no external URLs needed
+ */
 
-  // TD Garden Crowd Chants (NEW)
-  beatLAChant: 'https://assets.mixkit.co/active_storage/sfx/2587/2587-preview.mp3', // Crowd chant
-  defenseChant: 'https://assets.mixkit.co/active_storage/sfx/2588/2588-preview.mp3', // Crowd yelling
-  letsGoCelticsChant: 'https://assets.mixkit.co/active_storage/sfx/2589/2589-preview.mp3', // Team chant
-  crowdEruption: 'https://assets.mixkit.co/active_storage/sfx/2590/2590-preview.mp3', // Extended roar
-  crowdGroan: 'https://assets.mixkit.co/active_storage/sfx/2591/2591-preview.mp3', // Disappointment
-  crowdOhhhh: 'https://assets.mixkit.co/active_storage/sfx/2592/2592-preview.mp3', // Anticipation
+// Shared AudioContext
+let audioContext = null
 
-  // Game sounds (original)
-  swish: 'https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3',
-  rimClank: 'https://assets.mixkit.co/active_storage/sfx/2572/2572-preview.mp3',
-  buzzer: 'https://assets.mixkit.co/active_storage/sfx/950/950-preview.mp3',
-  whistle: 'https://assets.mixkit.co/active_storage/sfx/951/951-preview.mp3',
-
-  // Court Action Sounds (NEW)
-  dribble: 'https://assets.mixkit.co/active_storage/sfx/2573/2573-preview.mp3', // Ball bounce
-  shoeSqueak: 'https://assets.mixkit.co/active_storage/sfx/2574/2574-preview.mp3', // Shoe on court
-  swish3: 'https://assets.mixkit.co/active_storage/sfx/2575/2575-preview.mp3', // Clean 3-pointer
-  backboardHit: 'https://assets.mixkit.co/active_storage/sfx/2576/2576-preview.mp3', // Glass impact
-  rimBounce: 'https://assets.mixkit.co/active_storage/sfx/2577/2577-preview.mp3', // Ball on rim
-  dunk: 'https://assets.mixkit.co/active_storage/sfx/2578/2578-preview.mp3', // Slam dunk
-  blockSwat: 'https://assets.mixkit.co/active_storage/sfx/2579/2579-preview.mp3', // Shot rejection
-  stealGrab: 'https://assets.mixkit.co/active_storage/sfx/951/951-preview.mp3', // Quick grab
-
-  // Game Events (NEW)
-  shotClockWarning: 'https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3', // 5-sec beep
-  quarterBuzzer: 'https://assets.mixkit.co/active_storage/sfx/2870/2870-preview.mp3', // End quarter
-  victoryFanfare: 'https://assets.mixkit.co/active_storage/sfx/2871/2871-preview.mp3', // Win music
-  defeatHorn: 'https://assets.mixkit.co/active_storage/sfx/2872/2872-preview.mp3', // Loss horn
-  foulWhistle: 'https://assets.mixkit.co/active_storage/sfx/2873/2873-preview.mp3', // Double whistle
-
-  // UI sounds (original)
-  success: 'https://assets.mixkit.co/active_storage/sfx/2000/2000-preview.mp3',
-  fail: 'https://assets.mixkit.co/active_storage/sfx/2001/2001-preview.mp3',
-  tick: 'https://assets.mixkit.co/active_storage/sfx/2568/2568-preview.mp3',
-  select: 'https://assets.mixkit.co/active_storage/sfx/2571/2571-preview.mp3',
-
-  // UI/Quiz Sounds (NEW)
-  quizCorrect: 'https://assets.mixkit.co/active_storage/sfx/2003/2003-preview.mp3', // Success chime
-  quizWrong: 'https://assets.mixkit.co/active_storage/sfx/2004/2004-preview.mp3', // Error buzz
-  timerTick: 'https://assets.mixkit.co/active_storage/sfx/2005/2005-preview.mp3', // Clock tick
-  timerWarning: 'https://assets.mixkit.co/active_storage/sfx/2006/2006-preview.mp3', // Urgent beep
-  buttonHover: 'https://assets.mixkit.co/active_storage/sfx/2007/2007-preview.mp3', // Soft click
-
-  // Victory / Defeat (original)
-  victory: 'https://assets.mixkit.co/active_storage/sfx/2020/2020-preview.mp3',
-  defeat: 'https://assets.mixkit.co/active_storage/sfx/2053/2053-preview.mp3',
+function getAudioContext() {
+  if (!audioContext || audioContext.state === 'closed') {
+    audioContext = new (window.AudioContext || window.webkitAudioContext)()
+  }
+  // Resume if suspended (browser autoplay policy)
+  if (audioContext.state === 'suspended') {
+    audioContext.resume()
+  }
+  return audioContext
 }
 
-// Volume configuration for sound layering
-const SOUND_VOLUMES = {
-  // Ambient/background
-  crowdAmbient: 0.2,
+// Core synthesis functions
+function playTone(frequencies, duration = 0.3, type = 'sine', volume = 0.3) {
+  const ctx = getAudioContext()
+  const now = ctx.currentTime
+  const freqs = Array.isArray(frequencies) ? frequencies : [frequencies]
+  
+  freqs.forEach((freq, i) => {
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+    
+    osc.type = type
+    osc.frequency.value = freq
+    
+    gain.gain.setValueAtTime(volume / freqs.length, now + i * 0.05)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + duration + i * 0.05)
+    
+    osc.connect(gain)
+    gain.connect(ctx.destination)
+    
+    osc.start(now + i * 0.05)
+    osc.stop(now + duration + i * 0.05 + 0.1)
+  })
+}
 
-  // Chants - noticeable but not overwhelming
-  beatLAChant: 0.6,
-  defenseChant: 0.6,
-  letsGoCelticsChant: 0.6,
-  crowdEruption: 0.7,
-  crowdGroan: 0.5,
-  crowdOhhhh: 0.5,
+function playNoise(duration = 0.2, filterType = 'lowpass', frequency = 1000, volume = 0.2) {
+  const ctx = getAudioContext()
+  const now = ctx.currentTime
+  
+  // Create noise buffer
+  const bufferSize = ctx.sampleRate * duration
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+  const data = buffer.getChannelData(0)
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = Math.random() * 2 - 1
+  }
+  
+  const source = ctx.createBufferSource()
+  source.buffer = buffer
+  
+  const filter = ctx.createBiquadFilter()
+  filter.type = filterType
+  filter.frequency.value = frequency
+  
+  const gain = ctx.createGain()
+  gain.gain.setValueAtTime(volume, now)
+  gain.gain.exponentialRampToValueAtTime(0.001, now + duration)
+  
+  source.connect(filter)
+  filter.connect(gain)
+  gain.connect(ctx.destination)
+  
+  source.start(now)
+  source.stop(now + duration + 0.1)
+}
 
-  // Game events - clear feedback
-  swish: 0.8,
-  swish3: 0.8,
-  rimClank: 0.8,
-  buzzer: 0.8,
-  whistle: 0.7,
-  dunk: 0.9,
-  blockSwat: 0.8,
+function playChirp(startFreq, endFreq, duration = 0.15, volume = 0.3) {
+  const ctx = getAudioContext()
+  const now = ctx.currentTime
+  
+  const osc = ctx.createOscillator()
+  const gain = ctx.createGain()
+  
+  osc.type = 'sine'
+  osc.frequency.setValueAtTime(startFreq, now)
+  osc.frequency.exponentialRampToValueAtTime(endFreq, now + duration)
+  
+  gain.gain.setValueAtTime(volume, now)
+  gain.gain.exponentialRampToValueAtTime(0.001, now + duration)
+  
+  osc.connect(gain)
+  gain.connect(ctx.destination)
+  
+  osc.start(now)
+  osc.stop(now + duration + 0.1)
+}
 
-  // Court action - subtle
-  dribble: 0.4,
-  shoeSqueak: 0.3,
-  backboardHit: 0.7,
-  rimBounce: 0.6,
-  stealGrab: 0.6,
-
-  // Special events
-  shotClockWarning: 0.7,
-  quarterBuzzer: 0.8,
-  foulWhistle: 0.7,
-
-  // UI sounds - subtle
-  success: 0.5,
-  fail: 0.5,
-  tick: 0.5,
-  select: 0.4,
-  quizCorrect: 0.5,
-  quizWrong: 0.5,
-  timerTick: 0.4,
-  timerWarning: 0.6,
-  buttonHover: 0.3,
-
-  // Climactic
-  victory: 0.9,
-  victoryFanfare: 0.9,
-  defeat: 0.9,
-  defeatHorn: 0.9,
-  crowdCheer: 0.6,
-  crowdBoo: 0.6,
+// Sound definitions using synthesis
+const sounds = {
+  // CROWD SOUNDS
+  crowdCheer: () => {
+    playNoise(1.5, 'bandpass', 2000, 0.15)
+    setTimeout(() => playNoise(0.8, 'bandpass', 1500, 0.1), 200)
+  },
+  crowdBoo: () => {
+    playNoise(1.2, 'lowpass', 500, 0.15)
+  },
+  crowdAmbient: () => {
+    playNoise(3, 'bandpass', 1000, 0.05)
+  },
+  crowdEruption: () => {
+    playNoise(2, 'bandpass', 2500, 0.2)
+    setTimeout(() => playNoise(1.5, 'bandpass', 2000, 0.15), 300)
+    setTimeout(() => playNoise(1, 'bandpass', 1500, 0.1), 600)
+  },
+  crowdGroan: () => {
+    playNoise(0.8, 'lowpass', 400, 0.12)
+  },
+  crowdOhhhh: () => {
+    playTone([200, 250], 0.8, 'sine', 0.1)
+    playNoise(0.6, 'bandpass', 800, 0.08)
+  },
+  
+  // TD GARDEN CHANTS
+  beatLAChant: () => {
+    [0, 300, 600].forEach((delay, i) => {
+      setTimeout(() => playNoise(0.15, 'bandpass', 1200 + i * 200, 0.12), delay)
+    })
+  },
+  defenseChant: () => {
+    setTimeout(() => playNoise(0.2, 'bandpass', 1500, 0.15), 0)
+    setTimeout(() => playNoise(0.3, 'bandpass', 1800, 0.15), 250)
+  },
+  letsGoCelticsChant: () => {
+    [0, 150, 300, 500, 650].forEach((delay) => {
+      setTimeout(() => playNoise(0.12, 'bandpass', 1400, 0.1), delay)
+    })
+  },
+  
+  // GAME SOUNDS - BASKETBALL
+  swish: () => {
+    playNoise(0.25, 'highpass', 3000, 0.25)
+    playChirp(4000, 2000, 0.15, 0.15)
+  },
+  swish3: () => {
+    playNoise(0.3, 'highpass', 3500, 0.3)
+    playChirp(5000, 2000, 0.2, 0.2)
+    setTimeout(() => playTone(880, 0.1, 'sine', 0.1), 150)
+  },
+  rimClank: () => {
+    playTone([800, 1200, 1600], 0.15, 'square', 0.2)
+    playNoise(0.1, 'highpass', 2000, 0.15)
+  },
+  rimBounce: () => {
+    playTone([700, 1000], 0.1, 'square', 0.15)
+    setTimeout(() => playTone([650, 950], 0.08, 'square', 0.1), 100)
+  },
+  backboardHit: () => {
+    playTone([400, 600], 0.12, 'square', 0.2)
+    playNoise(0.08, 'lowpass', 1500, 0.15)
+  },
+  dunk: () => {
+    playTone([150, 200], 0.2, 'square', 0.3)
+    playNoise(0.15, 'lowpass', 800, 0.25)
+    setTimeout(() => playNoise(0.2, 'highpass', 3000, 0.2), 100)
+  },
+  dribble: () => {
+    playTone(150, 0.08, 'sine', 0.2)
+    playNoise(0.05, 'lowpass', 500, 0.15)
+  },
+  shoeSqueak: () => {
+    playChirp(2000, 3500, 0.1, 0.1)
+  },
+  blockSwat: () => {
+    playNoise(0.15, 'highpass', 1500, 0.25)
+    playTone([300, 400], 0.1, 'square', 0.2)
+  },
+  stealGrab: () => {
+    playNoise(0.1, 'highpass', 2000, 0.2)
+    playTone(500, 0.05, 'sine', 0.15)
+  },
+  
+  // WHISTLES & BUZZERS
+  buzzer: () => {
+    playTone(200, 0.6, 'square', 0.25)
+  },
+  whistle: () => {
+    playTone([2800, 3200], 0.4, 'sine', 0.2)
+  },
+  foulWhistle: () => {
+    playTone([2800, 3200], 0.25, 'sine', 0.2)
+    setTimeout(() => playTone([2800, 3200], 0.25, 'sine', 0.2), 300)
+  },
+  quarterBuzzer: () => {
+    playTone(180, 0.8, 'square', 0.3)
+  },
+  shotClockWarning: () => {
+    playTone(1000, 0.1, 'square', 0.25)
+    setTimeout(() => playTone(1000, 0.1, 'square', 0.25), 200)
+    setTimeout(() => playTone(1000, 0.1, 'square', 0.25), 400)
+  },
+  
+  // UI / QUIZ SOUNDS
+  success: () => {
+    playTone([523, 659, 784], 0.3, 'sine', 0.2)
+  },
+  quizCorrect: () => {
+    playTone(523, 0.1, 'sine', 0.2)
+    setTimeout(() => playTone(659, 0.1, 'sine', 0.2), 100)
+    setTimeout(() => playTone(784, 0.2, 'sine', 0.25), 200)
+  },
+  fail: () => {
+    playTone([200, 150], 0.4, 'square', 0.15)
+  },
+  quizWrong: () => {
+    playTone(200, 0.15, 'square', 0.2)
+    setTimeout(() => playTone(150, 0.25, 'square', 0.15), 150)
+  },
+  tick: () => {
+    playTone(800, 0.03, 'sine', 0.15)
+  },
+  timerTick: () => {
+    playTone(1000, 0.02, 'sine', 0.1)
+  },
+  timerWarning: () => {
+    playTone(1200, 0.08, 'square', 0.2)
+  },
+  select: () => {
+    playChirp(400, 600, 0.08, 0.15)
+  },
+  buttonHover: () => {
+    playTone(600, 0.02, 'sine', 0.08)
+  },
+  
+  // VICTORY / DEFEAT
+  victory: () => {
+    const notes = [523, 659, 784, 1047]
+    notes.forEach((freq, i) => {
+      setTimeout(() => playTone(freq, 0.3, 'sine', 0.2), i * 150)
+    })
+    setTimeout(() => {
+      playTone([523, 659, 784, 1047], 0.6, 'sine', 0.25)
+    }, 600)
+  },
+  victoryFanfare: () => {
+    sounds.victory()
+    setTimeout(() => sounds.crowdEruption(), 400)
+  },
+  defeat: () => {
+    playTone([300, 280, 260], 0.8, 'square', 0.15)
+  },
+  defeatHorn: () => {
+    playTone(150, 1, 'sawtooth', 0.2)
+  },
 }
 
 export function useSound() {
   const [isMuted, setIsMuted] = useState(false)
   const [volume, setVolume] = useState(0.5)
-  const soundsRef = useRef({})
-  const ambientRef = useRef(null)
+  const ambientIntervalRef = useRef(null)
 
-  // Initialize sounds
   useEffect(() => {
-    // Create all sound instances with error handling
-    Object.entries(SOUND_URLS).forEach(([key, url]) => {
-      try {
-        soundsRef.current[key] = new Howl({
-          src: [url],
-          volume: SOUND_VOLUMES[key] || 0.5,
-          loop: key === 'crowdAmbient',
-          preload: true,
-          onloaderror: (id, error) => {
-            if (process.env.NODE_ENV === 'development') {
-              console.warn(`Failed to load sound: ${key}`, error)
-            }
-          },
-          onplayerror: (id, error) => {
-            if (process.env.NODE_ENV === 'development') {
-              console.warn(`Failed to play sound: ${key}`, error)
-            }
-          },
-        })
-      } catch (error) {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn(`Error initializing sound: ${key}`, error)
-        }
-      }
-    })
-
     return () => {
-      // Cleanup
-      Object.values(soundsRef.current).forEach(sound => {
-        try {
-          sound.unload()
-        } catch (error) {
-          // Silently fail cleanup
-        }
-      })
+      if (ambientIntervalRef.current) {
+        clearInterval(ambientIntervalRef.current)
+      }
     }
   }, [])
-
-  // Update global volume
-  useEffect(() => {
-    Howler.volume(isMuted ? 0 : volume)
-  }, [volume, isMuted])
 
   const play = useCallback((soundName) => {
     if (isMuted) return
-    const sound = soundsRef.current[soundName]
-    if (sound) {
+    const soundFn = sounds[soundName]
+    if (soundFn) {
       try {
-        sound.play()
+        soundFn()
       } catch (error) {
-        if (process.env.NODE_ENV === 'development') {
-          console.warn(`Error playing sound: ${soundName}`, error)
-        }
+        console.warn(`Error playing sound: ${soundName}`, error)
       }
     }
   }, [isMuted])
 
-  const stop = useCallback((soundName) => {
-    const sound = soundsRef.current[soundName]
-    if (sound) {
-      sound.stop()
-    }
-  }, [])
+  const stop = useCallback(() => {}, [])
 
   const startAmbient = useCallback(() => {
-    if (ambientRef.current) return
-    ambientRef.current = soundsRef.current.crowdAmbient
-    if (ambientRef.current && !isMuted) {
-      ambientRef.current.play()
-    }
+    if (ambientIntervalRef.current || isMuted) return
+    sounds.crowdAmbient()
+    ambientIntervalRef.current = setInterval(() => {
+      if (!isMuted) sounds.crowdAmbient()
+    }, 4000)
   }, [isMuted])
 
   const stopAmbient = useCallback(() => {
-    if (ambientRef.current) {
-      ambientRef.current.stop()
-      ambientRef.current = null
+    if (ambientIntervalRef.current) {
+      clearInterval(ambientIntervalRef.current)
+      ambientIntervalRef.current = null
     }
   }, [])
 
-  // Helper functions for common game events
   const playCelticsScore = useCallback((isThree = false) => {
+    if (isMuted) return
     if (isThree) {
-      play('swish3')
-      setTimeout(() => play('crowdEruption'), 200)
+      sounds.swish3()
+      setTimeout(() => sounds.crowdEruption(), 200)
     } else {
-      play('swish')
-      setTimeout(() => play('crowdCheer'), 200)
+      sounds.swish()
+      setTimeout(() => sounds.crowdCheer(), 200)
     }
-  }, [play])
+  }, [isMuted])
 
   const playCelticsMiss = useCallback(() => {
-    play('rimClank')
-    setTimeout(() => play('crowdGroan'), 100)
-  }, [play])
+    if (isMuted) return
+    sounds.rimClank()
+    setTimeout(() => sounds.crowdGroan(), 100)
+  }, [isMuted])
 
   const playLakersScore = useCallback(() => {
-    play('swish')
-    setTimeout(() => play('crowdBoo'), 200)
-  }, [play])
+    if (isMuted) return
+    sounds.swish()
+    setTimeout(() => sounds.crowdBoo(), 200)
+  }, [isMuted])
 
   const playLakersMiss = useCallback(() => {
-    play('rimClank')
-    setTimeout(() => play('crowdCheer'), 300) // Crowd cheers their miss
-  }, [play])
+    if (isMuted) return
+    sounds.rimClank()
+    setTimeout(() => sounds.crowdCheer(), 300)
+  }, [isMuted])
 
   const playBlock = useCallback(() => {
-    play('blockSwat')
-    setTimeout(() => play('crowdEruption'), 100)
-  }, [play])
+    if (isMuted) return
+    sounds.blockSwat()
+    setTimeout(() => sounds.crowdEruption(), 100)
+  }, [isMuted])
 
   const playSteal = useCallback(() => {
-    play('stealGrab')
-    setTimeout(() => play('crowdCheer'), 200)
-  }, [play])
+    if (isMuted) return
+    sounds.stealGrab()
+    setTimeout(() => sounds.crowdCheer(), 200)
+  }, [isMuted])
 
   const playDunk = useCallback(() => {
-    play('dunk')
-    setTimeout(() => play('crowdEruption'), 150)
-  }, [play])
+    if (isMuted) return
+    sounds.dunk()
+    setTimeout(() => sounds.crowdEruption(), 150)
+  }, [isMuted])
 
-  // TD Garden Chant Functions
-  const playBeatLAChant = useCallback(() => {
-    play('beatLAChant')
-  }, [play])
-
-  const playDefenseChant = useCallback(() => {
-    play('defenseChant')
-  }, [play])
-
-  const playLetsGoCelticsChant = useCallback(() => {
-    play('letsGoCelticsChant')
-  }, [play])
-
-  // Court action sounds
-  const playDribble = useCallback(() => {
-    play('dribble')
-  }, [play])
-
-  const playShoeSqueak = useCallback(() => {
-    play('shoeSqueak')
-  }, [play])
-
-  const playBackboardHit = useCallback(() => {
-    play('backboardHit')
-  }, [play])
-
-  const playRimBounce = useCallback(() => {
-    play('rimBounce')
-  }, [play])
-
-  // Game event sounds
-  const playShotClockWarning = useCallback(() => {
-    play('shotClockWarning')
-  }, [play])
-
-  const playQuarterBuzzer = useCallback(() => {
-    play('quarterBuzzer')
-  }, [play])
-
-  const playFoulWhistle = useCallback(() => {
-    play('foulWhistle')
-  }, [play])
-
-  // Quiz/UI interaction sounds
   const playQuizResult = useCallback((correct) => {
+    if (isMuted) return
     if (correct) {
-      play('quizCorrect')
-      setTimeout(() => play('crowdCheer'), 300)
+      sounds.quizCorrect()
+      setTimeout(() => sounds.crowdCheer(), 300)
     } else {
-      play('quizWrong')
-      setTimeout(() => play('crowdGroan'), 200)
+      sounds.quizWrong()
+      setTimeout(() => sounds.crowdGroan(), 200)
     }
-  }, [play])
-
-  const playTimerTick = useCallback(() => {
-    play('timerTick')
-  }, [play])
-
-  const playTimerWarning = useCallback(() => {
-    play('timerWarning')
-  }, [play])
-
-  const playButtonHover = useCallback(() => {
-    play('buttonHover')
-  }, [play])
-
-  // Enhanced crowd reactions
-  const playCrowdEruption = useCallback(() => {
-    play('crowdEruption')
-  }, [play])
-
-  const playCrowdGroan = useCallback(() => {
-    play('crowdGroan')
-  }, [play])
-
-  const playCrowdOhhhh = useCallback(() => {
-    play('crowdOhhhh')
-  }, [play])
-
-  const playQTESuccess = useCallback(() => {
-    play('success')
-  }, [play])
-
-  const playQTEFail = useCallback(() => {
-    play('fail')
-  }, [play])
-
-  const playBuzzer = useCallback(() => {
-    play('buzzer')
-  }, [play])
+  }, [isMuted])
 
   const playVictory = useCallback(() => {
-    play('victoryFanfare')
-    setTimeout(() => play('crowdEruption'), 500)
-  }, [play])
+    if (isMuted) return
+    sounds.victoryFanfare()
+  }, [isMuted])
 
   const playDefeat = useCallback(() => {
-    play('defeatHorn')
-    setTimeout(() => play('crowdBoo'), 300)
-  }, [play])
-
-  const playTick = useCallback(() => {
-    play('tick')
-  }, [play])
-
-  const playSelect = useCallback(() => {
-    play('select')
-  }, [play])
+    if (isMuted) return
+    sounds.defeatHorn()
+    setTimeout(() => sounds.crowdBoo(), 300)
+  }, [isMuted])
 
   const toggleMute = useCallback(() => {
     setIsMuted(prev => !prev)
   }, [])
 
   return {
-    // Core sound controls
     play,
     stop,
     startAmbient,
@@ -362,48 +378,36 @@ export function useSound() {
     toggleMute,
     volume,
     setVolume,
-
-    // Game action sounds (original)
     playCelticsScore,
     playCelticsMiss,
     playLakersScore,
     playLakersMiss,
     playBlock,
     playSteal,
-    playBuzzer,
+    playDunk,
+    playQuizResult,
     playVictory,
     playDefeat,
-
-    // Enhanced game actions (NEW)
-    playDunk,
-    playDribble,
-    playShoeSqueak,
-    playBackboardHit,
-    playRimBounce,
-
-    // TD Garden Chants (NEW)
-    playBeatLAChant,
-    playDefenseChant,
-    playLetsGoCelticsChant,
-
-    // Crowd reactions (NEW)
-    playCrowdEruption,
-    playCrowdGroan,
-    playCrowdOhhhh,
-
-    // Game events (NEW)
-    playShotClockWarning,
-    playQuarterBuzzer,
-    playFoulWhistle,
-
-    // Quiz/UI sounds (original + NEW)
-    playQTESuccess,
-    playQTEFail,
-    playQuizResult,
-    playTimerTick,
-    playTimerWarning,
-    playButtonHover,
-    playTick,
-    playSelect,
+    playBuzzer: useCallback(() => !isMuted && sounds.buzzer(), [isMuted]),
+    playTick: useCallback(() => !isMuted && sounds.tick(), [isMuted]),
+    playSelect: useCallback(() => !isMuted && sounds.select(), [isMuted]),
+    playQTESuccess: useCallback(() => !isMuted && sounds.success(), [isMuted]),
+    playQTEFail: useCallback(() => !isMuted && sounds.fail(), [isMuted]),
+    playDribble: useCallback(() => !isMuted && sounds.dribble(), [isMuted]),
+    playShoeSqueak: useCallback(() => !isMuted && sounds.shoeSqueak(), [isMuted]),
+    playBackboardHit: useCallback(() => !isMuted && sounds.backboardHit(), [isMuted]),
+    playRimBounce: useCallback(() => !isMuted && sounds.rimBounce(), [isMuted]),
+    playBeatLAChant: useCallback(() => !isMuted && sounds.beatLAChant(), [isMuted]),
+    playDefenseChant: useCallback(() => !isMuted && sounds.defenseChant(), [isMuted]),
+    playLetsGoCelticsChant: useCallback(() => !isMuted && sounds.letsGoCelticsChant(), [isMuted]),
+    playCrowdEruption: useCallback(() => !isMuted && sounds.crowdEruption(), [isMuted]),
+    playCrowdGroan: useCallback(() => !isMuted && sounds.crowdGroan(), [isMuted]),
+    playCrowdOhhhh: useCallback(() => !isMuted && sounds.crowdOhhhh(), [isMuted]),
+    playShotClockWarning: useCallback(() => !isMuted && sounds.shotClockWarning(), [isMuted]),
+    playQuarterBuzzer: useCallback(() => !isMuted && sounds.quarterBuzzer(), [isMuted]),
+    playFoulWhistle: useCallback(() => !isMuted && sounds.foulWhistle(), [isMuted]),
+    playTimerTick: useCallback(() => !isMuted && sounds.timerTick(), [isMuted]),
+    playTimerWarning: useCallback(() => !isMuted && sounds.timerWarning(), [isMuted]),
+    playButtonHover: useCallback(() => !isMuted && sounds.buttonHover(), [isMuted]),
   }
 }

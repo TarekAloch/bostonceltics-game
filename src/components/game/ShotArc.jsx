@@ -1,83 +1,65 @@
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useEffect, useState, useRef } from 'react'
 
 /**
  * ShotArc Component
- *
- * Animates a basketball shot from shooter to basket with realistic arc.
- *
- * Props:
- * - from: { x, y } shooter position (0-400 coord system)
- * - to: { x, y } basket position (0-400 coord system)
- * - shotType: 'three-point' | 'mid-range' | 'layup'
- * - result: 'made' | 'missed' | 'blocked'
- * - onComplete: callback when animation finishes
- *
- * Usage:
- * <ShotArc
- *   from={{ x: 300, y: 100 }}
- *   to={{ x: 25, y: 100 }}
- *   shotType="three-point"
- *   result="made"
- *   onComplete={() => console.log('Shot complete!')}
- * />
+ * Memory-leak-safe version using refs for all timers
  */
 export default function ShotArc({ from, to, shotType, result, onComplete }) {
   const [showSwish, setShowSwish] = useState(false)
   const [showRimBounce, setShowRimBounce] = useState(false)
   const [showBlock, setShowBlock] = useState(false)
+  
+  // Refs for timer cleanup
+  const outerTimerRef = useRef(null)
+  const innerTimerRef = useRef(null)
 
-  // Calculate arc path
   const getArcPath = () => {
     const dx = to.x - from.x
     const dy = to.y - from.y
-
-    // Control point for bezier curve (determines arc height)
     const arcHeight = shotType === 'three-point' ? 80 :
-                      shotType === 'mid-range' ? 50 :
-                      20 // layup
-
+                      shotType === 'mid-range' ? 50 : 20
     const controlX = from.x + dx * 0.5
     const controlY = from.y + dy * 0.5 - arcHeight
-
     return `M ${from.x} ${from.y} Q ${controlX} ${controlY} ${to.x} ${to.y}`
   }
 
-  // Animation duration based on shot type
   const duration = shotType === 'three-point' ? 0.8 :
-                   shotType === 'mid-range' ? 0.6 :
-                   0.4 // layup
+                   shotType === 'mid-range' ? 0.6 : 0.4
 
-  // Handle animation completion
   useEffect(() => {
     if (!result || !onComplete) return
 
-    const timer = setTimeout(() => {
+    // Clear any existing timers
+    if (outerTimerRef.current) clearTimeout(outerTimerRef.current)
+    if (innerTimerRef.current) clearTimeout(innerTimerRef.current)
+
+    outerTimerRef.current = setTimeout(() => {
       if (result === 'made') {
         setShowSwish(true)
-        const swishTimer = setTimeout(() => {
+        innerTimerRef.current = setTimeout(() => {
           setShowSwish(false)
           onComplete()
         }, 600)
-        return () => clearTimeout(swishTimer)
       } else if (result === 'missed') {
         setShowRimBounce(true)
-        const bounceTimer = setTimeout(() => {
+        innerTimerRef.current = setTimeout(() => {
           setShowRimBounce(false)
           onComplete()
         }, 800)
-        return () => clearTimeout(bounceTimer)
       } else if (result === 'blocked') {
         setShowBlock(true)
-        const blockTimer = setTimeout(() => {
+        innerTimerRef.current = setTimeout(() => {
           setShowBlock(false)
           onComplete()
         }, 500)
-        return () => clearTimeout(blockTimer)
       }
     }, duration * 1000)
 
-    return () => clearTimeout(timer)
+    return () => {
+      if (outerTimerRef.current) clearTimeout(outerTimerRef.current)
+      if (innerTimerRef.current) clearTimeout(innerTimerRef.current)
+    }
   }, [result, duration, onComplete])
 
   return (
@@ -86,16 +68,6 @@ export default function ShotArc({ from, to, shotType, result, onComplete }) {
       viewBox="0 0 400 200"
       preserveAspectRatio="xMidYMid slice"
     >
-      {/* Shot arc path (for visualization in dev) */}
-      {/* <path
-        d={getArcPath()}
-        fill="none"
-        stroke="rgba(255,255,255,0.2)"
-        strokeWidth="1"
-        strokeDasharray="5,5"
-      /> */}
-
-      {/* Basketball traveling along arc */}
       {result !== 'blocked' && (
         <motion.g
           initial={{ offsetDistance: '0%' }}
@@ -120,8 +92,6 @@ export default function ShotArc({ from, to, shotType, result, onComplete }) {
               fill="freeze"
             />
           </motion.circle>
-
-          {/* Ball seams */}
           <motion.circle
             cx={from.x}
             cy={from.y}
@@ -140,7 +110,6 @@ export default function ShotArc({ from, to, shotType, result, onComplete }) {
         </motion.g>
       )}
 
-      {/* Blocked shot - ball deflects */}
       {result === 'blocked' && showBlock && (
         <motion.g>
           <motion.circle
@@ -158,8 +127,6 @@ export default function ShotArc({ from, to, shotType, result, onComplete }) {
             }}
             transition={{ duration: 0.5 }}
           />
-
-          {/* Block effect */}
           <motion.circle
             cx={from.x + (to.x - from.x) * 0.5}
             cy={from.y + (to.y - from.y) * 0.5 - 40}
@@ -174,10 +141,8 @@ export default function ShotArc({ from, to, shotType, result, onComplete }) {
         </motion.g>
       )}
 
-      {/* Swish effect (made shot) */}
       {showSwish && (
         <motion.g>
-          {/* Net ripple */}
           {[0, 1, 2].map((i) => (
             <motion.circle
               key={i}
@@ -192,8 +157,6 @@ export default function ShotArc({ from, to, shotType, result, onComplete }) {
               transition={{ duration: 0.6, delay: i * 0.1 }}
             />
           ))}
-
-          {/* Swish text */}
           <motion.text
             x={to.x}
             y={to.y + 20}
@@ -210,10 +173,8 @@ export default function ShotArc({ from, to, shotType, result, onComplete }) {
         </motion.g>
       )}
 
-      {/* Rim bounce effect (missed shot) */}
       {showRimBounce && (
         <motion.g>
-          {/* Ball bouncing off rim */}
           <motion.circle
             cx={to.x}
             cy={to.y}
@@ -228,8 +189,6 @@ export default function ShotArc({ from, to, shotType, result, onComplete }) {
             }}
             transition={{ duration: 0.8, times: [0, 0.4, 1] }}
           />
-
-          {/* Rim shake */}
           <motion.circle
             cx={to.x}
             cy={to.y}
