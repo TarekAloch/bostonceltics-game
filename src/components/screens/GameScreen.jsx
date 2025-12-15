@@ -1,4 +1,4 @@
-import { useEffect, useCallback } from 'react'
+import { useEffect, useCallback, useRef } from 'react'
 import { AnimatePresence } from 'framer-motion'
 
 // Game components
@@ -17,18 +17,6 @@ import DefensePredict from '../defense/DefensePredict'
 
 /**
  * GameScreen - Main game orchestrator for trivia-based basketball game
- *
- * Phase-based rendering:
- * - offense-trivia: Pure trivia mode (Mode 1)
- * - offense-play-call: Play selection + trivia (Mode 2)
- * - defense-choice: Contest/Block/Steal choice (Mode 1)
- * - defense-predict: Predict Lakers play (Mode 2)
- * - result: Show shot result and trigger sounds
- * - transition: Auto-advance to next possession
- *
- * @param {Object} state - Full game state from useGameState
- * @param {Object} actions - Game action handlers from useGameState
- * @param {Object} sound - Sound hook with play methods from useSound
  */
 export default function GameScreen({ state, actions, sound }) {
   const {
@@ -49,19 +37,30 @@ export default function GameScreen({ state, actions, sound }) {
     lakersRoster,
     offenseMode,
     defenseMode,
+    triviaResult,
+    defenseChoice,
+    predictionResult,
   } = state
+
+  // Track if we've already triggered resolution for current possession
+  const resolvedRef = useRef(false)
+
+  // Reset resolved flag when phase changes to a new input phase
+  useEffect(() => {
+    if (phase === 'offense-trivia' || phase === 'offense-play-call' ||
+        phase === 'defense-choice' || phase === 'defense-predict') {
+      resolvedRef.current = false
+    }
+  }, [phase])
 
   // Handle phase-specific sound effects
   useEffect(() => {
     if (!phase) return
 
     try {
-      // Defense chant during Lakers possession
       if (phase === 'defense-choice' || phase === 'defense-predict') {
         sound?.playDefenseChant?.()
       }
-
-      // Beat LA chant when appropriate
       if (showBeatLA && possession === 'lakers') {
         sound?.playBeatLAChant?.()
       }
@@ -70,20 +69,73 @@ export default function GameScreen({ state, actions, sound }) {
     }
   }, [phase, possession, showBeatLA, sound])
 
-  // Handle result phase sounds and transitions
+  // Resolve Celtics shot when triviaResult is set (Mode 1: pure trivia)
+  useEffect(() => {
+    if (phase === 'offense-trivia' && triviaResult && !resolvedRef.current) {
+      resolvedRef.current = true
+      // Small delay for UX, then resolve
+      const timer = setTimeout(() => {
+        actions?.resolveCelticsShot?.()
+      }, 150)
+      return () => clearTimeout(timer)
+    }
+  }, [phase, triviaResult, actions])
+
+  // Resolve Celtics shot when triviaResult AND playSelection are set (Mode 2: play call)
+  useEffect(() => {
+    if (phase === 'offense-play-call' && triviaResult && playSelection && !resolvedRef.current) {
+      resolvedRef.current = true
+      const timer = setTimeout(() => {
+        actions?.resolveCelticsShot?.()
+      }, 150)
+      return () => clearTimeout(timer)
+    }
+  }, [phase, triviaResult, playSelection, actions])
+
+  // Resolve Lakers shot when defenseChoice is set (Mode 1: choice)
+  useEffect(() => {
+    if (phase === 'defense-choice' && defenseChoice && !resolvedRef.current) {
+      resolvedRef.current = true
+      const timer = setTimeout(() => {
+        actions?.resolveLakersShot?.()
+      }, 150)
+      return () => clearTimeout(timer)
+    }
+  }, [phase, defenseChoice, actions])
+
+  // Resolve Lakers shot when predictionResult is set (Mode 2: predict)
+  useEffect(() => {
+    if (phase === 'defense-predict' && predictionResult && !resolvedRef.current) {
+      resolvedRef.current = true
+      const timer = setTimeout(() => {
+        actions?.resolveLakersShot?.()
+      }, 150)
+      return () => clearTimeout(timer)
+    }
+  }, [phase, predictionResult, actions])
+
+  // Handle transition phase - auto-advance to next possession
+  useEffect(() => {
+    if (phase !== 'transition') return
+
+    const timer = setTimeout(() => {
+      actions?.nextPossession?.()
+    }, 800)
+
+    return () => clearTimeout(timer)
+  }, [phase, actions])
+
+  // Handle result phase sounds
   useEffect(() => {
     if (phase !== 'result' || !lastPlay) return
 
     const { type, team, points } = lastPlay
 
     try {
-      // Trigger appropriate sounds based on result type
       if (type === 'made') {
         if (team === 'celtics') {
           const isThree = points === 3
           sound?.playCelticsScore?.(isThree)
-
-          // Extra celebration for big shots
           if (isThree || lastPlay?.playType === 'fast-break') {
             setTimeout(() => sound?.playCrowdEruption?.(), 500)
           }
@@ -108,40 +160,7 @@ export default function GameScreen({ state, actions, sound }) {
     } catch (error) {
       console.error('[GameScreen] Error playing result sound:', error)
     }
-
-    // Auto-advance after showing result (Celtics possession)
-    if (team === 'celtics') {
-      const timer = setTimeout(() => {
-        try {
-          actions?.resolveCelticsShot?.()
-        } catch (error) {
-          console.error('[GameScreen] Error resolving Celtics shot:', error)
-        }
-      }, 1200)
-
-      return () => clearTimeout(timer)
-    }
-
-    // Auto-advance after showing result (Lakers possession)
-    if (team === 'lakers') {
-      const timer = setTimeout(() => {
-        actions?.resolveLakersShot?.()
-      }, 1200)
-
-      return () => clearTimeout(timer)
-    }
-  }, [phase, lastPlay, sound, actions])
-
-  // Handle transition phase - auto-advance to next possession
-  useEffect(() => {
-    if (phase !== 'transition') return
-
-    const timer = setTimeout(() => {
-      actions?.nextPossession?.()
-    }, 800)
-
-    return () => clearTimeout(timer)
-  }, [phase, actions])
+  }, [phase, lastPlay, sound])
 
   // Shot clock warning sound
   useEffect(() => {
@@ -157,41 +176,24 @@ export default function GameScreen({ state, actions, sound }) {
     }
   }, [timeRemaining, sound])
 
-  // Handle trivia completion for offense
+  // Handle trivia completion for offense (Mode 1)
   const handleTriviaComplete = useCallback((correct, questionIndex) => {
-    // Play quiz result sound
     sound?.playQuizResult?.(correct)
-
-    // Submit trivia answer to game state
+    // Just submit answer - useEffect will handle resolution when state updates
     actions?.answerTrivia?.(correct, questionIndex)
-
-    // Trigger shot resolution after brief delay
-    setTimeout(() => {
-      actions?.resolveCelticsShot?.()
-    }, 100)
   }, [sound, actions])
 
-  // Handle play call offense completion
+  // Handle play call offense completion (Mode 2)
   const handlePlayCallComplete = useCallback((correct, play, questionIndex) => {
-    // Play quiz result sound
     sound?.playQuizResult?.(correct)
-
-    // Submit play selection and trivia answer
+    // Submit both - useEffect will handle resolution when both are set
     actions?.selectPlay?.(play)
     actions?.answerTrivia?.(correct, questionIndex)
-
-    // Trigger shot resolution after brief delay
-    setTimeout(() => {
-      actions?.resolveCelticsShot?.()
-    }, 100)
   }, [sound, actions])
 
-  // Handle defense choice completion
+  // Handle defense choice completion (Mode 1)
   const handleDefenseChoiceComplete = useCallback((choice, result) => {
-    // Submit defense choice
-    actions?.selectDefenseChoice?.(choice)
-
-    // Play appropriate sound based on result
+    // Play sound based on anticipated result
     if (result === 'block') {
       sound?.playBlock?.()
     } else if (result === 'steal') {
@@ -199,27 +201,17 @@ export default function GameScreen({ state, actions, sound }) {
     } else if (result === 'foul') {
       sound?.playFoulWhistle?.()
     }
-
-    // Trigger Lakers shot resolution after brief delay
-    setTimeout(() => {
-      actions?.resolveLakersShot?.()
-    }, 100)
+    // Just submit choice - useEffect will handle resolution when state updates
+    actions?.selectDefenseChoice?.(choice)
   }, [sound, actions])
 
-  // Handle defense prediction completion
-  const handleDefensePredictComplete = useCallback((prediction, wasCorrect, result) => {
-    // Submit prediction
-    actions?.submitPrediction?.(prediction)
-
-    // Play reaction sound
+  // Handle defense prediction completion (Mode 2)
+  const handleDefensePredictComplete = useCallback((prediction, wasCorrect) => {
     if (wasCorrect) {
       sound?.playCrowdCheer?.()
     }
-
-    // Trigger Lakers shot resolution after brief delay
-    setTimeout(() => {
-      actions?.resolveLakersShot?.()
-    }, 100)
+    // Just submit prediction - useEffect will handle resolution when state updates
+    actions?.submitPrediction?.(prediction)
   }, [sound, actions])
 
   // Build shot data for Court component
@@ -255,9 +247,7 @@ export default function GameScreen({ state, actions, sound }) {
           lastPlay={lastPlay}
           showShotArc={phase === 'result' && lastPlay?.type !== 'steal' && lastPlay?.type !== 'blocked'}
           shotData={shotData}
-          onShotComplete={() => {
-            // Shot animation complete callback if needed
-          }}
+          onShotComplete={() => {}}
         >
           <Crowd
             mood={crowdMood || 'neutral'}
@@ -314,19 +304,6 @@ export default function GameScreen({ state, actions, sound }) {
       <div className="absolute bottom-4 left-0 right-0 z-20">
         <Commentary lastPlay={lastPlay} />
       </div>
-
-      {/* Debug info (development only) */}
-      {process.env.NODE_ENV === 'development' && (
-        <div className="absolute top-32 right-4 z-30 bg-black/80 text-white text-xs p-3 rounded font-mono max-w-xs">
-          <div className="font-bold mb-2 text-green-400">DEBUG</div>
-          <div>Phase: {phase}</div>
-          <div>Possession: {possession}</div>
-          <div>Offense Mode: {offenseMode}</div>
-          <div>Defense Mode: {defenseMode}</div>
-          <div>Active: {activePlayer?.name || 'none'}</div>
-          <div>Question: {currentQuestion ? 'loaded' : 'none'}</div>
-        </div>
-      )}
     </div>
   )
 }
