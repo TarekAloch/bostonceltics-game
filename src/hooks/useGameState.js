@@ -365,8 +365,9 @@ function gameReducer(state, action) {
         return newState
       }
 
+      const actualOffenseMode = state.phase === "offense-play-call" ? 2 : 1
       const successChance = calculateCelticsShotSuccess(
-        state.offenseMode,
+        actualOffenseMode,
         state.triviaResult,
         state.playSelection
       )
@@ -469,8 +470,9 @@ function gameReducer(state, action) {
         return newState
       }
 
+      const actualDefenseMode = state.phase === "defense-predict" ? 2 : 1
       const result = calculateLakersShotSuccess(
-        state.defenseMode,
+        actualDefenseMode,
         state.defenseChoice,
         state.predictionResult,
         state.difficulty
