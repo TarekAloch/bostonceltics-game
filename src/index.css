@@ -38,8 +38,8 @@
     margin: 0;
     padding: 0;
     width: 100%;
-    min-height: 100dvh; /* Dynamic viewport height for mobile */
     min-height: -webkit-fill-available; /* Safari fallback */
+    min-height: 100dvh; /* Modern browsers */
     overflow: hidden;
   }
 
