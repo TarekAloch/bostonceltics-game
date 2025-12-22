@@ -1,271 +1,904 @@
 import { useCallback, useRef, useState, useEffect } from 'react'
 
 /**
- * Web Audio API Sound System
- * All sounds are synthesized - no external URLs needed
+ * Enhanced Web Audio API Sound System
+ * Full arena music, beats, and high-quality synthesized sounds
  */
 
 // Shared AudioContext
 let audioContext = null
+let masterGain = null
 
 function getAudioContext() {
   if (!audioContext || audioContext.state === 'closed') {
     audioContext = new (window.AudioContext || window.webkitAudioContext)()
+    masterGain = audioContext.createGain()
+    masterGain.connect(audioContext.destination)
+    masterGain.gain.value = 0.6
   }
-  // Resume if suspended (browser autoplay policy)
   if (audioContext.state === 'suspended') {
     audioContext.resume()
   }
   return audioContext
 }
 
-// Core synthesis functions
-function playTone(frequencies, duration = 0.3, type = 'sine', volume = 0.3) {
-  const ctx = getAudioContext()
-  const now = ctx.currentTime
-  const freqs = Array.isArray(frequencies) ? frequencies : [frequencies]
-  
-  freqs.forEach((freq, i) => {
-    const osc = ctx.createOscillator()
-    const gain = ctx.createGain()
-    
-    osc.type = type
-    osc.frequency.value = freq
-    
-    gain.gain.setValueAtTime(volume / freqs.length, now + i * 0.05)
-    gain.gain.exponentialRampToValueAtTime(0.001, now + duration + i * 0.05)
-    
-    osc.connect(gain)
-    gain.connect(ctx.destination)
-    
-    osc.start(now + i * 0.05)
-    osc.stop(now + duration + i * 0.05 + 0.1)
-  })
+function getMasterGain() {
+  getAudioContext()
+  return masterGain
 }
 
-function playNoise(duration = 0.2, filterType = 'lowpass', frequency = 1000, volume = 0.2) {
+// Note frequencies for music
+const NOTES = {
+  C3: 130.81, D3: 146.83, E3: 164.81, F3: 174.61, G3: 196.00, A3: 220.00, B3: 246.94,
+  C4: 261.63, D4: 293.66, E4: 329.63, F4: 349.23, G4: 392.00, A4: 440.00, B4: 493.88,
+  C5: 523.25, D5: 587.33, E5: 659.25, F5: 698.46, G5: 783.99, A5: 880.00, B5: 987.77,
+  C6: 1046.50
+}
+
+// Drum kit synthesis
+function kick(time = 0, volume = 0.8) {
   const ctx = getAudioContext()
-  const now = ctx.currentTime
-  
-  // Create noise buffer
+  const now = ctx.currentTime + time
+
+  const osc = ctx.createOscillator()
+  const gain = ctx.createGain()
+
+  osc.type = 'sine'
+  osc.frequency.setValueAtTime(150, now)
+  osc.frequency.exponentialRampToValueAtTime(40, now + 0.1)
+
+  gain.gain.setValueAtTime(volume, now)
+  gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3)
+
+  osc.connect(gain)
+  gain.connect(getMasterGain())
+
+  osc.start(now)
+  osc.stop(now + 0.3)
+}
+
+function snare(time = 0, volume = 0.6) {
+  const ctx = getAudioContext()
+  const now = ctx.currentTime + time
+
+  // Noise for snare body
+  const bufferSize = ctx.sampleRate * 0.15
+  const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+  const data = buffer.getChannelData(0)
+  for (let i = 0; i < bufferSize; i++) {
+    data[i] = Math.random() * 2 - 1
+  }
+
+  const noise = ctx.createBufferSource()
+  noise.buffer = buffer
+
+  const noiseFilter = ctx.createBiquadFilter()
+  noiseFilter.type = 'highpass'
+  noiseFilter.frequency.value = 1000
+
+  const noiseGain = ctx.createGain()
+  noiseGain.gain.setValueAtTime(volume, now)
+  noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.15)
+
+  noise.connect(noiseFilter)
+  noiseFilter.connect(noiseGain)
+  noiseGain.connect(getMasterGain())
+
+  // Tone for snare punch
+  const osc = ctx.createOscillator()
+  const oscGain = ctx.createGain()
+  osc.type = 'triangle'
+  osc.frequency.setValueAtTime(180, now)
+  osc.frequency.exponentialRampToValueAtTime(100, now + 0.05)
+  oscGain.gain.setValueAtTime(volume * 0.5, now)
+  oscGain.gain.exponentialRampToValueAtTime(0.001, now + 0.1)
+
+  osc.connect(oscGain)
+  oscGain.connect(getMasterGain())
+
+  noise.start(now)
+  noise.stop(now + 0.15)
+  osc.start(now)
+  osc.stop(now + 0.1)
+}
+
+function hihat(time = 0, open = false, volume = 0.3) {
+  const ctx = getAudioContext()
+  const now = ctx.currentTime + time
+  const duration = open ? 0.3 : 0.08
+
   const bufferSize = ctx.sampleRate * duration
   const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
   const data = buffer.getChannelData(0)
   for (let i = 0; i < bufferSize; i++) {
     data[i] = Math.random() * 2 - 1
   }
-  
-  const source = ctx.createBufferSource()
-  source.buffer = buffer
-  
+
+  const noise = ctx.createBufferSource()
+  noise.buffer = buffer
+
   const filter = ctx.createBiquadFilter()
-  filter.type = filterType
-  filter.frequency.value = frequency
-  
+  filter.type = 'highpass'
+  filter.frequency.value = 7000
+
   const gain = ctx.createGain()
   gain.gain.setValueAtTime(volume, now)
   gain.gain.exponentialRampToValueAtTime(0.001, now + duration)
-  
-  source.connect(filter)
+
+  noise.connect(filter)
   filter.connect(gain)
-  gain.connect(ctx.destination)
-  
-  source.start(now)
-  source.stop(now + duration + 0.1)
+  gain.connect(getMasterGain())
+
+  noise.start(now)
+  noise.stop(now + duration + 0.01)
 }
 
-function playChirp(startFreq, endFreq, duration = 0.15, volume = 0.3) {
+function clap(time = 0, volume = 0.5) {
   const ctx = getAudioContext()
-  const now = ctx.currentTime
-  
+  const now = ctx.currentTime + time
+
+  // Multiple short bursts for clap texture
+  for (let i = 0; i < 3; i++) {
+    const bufferSize = ctx.sampleRate * 0.02
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let j = 0; j < bufferSize; j++) {
+      data[j] = Math.random() * 2 - 1
+    }
+
+    const noise = ctx.createBufferSource()
+    noise.buffer = buffer
+
+    const filter = ctx.createBiquadFilter()
+    filter.type = 'bandpass'
+    filter.frequency.value = 2500
+
+    const gain = ctx.createGain()
+    const startTime = now + i * 0.01
+    gain.gain.setValueAtTime(volume * (1 - i * 0.2), startTime)
+    gain.gain.exponentialRampToValueAtTime(0.001, startTime + 0.1)
+
+    noise.connect(filter)
+    filter.connect(gain)
+    gain.connect(getMasterGain())
+
+    noise.start(startTime)
+    noise.stop(startTime + 0.1)
+  }
+}
+
+// Synth bass
+function bass(note, time = 0, duration = 0.2, volume = 0.5) {
+  const ctx = getAudioContext()
+  const now = ctx.currentTime + time
+  const freq = NOTES[note] || note
+
   const osc = ctx.createOscillator()
+  const osc2 = ctx.createOscillator()
   const gain = ctx.createGain()
-  
-  osc.type = 'sine'
-  osc.frequency.setValueAtTime(startFreq, now)
-  osc.frequency.exponentialRampToValueAtTime(endFreq, now + duration)
-  
+  const filter = ctx.createBiquadFilter()
+
+  osc.type = 'sawtooth'
+  osc.frequency.value = freq / 2
+
+  osc2.type = 'square'
+  osc2.frequency.value = freq / 2
+
+  filter.type = 'lowpass'
+  filter.frequency.setValueAtTime(1000, now)
+  filter.frequency.exponentialRampToValueAtTime(200, now + duration)
+
   gain.gain.setValueAtTime(volume, now)
   gain.gain.exponentialRampToValueAtTime(0.001, now + duration)
-  
-  osc.connect(gain)
-  gain.connect(ctx.destination)
-  
+
+  osc.connect(filter)
+  osc2.connect(filter)
+  filter.connect(gain)
+  gain.connect(getMasterGain())
+
   osc.start(now)
+  osc2.start(now)
   osc.stop(now + duration + 0.1)
+  osc2.stop(now + duration + 0.1)
 }
 
-// Sound definitions using synthesis
+// Synth lead/stab
+function synth(note, time = 0, duration = 0.15, volume = 0.35) {
+  const ctx = getAudioContext()
+  const now = ctx.currentTime + time
+  const freq = NOTES[note] || note
+
+  const osc = ctx.createOscillator()
+  const osc2 = ctx.createOscillator()
+  const gain = ctx.createGain()
+
+  osc.type = 'square'
+  osc.frequency.value = freq
+
+  osc2.type = 'sawtooth'
+  osc2.frequency.value = freq * 1.005 // slight detune for thickness
+
+  gain.gain.setValueAtTime(volume, now)
+  gain.gain.exponentialRampToValueAtTime(0.001, now + duration)
+
+  osc.connect(gain)
+  osc2.connect(gain)
+  gain.connect(getMasterGain())
+
+  osc.start(now)
+  osc2.start(now)
+  osc.stop(now + duration + 0.1)
+  osc2.stop(now + duration + 0.1)
+}
+
+// Arena organ stab
+function organ(notes, time = 0, duration = 0.3, volume = 0.3) {
+  const ctx = getAudioContext()
+  const now = ctx.currentTime + time
+  const noteArray = Array.isArray(notes) ? notes : [notes]
+
+  noteArray.forEach(note => {
+    const freq = NOTES[note] || note
+
+    const osc = ctx.createOscillator()
+    const osc2 = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sine'
+    osc.frequency.value = freq
+
+    osc2.type = 'sine'
+    osc2.frequency.value = freq * 2 // octave up
+
+    gain.gain.setValueAtTime(volume / noteArray.length, now)
+    gain.gain.setValueAtTime(volume / noteArray.length, now + duration * 0.8)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + duration)
+
+    osc.connect(gain)
+    osc2.connect(gain)
+    gain.connect(getMasterGain())
+
+    osc.start(now)
+    osc2.start(now)
+    osc.stop(now + duration + 0.1)
+    osc2.stop(now + duration + 0.1)
+  })
+}
+
+// Music loop controllers
+let musicInterval = null
+let beatCount = 0
+
+// Stadium pump-up beat (Think "Seven Nation Army" style)
+function playPumpUpBeat() {
+  const ctx = getAudioContext()
+  if (!ctx) return
+
+  const beat = beatCount % 8
+
+  // Kick on 1, 3, 5, 7
+  if (beat % 2 === 0) {
+    kick(0, 0.7)
+  }
+
+  // Snare on 3 and 7
+  if (beat === 2 || beat === 6) {
+    snare(0, 0.5)
+  }
+
+  // Hi-hats
+  hihat(0, false, 0.2)
+
+  // Clap on 4 and 8
+  if (beat === 3 || beat === 7) {
+    clap(0, 0.4)
+  }
+
+  // Bass line (simple but catchy)
+  const bassNotes = ['E3', 'E3', 'G3', 'E3', 'D3', 'D3', 'C3', 'B3']
+  bass(bassNotes[beat], 0, 0.18, 0.4)
+
+  beatCount++
+}
+
+// Defense chant beat
+function playDefenseBeat() {
+  const ctx = getAudioContext()
+  if (!ctx) return
+
+  const beat = beatCount % 4
+
+  // Stomp stomp - clap pattern
+  if (beat === 0 || beat === 1) {
+    kick(0, 0.9)
+  } else if (beat === 2) {
+    clap(0, 0.7)
+  }
+
+  // "DE-FENSE" synth stabs
+  if (beat === 0) {
+    organ(['G4', 'D4'], 0, 0.15, 0.4)
+  } else if (beat === 2) {
+    organ(['A4', 'E4'], 0, 0.2, 0.4)
+  }
+
+  beatCount++
+}
+
+// Victory celebration beat
+function playVictoryBeat() {
+  const ctx = getAudioContext()
+  if (!ctx) return
+
+  const beat = beatCount % 8
+
+  kick(0, 0.6)
+  hihat(0, beat % 2 === 1, 0.25)
+
+  if (beat === 2 || beat === 6) {
+    snare(0, 0.5)
+    clap(0, 0.4)
+  }
+
+  // Triumphant chord progression
+  const chords = [
+    ['C4', 'E4', 'G4'],
+    ['C4', 'E4', 'G4'],
+    ['F4', 'A4', 'C5'],
+    ['F4', 'A4', 'C5'],
+    ['G4', 'B4', 'D5'],
+    ['G4', 'B4', 'D5'],
+    ['C4', 'E4', 'G4'],
+    ['C4', 'E4', 'G4'],
+  ]
+
+  if (beat % 2 === 0) {
+    organ(chords[beat], 0, 0.25, 0.35)
+  }
+
+  beatCount++
+}
+
+// Sound effects
 const sounds = {
-  // CROWD SOUNDS
+  // CROWD SOUNDS - Enhanced
   crowdCheer: () => {
-    playNoise(1.5, 'bandpass', 2000, 0.15)
-    setTimeout(() => playNoise(0.8, 'bandpass', 1500, 0.1), 200)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Layered crowd noise
+    for (let i = 0; i < 3; i++) {
+      const bufferSize = ctx.sampleRate * (1 + i * 0.5)
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+      const data = buffer.getChannelData(0)
+      for (let j = 0; j < bufferSize; j++) {
+        data[j] = Math.random() * 2 - 1
+      }
+
+      const noise = ctx.createBufferSource()
+      noise.buffer = buffer
+
+      const filter = ctx.createBiquadFilter()
+      filter.type = 'bandpass'
+      filter.frequency.value = 1500 + i * 500
+      filter.Q.value = 0.5
+
+      const gain = ctx.createGain()
+      gain.gain.setValueAtTime(0, now)
+      gain.gain.linearRampToValueAtTime(0.15 - i * 0.03, now + 0.1)
+      gain.gain.setValueAtTime(0.15 - i * 0.03, now + 0.8)
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 1.5 + i * 0.3)
+
+      noise.connect(filter)
+      filter.connect(gain)
+      gain.connect(getMasterGain())
+
+      noise.start(now + i * 0.05)
+      noise.stop(now + 2 + i * 0.3)
+    }
   },
+
+  crowdRoar: () => {
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Big explosive crowd roar
+    for (let i = 0; i < 5; i++) {
+      const bufferSize = ctx.sampleRate * 2
+      const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+      const data = buffer.getChannelData(0)
+      for (let j = 0; j < bufferSize; j++) {
+        data[j] = Math.random() * 2 - 1
+      }
+
+      const noise = ctx.createBufferSource()
+      noise.buffer = buffer
+
+      const filter = ctx.createBiquadFilter()
+      filter.type = 'bandpass'
+      filter.frequency.value = 1000 + i * 400
+      filter.Q.value = 0.3
+
+      const gain = ctx.createGain()
+      gain.gain.setValueAtTime(0.001, now)
+      gain.gain.exponentialRampToValueAtTime(0.2 - i * 0.02, now + 0.05)
+      gain.gain.setValueAtTime(0.2 - i * 0.02, now + 1)
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 2)
+
+      noise.connect(filter)
+      filter.connect(gain)
+      gain.connect(getMasterGain())
+
+      noise.start(now)
+      noise.stop(now + 2.1)
+    }
+  },
+
   crowdBoo: () => {
-    playNoise(1.2, 'lowpass', 500, 0.15)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Lower frequency "boo" sound
+    const bufferSize = ctx.sampleRate * 1.5
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1
+    }
+
+    const noise = ctx.createBufferSource()
+    noise.buffer = buffer
+
+    const filter = ctx.createBiquadFilter()
+    filter.type = 'lowpass'
+    filter.frequency.value = 600
+
+    const gain = ctx.createGain()
+    gain.gain.setValueAtTime(0.2, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 1.5)
+
+    noise.connect(filter)
+    filter.connect(gain)
+    gain.connect(getMasterGain())
+
+    noise.start(now)
+    noise.stop(now + 1.6)
   },
-  crowdAmbient: () => {
-    playNoise(3, 'bandpass', 1000, 0.05)
-  },
-  crowdEruption: () => {
-    playNoise(2, 'bandpass', 2500, 0.2)
-    setTimeout(() => playNoise(1.5, 'bandpass', 2000, 0.15), 300)
-    setTimeout(() => playNoise(1, 'bandpass', 1500, 0.1), 600)
-  },
+
   crowdGroan: () => {
-    playNoise(0.8, 'lowpass', 400, 0.12)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Disappointed "aww" sound
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(300, now)
+    osc.frequency.exponentialRampToValueAtTime(200, now + 0.8)
+
+    gain.gain.setValueAtTime(0.1, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.8)
+
+    osc.connect(gain)
+    gain.connect(getMasterGain())
+
+    osc.start(now)
+    osc.stop(now + 0.9)
+
+    // Add noise texture
+    const bufferSize = ctx.sampleRate * 0.8
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1
+    }
+
+    const noise = ctx.createBufferSource()
+    noise.buffer = buffer
+
+    const filter = ctx.createBiquadFilter()
+    filter.type = 'lowpass'
+    filter.frequency.value = 500
+
+    const noiseGain = ctx.createGain()
+    noiseGain.gain.setValueAtTime(0.08, now)
+    noiseGain.gain.exponentialRampToValueAtTime(0.001, now + 0.8)
+
+    noise.connect(filter)
+    filter.connect(noiseGain)
+    noiseGain.connect(getMasterGain())
+
+    noise.start(now)
+    noise.stop(now + 0.9)
   },
-  crowdOhhhh: () => {
-    playTone([200, 250], 0.8, 'sine', 0.1)
-    playNoise(0.6, 'bandpass', 800, 0.08)
-  },
-  
-  // TD GARDEN CHANTS
-  beatLAChant: () => {
-    [0, 300, 600].forEach((delay, i) => {
-      setTimeout(() => playNoise(0.15, 'bandpass', 1200 + i * 200, 0.12), delay)
-    })
-  },
-  defenseChant: () => {
-    setTimeout(() => playNoise(0.2, 'bandpass', 1500, 0.15), 0)
-    setTimeout(() => playNoise(0.3, 'bandpass', 1800, 0.15), 250)
-  },
-  letsGoCelticsChant: () => {
-    [0, 150, 300, 500, 650].forEach((delay) => {
-      setTimeout(() => playNoise(0.12, 'bandpass', 1400, 0.1), delay)
-    })
-  },
-  
-  // GAME SOUNDS - BASKETBALL
+
+  // BASKETBALL SOUNDS - Realistic
   swish: () => {
-    playNoise(0.25, 'highpass', 3000, 0.25)
-    playChirp(4000, 2000, 0.15, 0.15)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Swoosh through net
+    const bufferSize = ctx.sampleRate * 0.4
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1
+    }
+
+    const noise = ctx.createBufferSource()
+    noise.buffer = buffer
+
+    const filter = ctx.createBiquadFilter()
+    filter.type = 'bandpass'
+    filter.frequency.setValueAtTime(4000, now)
+    filter.frequency.exponentialRampToValueAtTime(2000, now + 0.3)
+    filter.Q.value = 2
+
+    const gain = ctx.createGain()
+    gain.gain.setValueAtTime(0.3, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4)
+
+    noise.connect(filter)
+    filter.connect(gain)
+    gain.connect(getMasterGain())
+
+    noise.start(now)
+    noise.stop(now + 0.5)
   },
+
   swish3: () => {
-    playNoise(0.3, 'highpass', 3500, 0.3)
-    playChirp(5000, 2000, 0.2, 0.2)
-    setTimeout(() => playTone(880, 0.1, 'sine', 0.1), 150)
+    sounds.swish()
+
+    // Extra "splash" effect for 3-pointer
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(1200, now + 0.1)
+    osc.frequency.exponentialRampToValueAtTime(600, now + 0.3)
+
+    gain.gain.setValueAtTime(0.15, now + 0.1)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3)
+
+    osc.connect(gain)
+    gain.connect(getMasterGain())
+
+    osc.start(now + 0.1)
+    osc.stop(now + 0.4)
   },
+
   rimClank: () => {
-    playTone([800, 1200, 1600], 0.15, 'square', 0.2)
-    playNoise(0.1, 'highpass', 2000, 0.15)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Metallic rim hit
+    const frequencies = [800, 1200, 1800, 2400]
+    frequencies.forEach((freq, i) => {
+      const osc = ctx.createOscillator()
+      const gain = ctx.createGain()
+
+      osc.type = 'sine'
+      osc.frequency.value = freq
+
+      gain.gain.setValueAtTime(0.2 / (i + 1), now)
+      gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3 - i * 0.05)
+
+      osc.connect(gain)
+      gain.connect(getMasterGain())
+
+      osc.start(now)
+      osc.stop(now + 0.4)
+    })
   },
-  rimBounce: () => {
-    playTone([700, 1000], 0.1, 'square', 0.15)
-    setTimeout(() => playTone([650, 950], 0.08, 'square', 0.1), 100)
-  },
-  backboardHit: () => {
-    playTone([400, 600], 0.12, 'square', 0.2)
-    playNoise(0.08, 'lowpass', 1500, 0.15)
-  },
+
   dunk: () => {
-    playTone([150, 200], 0.2, 'square', 0.3)
-    playNoise(0.15, 'lowpass', 800, 0.25)
-    setTimeout(() => playNoise(0.2, 'highpass', 3000, 0.2), 100)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Deep thump
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(100, now)
+    osc.frequency.exponentialRampToValueAtTime(50, now + 0.2)
+
+    gain.gain.setValueAtTime(0.6, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.3)
+
+    osc.connect(gain)
+    gain.connect(getMasterGain())
+
+    osc.start(now)
+    osc.stop(now + 0.4)
+
+    // Backboard rattle
+    setTimeout(() => {
+      const osc2 = ctx.createOscillator()
+      const gain2 = ctx.createGain()
+
+      osc2.type = 'square'
+      osc2.frequency.value = 180
+
+      gain2.gain.setValueAtTime(0.15, ctx.currentTime)
+      gain2.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.15)
+
+      osc2.connect(gain2)
+      gain2.connect(getMasterGain())
+
+      osc2.start(ctx.currentTime)
+      osc2.stop(ctx.currentTime + 0.2)
+    }, 100)
   },
-  dribble: () => {
-    playTone(150, 0.08, 'sine', 0.2)
-    playNoise(0.05, 'lowpass', 500, 0.15)
+
+  block: () => {
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Sharp hit sound
+    const bufferSize = ctx.sampleRate * 0.15
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1
+    }
+
+    const noise = ctx.createBufferSource()
+    noise.buffer = buffer
+
+    const filter = ctx.createBiquadFilter()
+    filter.type = 'highpass'
+    filter.frequency.value = 2000
+
+    const gain = ctx.createGain()
+    gain.gain.setValueAtTime(0.4, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.15)
+
+    noise.connect(filter)
+    filter.connect(gain)
+    gain.connect(getMasterGain())
+
+    noise.start(now)
+    noise.stop(now + 0.2)
+
+    // Low thump
+    kick(0, 0.5)
   },
-  shoeSqueak: () => {
-    playChirp(2000, 3500, 0.1, 0.1)
+
+  steal: () => {
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Quick swipe sound
+    const bufferSize = ctx.sampleRate * 0.1
+    const buffer = ctx.createBuffer(1, bufferSize, ctx.sampleRate)
+    const data = buffer.getChannelData(0)
+    for (let i = 0; i < bufferSize; i++) {
+      data[i] = Math.random() * 2 - 1
+    }
+
+    const noise = ctx.createBufferSource()
+    noise.buffer = buffer
+
+    const filter = ctx.createBiquadFilter()
+    filter.type = 'bandpass'
+    filter.frequency.setValueAtTime(3000, now)
+    filter.frequency.exponentialRampToValueAtTime(1500, now + 0.1)
+
+    const gain = ctx.createGain()
+    gain.gain.setValueAtTime(0.3, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1)
+
+    noise.connect(filter)
+    filter.connect(gain)
+    gain.connect(getMasterGain())
+
+    noise.start(now)
+    noise.stop(now + 0.15)
   },
-  blockSwat: () => {
-    playNoise(0.15, 'highpass', 1500, 0.25)
-    playTone([300, 400], 0.1, 'square', 0.2)
-  },
-  stealGrab: () => {
-    playNoise(0.1, 'highpass', 2000, 0.2)
-    playTone(500, 0.05, 'sine', 0.15)
-  },
-  
-  // WHISTLES & BUZZERS
+
+  // ARENA SOUNDS
   buzzer: () => {
-    playTone(200, 0.6, 'square', 0.25)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sawtooth'
+    osc.frequency.value = 220
+
+    gain.gain.setValueAtTime(0.4, now)
+    gain.gain.setValueAtTime(0.4, now + 0.8)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 1)
+
+    osc.connect(gain)
+    gain.connect(getMasterGain())
+
+    osc.start(now)
+    osc.stop(now + 1.1)
   },
+
   whistle: () => {
-    playTone([2800, 3200], 0.4, 'sine', 0.2)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sine'
+    osc.frequency.value = 3200
+
+    // Vibrato
+    const lfo = ctx.createOscillator()
+    const lfoGain = ctx.createGain()
+    lfo.frequency.value = 6
+    lfoGain.gain.value = 50
+    lfo.connect(lfoGain)
+    lfoGain.connect(osc.frequency)
+
+    gain.gain.setValueAtTime(0.25, now)
+    gain.gain.setValueAtTime(0.25, now + 0.3)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.5)
+
+    osc.connect(gain)
+    gain.connect(getMasterGain())
+
+    lfo.start(now)
+    osc.start(now)
+    lfo.stop(now + 0.6)
+    osc.stop(now + 0.6)
   },
-  foulWhistle: () => {
-    playTone([2800, 3200], 0.25, 'sine', 0.2)
-    setTimeout(() => playTone([2800, 3200], 0.25, 'sine', 0.2), 300)
-  },
-  quarterBuzzer: () => {
-    playTone(180, 0.8, 'square', 0.3)
-  },
-  shotClockWarning: () => {
-    playTone(1000, 0.1, 'square', 0.25)
-    setTimeout(() => playTone(1000, 0.1, 'square', 0.25), 200)
-    setTimeout(() => playTone(1000, 0.1, 'square', 0.25), 400)
-  },
-  
-  // UI / QUIZ SOUNDS
-  success: () => {
-    playTone([523, 659, 784], 0.3, 'sine', 0.2)
-  },
+
+  // UI SOUNDS
   quizCorrect: () => {
-    playTone(523, 0.1, 'sine', 0.2)
-    setTimeout(() => playTone(659, 0.1, 'sine', 0.2), 100)
-    setTimeout(() => playTone(784, 0.2, 'sine', 0.25), 200)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Triumphant rising arpeggio
+    const notes = [NOTES.C5, NOTES.E5, NOTES.G5, NOTES.C6]
+    notes.forEach((freq, i) => {
+      const osc = ctx.createOscillator()
+      const gain = ctx.createGain()
+
+      osc.type = 'sine'
+      osc.frequency.value = freq
+
+      gain.gain.setValueAtTime(0.25, now + i * 0.08)
+      gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.08 + 0.3)
+
+      osc.connect(gain)
+      gain.connect(getMasterGain())
+
+      osc.start(now + i * 0.08)
+      osc.stop(now + i * 0.08 + 0.4)
+    })
+
+    // Success chime
+    setTimeout(() => {
+      organ(['C5', 'E5', 'G5'], 0, 0.4, 0.3)
+    }, 300)
   },
-  fail: () => {
-    playTone([200, 150], 0.4, 'square', 0.15)
-  },
+
   quizWrong: () => {
-    playTone(200, 0.15, 'square', 0.2)
-    setTimeout(() => playTone(150, 0.25, 'square', 0.15), 150)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Descending "wrong" sound
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'square'
+    osc.frequency.setValueAtTime(300, now)
+    osc.frequency.exponentialRampToValueAtTime(100, now + 0.4)
+
+    gain.gain.setValueAtTime(0.2, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.4)
+
+    osc.connect(gain)
+    gain.connect(getMasterGain())
+
+    osc.start(now)
+    osc.stop(now + 0.5)
   },
+
   tick: () => {
-    playTone(800, 0.03, 'sine', 0.15)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sine'
+    osc.frequency.value = 1000
+
+    gain.gain.setValueAtTime(0.1, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.03)
+
+    osc.connect(gain)
+    gain.connect(getMasterGain())
+
+    osc.start(now)
+    osc.stop(now + 0.05)
   },
-  timerTick: () => {
-    playTone(1000, 0.02, 'sine', 0.1)
-  },
-  timerWarning: () => {
-    playTone(1200, 0.08, 'square', 0.2)
-  },
+
   select: () => {
-    playChirp(400, 600, 0.08, 0.15)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sine'
+    osc.frequency.setValueAtTime(400, now)
+    osc.frequency.exponentialRampToValueAtTime(600, now + 0.08)
+
+    gain.gain.setValueAtTime(0.15, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1)
+
+    osc.connect(gain)
+    gain.connect(getMasterGain())
+
+    osc.start(now)
+    osc.stop(now + 0.15)
   },
-  buttonHover: () => {
-    playTone(600, 0.02, 'sine', 0.08)
-  },
-  
+
   // VICTORY / DEFEAT
   victory: () => {
-    const notes = [523, 659, 784, 1047]
-    notes.forEach((freq, i) => {
-      setTimeout(() => playTone(freq, 0.3, 'sine', 0.2), i * 150)
-    })
-    setTimeout(() => {
-      playTone([523, 659, 784, 1047], 0.6, 'sine', 0.25)
-    }, 600)
+    // Triumphant fanfare
+    organ(['C4', 'E4', 'G4'], 0, 0.3, 0.35)
+    setTimeout(() => organ(['D4', 'F4', 'A4'], 0, 0.3, 0.35), 300)
+    setTimeout(() => organ(['E4', 'G4', 'B4'], 0, 0.3, 0.35), 600)
+    setTimeout(() => organ(['C5', 'E5', 'G5'], 0, 0.6, 0.4), 900)
   },
-  victoryFanfare: () => {
-    sounds.victory()
-    setTimeout(() => sounds.crowdEruption(), 400)
-  },
+
   defeat: () => {
-    playTone([300, 280, 260], 0.8, 'square', 0.15)
-  },
-  defeatHorn: () => {
-    playTone(150, 1, 'sawtooth', 0.2)
+    const ctx = getAudioContext()
+    const now = ctx.currentTime
+
+    // Sad trombone
+    const osc = ctx.createOscillator()
+    const gain = ctx.createGain()
+
+    osc.type = 'sawtooth'
+    osc.frequency.setValueAtTime(300, now)
+    osc.frequency.exponentialRampToValueAtTime(280, now + 0.3)
+    osc.frequency.exponentialRampToValueAtTime(260, now + 0.6)
+    osc.frequency.exponentialRampToValueAtTime(200, now + 1.2)
+
+    gain.gain.setValueAtTime(0.2, now)
+    gain.gain.exponentialRampToValueAtTime(0.001, now + 1.5)
+
+    osc.connect(gain)
+    gain.connect(getMasterGain())
+
+    osc.start(now)
+    osc.stop(now + 1.6)
   },
 }
 
 export function useSound() {
   const [isMuted, setIsMuted] = useState(false)
-  const [volume, setVolume] = useState(0.5)
-  const ambientIntervalRef = useRef(null)
+  const [volume, setVolume] = useState(0.6)
 
   useEffect(() => {
     return () => {
-      if (ambientIntervalRef.current) {
-        clearInterval(ambientIntervalRef.current)
+      if (musicInterval) {
+        clearInterval(musicInterval)
+        musicInterval = null
       }
     }
   }, [])
+
+  useEffect(() => {
+    if (masterGain) {
+      masterGain.gain.value = isMuted ? 0 : volume
+    }
+  }, [isMuted, volume])
 
   const play = useCallback((soundName) => {
     if (isMuted) return
@@ -279,28 +912,59 @@ export function useSound() {
     }
   }, [isMuted])
 
-  const stop = useCallback(() => {}, [])
-
-  const startAmbient = useCallback(() => {
-    if (ambientIntervalRef.current || isMuted) return
-    sounds.crowdAmbient()
-    ambientIntervalRef.current = setInterval(() => {
-      if (!isMuted) sounds.crowdAmbient()
-    }, 4000)
-  }, [isMuted])
-
-  const stopAmbient = useCallback(() => {
-    if (ambientIntervalRef.current) {
-      clearInterval(ambientIntervalRef.current)
-      ambientIntervalRef.current = null
+  const stop = useCallback(() => {
+    if (musicInterval) {
+      clearInterval(musicInterval)
+      musicInterval = null
     }
   }, [])
 
+  // Music control
+  const startPumpUpMusic = useCallback(() => {
+    if (isMuted || musicInterval) return
+    beatCount = 0
+    playPumpUpBeat()
+    musicInterval = setInterval(playPumpUpBeat, 250) // 120 BPM
+  }, [isMuted])
+
+  const startDefenseMusic = useCallback(() => {
+    if (isMuted || musicInterval) return
+    beatCount = 0
+    playDefenseBeat()
+    musicInterval = setInterval(playDefenseBeat, 400) // Slower stomp
+  }, [isMuted])
+
+  const startVictoryMusic = useCallback(() => {
+    if (isMuted) return
+    if (musicInterval) {
+      clearInterval(musicInterval)
+    }
+    beatCount = 0
+    playVictoryBeat()
+    musicInterval = setInterval(playVictoryBeat, 250)
+
+    // Auto-stop after 5 seconds
+    setTimeout(() => {
+      if (musicInterval) {
+        clearInterval(musicInterval)
+        musicInterval = null
+      }
+    }, 5000)
+  }, [isMuted])
+
+  const stopMusic = useCallback(() => {
+    if (musicInterval) {
+      clearInterval(musicInterval)
+      musicInterval = null
+    }
+  }, [])
+
+  // Game sounds
   const playCelticsScore = useCallback((isThree = false) => {
     if (isMuted) return
     if (isThree) {
       sounds.swish3()
-      setTimeout(() => sounds.crowdEruption(), 200)
+      setTimeout(() => sounds.crowdRoar(), 200)
     } else {
       sounds.swish()
       setTimeout(() => sounds.crowdCheer(), 200)
@@ -327,27 +991,27 @@ export function useSound() {
 
   const playBlock = useCallback(() => {
     if (isMuted) return
-    sounds.blockSwat()
-    setTimeout(() => sounds.crowdEruption(), 100)
+    sounds.block()
+    setTimeout(() => sounds.crowdRoar(), 100)
   }, [isMuted])
 
   const playSteal = useCallback(() => {
     if (isMuted) return
-    sounds.stealGrab()
+    sounds.steal()
     setTimeout(() => sounds.crowdCheer(), 200)
   }, [isMuted])
 
   const playDunk = useCallback(() => {
     if (isMuted) return
     sounds.dunk()
-    setTimeout(() => sounds.crowdEruption(), 150)
+    setTimeout(() => sounds.crowdRoar(), 150)
   }, [isMuted])
 
   const playQuizResult = useCallback((correct) => {
     if (isMuted) return
     if (correct) {
       sounds.quizCorrect()
-      setTimeout(() => sounds.crowdCheer(), 300)
+      setTimeout(() => sounds.crowdCheer(), 400)
     } else {
       sounds.quizWrong()
       setTimeout(() => sounds.crowdGroan(), 200)
@@ -356,12 +1020,14 @@ export function useSound() {
 
   const playVictory = useCallback(() => {
     if (isMuted) return
-    sounds.victoryFanfare()
-  }, [isMuted])
+    sounds.victory()
+    setTimeout(() => sounds.crowdRoar(), 500)
+    setTimeout(() => startVictoryMusic, 1000)
+  }, [isMuted, startVictoryMusic])
 
   const playDefeat = useCallback(() => {
     if (isMuted) return
-    sounds.defeatHorn()
+    sounds.defeat()
     setTimeout(() => sounds.crowdBoo(), 300)
   }, [isMuted])
 
@@ -372,12 +1038,16 @@ export function useSound() {
   return {
     play,
     stop,
-    startAmbient,
-    stopAmbient,
+    stopMusic,
     isMuted,
     toggleMute,
     volume,
     setVolume,
+    // Music
+    startPumpUpMusic,
+    startDefenseMusic,
+    startVictoryMusic,
+    // Game sounds
     playCelticsScore,
     playCelticsMiss,
     playLakersScore,
@@ -388,26 +1058,16 @@ export function useSound() {
     playQuizResult,
     playVictory,
     playDefeat,
+    // Individual sounds
     playBuzzer: useCallback(() => !isMuted && sounds.buzzer(), [isMuted]),
     playTick: useCallback(() => !isMuted && sounds.tick(), [isMuted]),
     playSelect: useCallback(() => !isMuted && sounds.select(), [isMuted]),
-    playQTESuccess: useCallback(() => !isMuted && sounds.success(), [isMuted]),
-    playQTEFail: useCallback(() => !isMuted && sounds.fail(), [isMuted]),
-    playDribble: useCallback(() => !isMuted && sounds.dribble(), [isMuted]),
-    playShoeSqueak: useCallback(() => !isMuted && sounds.shoeSqueak(), [isMuted]),
-    playBackboardHit: useCallback(() => !isMuted && sounds.backboardHit(), [isMuted]),
-    playRimBounce: useCallback(() => !isMuted && sounds.rimBounce(), [isMuted]),
-    playBeatLAChant: useCallback(() => !isMuted && sounds.beatLAChant(), [isMuted]),
-    playDefenseChant: useCallback(() => !isMuted && sounds.defenseChant(), [isMuted]),
-    playLetsGoCelticsChant: useCallback(() => !isMuted && sounds.letsGoCelticsChant(), [isMuted]),
-    playCrowdEruption: useCallback(() => !isMuted && sounds.crowdEruption(), [isMuted]),
+    playWhistle: useCallback(() => !isMuted && sounds.whistle(), [isMuted]),
+    playCrowdCheer: useCallback(() => !isMuted && sounds.crowdCheer(), [isMuted]),
+    playCrowdRoar: useCallback(() => !isMuted && sounds.crowdRoar(), [isMuted]),
+    playCrowdBoo: useCallback(() => !isMuted && sounds.crowdBoo(), [isMuted]),
     playCrowdGroan: useCallback(() => !isMuted && sounds.crowdGroan(), [isMuted]),
-    playCrowdOhhhh: useCallback(() => !isMuted && sounds.crowdOhhhh(), [isMuted]),
-    playShotClockWarning: useCallback(() => !isMuted && sounds.shotClockWarning(), [isMuted]),
-    playQuarterBuzzer: useCallback(() => !isMuted && sounds.quarterBuzzer(), [isMuted]),
-    playFoulWhistle: useCallback(() => !isMuted && sounds.foulWhistle(), [isMuted]),
-    playTimerTick: useCallback(() => !isMuted && sounds.timerTick(), [isMuted]),
-    playTimerWarning: useCallback(() => !isMuted && sounds.timerWarning(), [isMuted]),
-    playButtonHover: useCallback(() => !isMuted && sounds.buttonHover(), [isMuted]),
+    playSwish: useCallback(() => !isMuted && sounds.swish(), [isMuted]),
+    playRimClank: useCallback(() => !isMuted && sounds.rimClank(), [isMuted]),
   }
 }
