@@ -1,11 +1,8 @@
 import { useEffect, useCallback, useRef } from 'react'
-import { AnimatePresence } from 'framer-motion'
+import { AnimatePresence, motion } from 'framer-motion'
 
 // Game components
 import Scoreboard from '../game/Scoreboard'
-import Court from '../game/Court'
-import Crowd from '../game/Crowd'
-import Commentary from '../game/Commentary'
 
 // Offense components
 import TriviaOffense from '../offense/TriviaOffense'
@@ -16,7 +13,8 @@ import DefenseChoice from '../defense/DefenseChoice'
 import DefensePredict from '../defense/DefensePredict'
 
 /**
- * GameScreen - Main game orchestrator for trivia-based basketball game
+ * GameScreen - Simplified trivia-based basketball game
+ * No sprites, no court animations - just clean trivia gameplay
  */
 export default function GameScreen({ state, actions, sound }) {
   const {
@@ -30,13 +28,7 @@ export default function GameScreen({ state, actions, sound }) {
     lastPlay,
     selectedAction,
     playSelection,
-    crowdMood,
-    showBeatLA,
     currentQuestion,
-    celticsRoster,
-    lakersRoster,
-    offenseMode,
-    defenseMode,
     triviaResult,
     defenseChoice,
     predictionResult,
@@ -53,27 +45,10 @@ export default function GameScreen({ state, actions, sound }) {
     }
   }, [phase])
 
-  // Handle phase-specific sound effects
-  useEffect(() => {
-    if (!phase) return
-
-    try {
-      if (phase === 'defense-choice' || phase === 'defense-predict') {
-        sound?.playDefenseChant?.()
-      }
-      if (showBeatLA && possession === 'lakers') {
-        sound?.playBeatLAChant?.()
-      }
-    } catch (error) {
-      console.error('[GameScreen] Error playing phase sound:', error)
-    }
-  }, [phase, possession, showBeatLA, sound])
-
   // Resolve Celtics shot when triviaResult is set (Mode 1: pure trivia)
   useEffect(() => {
     if (phase === 'offense-trivia' && triviaResult && !resolvedRef.current) {
       resolvedRef.current = true
-      // Small delay for UX, then resolve
       const timer = setTimeout(() => {
         actions?.resolveCelticsShot?.()
       }, 150)
@@ -120,111 +95,58 @@ export default function GameScreen({ state, actions, sound }) {
 
     const timer = setTimeout(() => {
       actions?.nextPossession?.()
-    }, 800)
+    }, 1500)
 
     return () => clearTimeout(timer)
   }, [phase, actions])
 
-  // Handle result phase sounds
-  useEffect(() => {
-    if (phase !== 'result' || !lastPlay) return
-
-    const { type, team, points } = lastPlay
-
-    try {
-      if (type === 'made') {
-        if (team === 'celtics') {
-          const isThree = points === 3
-          sound?.playCelticsScore?.(isThree)
-          if (isThree || lastPlay?.playType === 'fast-break') {
-            setTimeout(() => sound?.playCrowdEruption?.(), 500)
-          }
-        } else {
-          sound?.playLakersScore?.()
-        }
-      } else if (type === 'missed') {
-        if (team === 'celtics') {
-          sound?.playCelticsMiss?.()
-        } else {
-          sound?.playLakersMiss?.()
-        }
-      } else if (type === 'blocked') {
-        sound?.playBlock?.()
-        setTimeout(() => sound?.playCrowdEruption?.(), 300)
-      } else if (type === 'steal') {
-        sound?.playSteal?.()
-        setTimeout(() => sound?.playCrowdEruption?.(), 300)
-      } else if (type === 'foul') {
-        sound?.playFoulWhistle?.()
-      }
-    } catch (error) {
-      console.error('[GameScreen] Error playing result sound:', error)
-    }
-  }, [phase, lastPlay, sound])
-
-  // Shot clock warning sound
-  useEffect(() => {
-    if (shotClock === 5 && (phase === 'offense-trivia' || phase === 'offense-play-call')) {
-      sound?.playShotClockWarning?.()
-    }
-  }, [shotClock, phase, sound])
-
-  // Quarter buzzer
-  useEffect(() => {
-    if (timeRemaining === 0) {
-      sound?.playQuarterBuzzer?.()
-    }
-  }, [timeRemaining, sound])
-
   // Handle trivia completion for offense (Mode 1)
   const handleTriviaComplete = useCallback((correct, questionIndex) => {
-    sound?.playQuizResult?.(correct)
-    // Just submit answer - useEffect will handle resolution when state updates
     actions?.answerTrivia?.(correct, questionIndex)
-  }, [sound, actions])
+  }, [actions])
 
   // Handle play call offense completion (Mode 2)
   const handlePlayCallComplete = useCallback((correct, play, questionIndex) => {
-    sound?.playQuizResult?.(correct)
-    // Use combined action to set both values atomically - prevents race condition
     actions?.answerTriviaWithPlay?.(correct, questionIndex, play)
-  }, [sound, actions])
+  }, [actions])
 
   // Handle defense choice completion (Mode 1)
-  const handleDefenseChoiceComplete = useCallback((choice, result) => {
-    // Play sound based on anticipated result
-    if (result === 'block') {
-      sound?.playBlock?.()
-    } else if (result === 'steal') {
-      sound?.playSteal?.()
-    } else if (result === 'foul') {
-      sound?.playFoulWhistle?.()
-    }
-    // Just submit choice - useEffect will handle resolution when state updates
+  const handleDefenseChoiceComplete = useCallback((choice) => {
     actions?.selectDefenseChoice?.(choice)
-  }, [sound, actions])
+  }, [actions])
 
   // Handle defense prediction completion (Mode 2)
-  const handleDefensePredictComplete = useCallback((prediction, wasCorrect) => {
-    if (wasCorrect) {
-      sound?.playCrowdCheer?.()
-    }
-    // Just submit prediction - useEffect will handle resolution when state updates
+  const handleDefensePredictComplete = useCallback((prediction) => {
     actions?.submitPrediction?.(prediction)
-  }, [sound, actions])
+  }, [actions])
 
-  // Build shot data for Court component
-  const shotData = lastPlay && phase === 'result' ? {
-    from: possession === 'celtics' ? 'right' : 'left',
-    to: 'basket',
-    shotType: lastPlay.action || selectedAction || 'mid-range',
-    result: lastPlay.type,
-  } : null
+  // Result message
+  const getResultMessage = () => {
+    if (!lastPlay) return null
+    const { type, team, points } = lastPlay
+
+    if (type === 'made') {
+      if (team === 'celtics') {
+        return points === 3 ? '☘️ THREE POINTER! +3' : '☘️ BUCKET! +2'
+      } else {
+        return `Lakers score +${points}`
+      }
+    } else if (type === 'missed') {
+      return team === 'celtics' ? 'Shot missed...' : 'Lakers miss!'
+    } else if (type === 'blocked') {
+      return '🛡️ BLOCKED!'
+    } else if (type === 'steal') {
+      return '🔥 STEAL!'
+    } else if (type === 'foul') {
+      return 'Foul called'
+    }
+    return null
+  }
 
   return (
-    <div className="relative w-full h-screen bg-gradient-to-br from-[#0A1612] via-[#0d1a15] to-[#0A1612] overflow-hidden">
+    <div className="relative w-full h-screen bg-gradient-to-br from-[#0A1612] via-[#0d1a15] to-[#0A1612] overflow-hidden flex flex-col">
       {/* Scoreboard at top */}
-      <div className="absolute top-4 left-0 right-0 z-20 px-4">
+      <div className="flex-shrink-0 p-4">
         <Scoreboard
           score={score}
           quarter={quarter}
@@ -234,76 +156,82 @@ export default function GameScreen({ state, actions, sound }) {
         />
       </div>
 
-      {/* Main court area with crowd - only show during defense and result phases */}
-      {(phase === 'defense-choice' || phase === 'defense-predict' || phase === 'result' || phase === 'transition') && (
-        <div className="absolute inset-x-0 top-24 bottom-32 z-10">
-          <Court
-            possession={possession}
-            playType={playSelection}
-            celticsPlayers={celticsRoster || []}
-            lakersPlayers={lakersRoster || []}
-            activePlayer={activePlayer}
-            phase={phase}
-            lastPlay={lastPlay}
-            showShotArc={phase === 'result' && lastPlay?.type !== 'steal' && lastPlay?.type !== 'blocked'}
-            shotData={shotData}
-            onShotComplete={() => {}}
-          >
-            <Crowd
-              mood={crowdMood || 'neutral'}
-              showBeatLA={showBeatLA || false}
-              lastPlay={lastPlay}
+      {/* Main game area */}
+      <div className="flex-1 flex items-center justify-center p-4">
+        <AnimatePresence mode="wait">
+          {/* Celtics Offense - Pure Trivia (Mode 1) */}
+          {phase === 'offense-trivia' && currentQuestion && activePlayer && (
+            <TriviaOffense
+              key="offense-trivia"
+              question={currentQuestion}
+              player={activePlayer}
+              onComplete={handleTriviaComplete}
             />
-          </Court>
+          )}
+
+          {/* Celtics Offense - Play Call + Trivia (Mode 2) */}
+          {phase === 'offense-play-call' && currentQuestion && activePlayer && (
+            <PlayCallOffense
+              key="offense-play-call"
+              question={currentQuestion}
+              player={activePlayer}
+              onComplete={handlePlayCallComplete}
+            />
+          )}
+
+          {/* Lakers Defense - Choice Mode (Mode 1) */}
+          {phase === 'defense-choice' && activePlayer && (
+            <DefenseChoice
+              key="defense-choice"
+              lakersPlayer={activePlayer}
+              lakersAction={selectedAction || 'mid-range'}
+              onComplete={handleDefenseChoiceComplete}
+            />
+          )}
+
+          {/* Lakers Defense - Prediction Mode (Mode 2) */}
+          {phase === 'defense-predict' && activePlayer && (
+            <DefensePredict
+              key="defense-predict"
+              lakersPlayer={activePlayer}
+              actualPlay={selectedAction || 'mid-range'}
+              onComplete={handleDefensePredictComplete}
+            />
+          )}
+
+          {/* Result Phase */}
+          {(phase === 'result' || phase === 'transition') && lastPlay && (
+            <motion.div
+              key="result"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              className="text-center"
+            >
+              <div className={`text-4xl md:text-6xl font-bold font-['Oswald'] ${
+                lastPlay.team === 'celtics' && lastPlay.type === 'made'
+                  ? 'text-[#00ff44]'
+                  : lastPlay.type === 'blocked' || lastPlay.type === 'steal'
+                    ? 'text-[#00ff44]'
+                    : lastPlay.team === 'lakers' && lastPlay.type === 'made'
+                      ? 'text-[#FDB927]'
+                      : 'text-white/70'
+              }`}>
+                {getResultMessage()}
+              </div>
+              <div className="mt-4 text-white/50 text-lg">
+                {phase === 'transition' ? 'Next possession...' : ''}
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Score display at bottom */}
+      <div className="flex-shrink-0 p-4 text-center">
+        <div className="text-white/40 text-sm font-['Oswald'] tracking-wider">
+          {possession === 'celtics' ? '☘️ CELTICS BALL' : '💜 LAKERS BALL'}
         </div>
-      )}
-
-      {/* Phase-based overlays */}
-      <AnimatePresence mode="wait">
-        {/* Celtics Offense - Pure Trivia (Mode 1) */}
-        {phase === 'offense-trivia' && currentQuestion && activePlayer && (
-          <TriviaOffense
-            key="offense-trivia"
-            question={currentQuestion}
-            player={activePlayer}
-            onComplete={handleTriviaComplete}
-          />
-        )}
-
-        {/* Celtics Offense - Play Call + Trivia (Mode 2) */}
-        {phase === 'offense-play-call' && currentQuestion && activePlayer && (
-          <PlayCallOffense
-            key="offense-play-call"
-            question={currentQuestion}
-            player={activePlayer}
-            onComplete={handlePlayCallComplete}
-          />
-        )}
-
-        {/* Lakers Defense - Choice Mode (Mode 1) */}
-        {phase === 'defense-choice' && activePlayer && (
-          <DefenseChoice
-            key="defense-choice"
-            lakersPlayer={activePlayer}
-            lakersAction={selectedAction || 'mid-range'}
-            onComplete={handleDefenseChoiceComplete}
-          />
-        )}
-
-        {/* Lakers Defense - Prediction Mode (Mode 2) */}
-        {phase === 'defense-predict' && activePlayer && (
-          <DefensePredict
-            key="defense-predict"
-            lakersPlayer={activePlayer}
-            actualPlay={selectedAction || 'mid-range'}
-            onComplete={handleDefensePredictComplete}
-          />
-        )}
-      </AnimatePresence>
-
-      {/* Commentary at bottom */}
-      <div className="absolute bottom-4 left-0 right-0 z-20">
-        <Commentary lastPlay={lastPlay} />
       </div>
     </div>
   )
