@@ -616,17 +616,15 @@ function gameReducer(state, action) {
         }
       }
 
-      // Celtics possession - determine offense mode and load trivia if needed
+      // Celtics possession - determine offense mode and load trivia
       const nextPhase = state.offenseMode === 1 ? 'offense-trivia' : 'offense-play-call'
 
       // Alternate offense mode for next possession
       const newOffenseMode = state.offenseMode === 1 ? 2 : 1
 
-      let currentQuestion = null
-      if (nextPhase === 'offense-trivia') {
-        const { question, index } = getRandomQuestion(state.usedQuestionIndices, state.difficulty)
-        currentQuestion = { ...question, index }
-      }
+      // BOTH offense modes need a question!
+      const { question, index } = getRandomQuestion(state.usedQuestionIndices, state.difficulty)
+      const currentQuestion = { ...question, index }
 
       return {
         ...newState,
@@ -647,8 +645,9 @@ function gameReducer(state, action) {
         ? (state.offenseMode === 1 ? 'offense-trivia' : 'offense-play-call')
         : (state.defenseMode === 1 ? 'defense-choice' : 'defense-predict')
 
+      // Load question for both offense modes
       let currentQuestion = null
-      if (nextPhase === 'offense-trivia') {
+      if (state.possession === 'celtics') {
         const { question, index } = getRandomQuestion(state.usedQuestionIndices, state.difficulty)
         currentQuestion = { ...question, index }
       }
