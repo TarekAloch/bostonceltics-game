@@ -234,27 +234,29 @@ export default function GameScreen({ state, actions, sound }) {
         />
       </div>
 
-      {/* Main court area with crowd */}
-      <div className="absolute inset-x-0 top-24 bottom-32 z-10">
-        <Court
-          possession={possession}
-          playType={playSelection}
-          celticsPlayers={celticsRoster || []}
-          lakersPlayers={lakersRoster || []}
-          activePlayer={activePlayer}
-          phase={phase}
-          lastPlay={lastPlay}
-          showShotArc={phase === 'result' && lastPlay?.type !== 'steal' && lastPlay?.type !== 'blocked'}
-          shotData={shotData}
-          onShotComplete={() => {}}
-        >
-          <Crowd
-            mood={crowdMood || 'neutral'}
-            showBeatLA={showBeatLA || false}
+      {/* Main court area with crowd - only show during defense and result phases */}
+      {(phase === 'defense-choice' || phase === 'defense-predict' || phase === 'result' || phase === 'transition') && (
+        <div className="absolute inset-x-0 top-24 bottom-32 z-10">
+          <Court
+            possession={possession}
+            playType={playSelection}
+            celticsPlayers={celticsRoster || []}
+            lakersPlayers={lakersRoster || []}
+            activePlayer={activePlayer}
+            phase={phase}
             lastPlay={lastPlay}
-          />
-        </Court>
-      </div>
+            showShotArc={phase === 'result' && lastPlay?.type !== 'steal' && lastPlay?.type !== 'blocked'}
+            shotData={shotData}
+            onShotComplete={() => {}}
+          >
+            <Crowd
+              mood={crowdMood || 'neutral'}
+              showBeatLA={showBeatLA || false}
+              lastPlay={lastPlay}
+            />
+          </Court>
+        </div>
+      )}
 
       {/* Phase-based overlays */}
       <AnimatePresence mode="wait">

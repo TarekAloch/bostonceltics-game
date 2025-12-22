@@ -42,8 +42,8 @@ export default function TriviaOffense({ question, player, onComplete }) {
     }
   }, [])
 
-  // Timer tick sound using Web Audio API
-  const playTick = useCallback(() => {
+  // Timer tick sound using Web Audio API - pass frequency as parameter to avoid dependency
+  const playTick = useCallback((frequency) => {
     try {
       if (!audioContextRef.current) {
         audioContextRef.current = new (window.AudioContext || window.webkitAudioContext)()
@@ -56,7 +56,7 @@ export default function TriviaOffense({ question, player, onComplete }) {
       oscillator.connect(gainNode)
       gainNode.connect(ctx.destination)
 
-      oscillator.frequency.value = timeLeft <= 3 ? 1200 : 800
+      oscillator.frequency.value = frequency
       oscillator.type = 'sine'
 
       gainNode.gain.setValueAtTime(0.08, ctx.currentTime)
@@ -67,7 +67,7 @@ export default function TriviaOffense({ question, player, onComplete }) {
     } catch (error) {
       console.warn('Audio not supported:', error)
     }
-  }, [timeLeft])
+  }, [])
 
   // Success/failure sound
   const playResultSound = useCallback((success) => {
@@ -116,7 +116,7 @@ export default function TriviaOffense({ question, player, onComplete }) {
         }
 
         if (prev <= 5) {
-          playTick()
+          playTick(prev <= 3 ? 1200 : 800)
         }
 
         return prev - 1
@@ -128,7 +128,7 @@ export default function TriviaOffense({ question, player, onComplete }) {
         clearInterval(timerRef.current)
       }
     }
-  }, [showResult, playTick])
+  }, [showResult, playTick, handleTimeout])
 
   const handleTimeout = useCallback(() => {
     setIsCorrect(false)
@@ -189,15 +189,6 @@ export default function TriviaOffense({ question, player, onComplete }) {
       aria-labelledby="trivia-question"
       aria-describedby="trivia-timer"
     >
-      {/* Animated background glow */}
-      <motion.div
-        className="absolute inset-0 pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-      >
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#007A33]/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#BA9653]/10 rounded-full blur-[120px]" />
-      </motion.div>
 
       <motion.div
         initial={{ scale: 0.9, y: 20 }}

@@ -126,7 +126,7 @@ export default function PlayCallOffense({ question, player, onComplete }) {
     return () => {
       if (playTimerRef.current) clearInterval(playTimerRef.current)
     }
-  }, [phase, selectedPlay, playSound])
+  }, [phase, selectedPlay, playSound, handlePlaySelect])
 
   // Trivia timer
   useEffect(() => {
@@ -147,7 +147,7 @@ export default function PlayCallOffense({ question, player, onComplete }) {
     return () => {
       if (triviaTimerRef.current) clearInterval(triviaTimerRef.current)
     }
-  }, [phase, showResult, playSound])
+  }, [phase, showResult, playSound, handleTimeout])
 
   const handlePlaySelect = useCallback((playId) => {
     if (selectedPlay) return
@@ -226,11 +226,6 @@ export default function PlayCallOffense({ question, player, onComplete }) {
         role="dialog"
         aria-labelledby="play-selection"
       >
-        {/* Background effects */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#007A33]/10 rounded-full blur-[120px]" />
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#BA9653]/10 rounded-full blur-[120px]" />
-        </div>
 
         <motion.div
           initial={{ scale: 0.9, y: 20 }}
@@ -399,11 +394,6 @@ export default function PlayCallOffense({ question, player, onComplete }) {
       role="dialog"
       aria-labelledby="trivia-question"
     >
-      {/* Background effects */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#007A33]/10 rounded-full blur-[120px]" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#BA9653]/10 rounded-full blur-[120px]" />
-      </div>
 
       <motion.div
         initial={{ scale: 0.9 }}

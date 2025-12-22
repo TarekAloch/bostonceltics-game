@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useMemo } from 'react'
+import { memo } from 'react'
 
 // Team colors
 const TEAM_COLORS = {
@@ -44,6 +44,40 @@ const POSES = {
   },
 }
 
+// Animation variants - defined outside component to avoid recreating on every render
+const ANIMATION_VARIANTS = {
+  idle: {
+    y: [0, -3, 0],
+    transition: {
+      duration: 2,
+      repeat: Infinity,
+      ease: 'easeInOut',
+    },
+  },
+  running: {
+    y: [0, -5, 0, -5, 0],
+    transition: {
+      duration: 0.6,
+      repeat: Infinity,
+      ease: 'linear',
+    },
+  },
+  shooting: {
+    y: [0, -15, -10],
+    transition: {
+      duration: 0.5,
+      ease: 'easeOut',
+    },
+  },
+  active: {
+    scale: [1, 1.05, 1],
+    transition: {
+      duration: 1,
+      repeat: Infinity,
+    },
+  },
+}
+
 /**
  * PlayerSprite - Realistic basketball player silhouette
  *
@@ -58,7 +92,7 @@ const POSES = {
  * @param {boolean} props.isVillain - Red glow for LeBron/AD
  * @param {string} props.className - Additional CSS classes
  */
-export default function PlayerSprite({
+function PlayerSprite({
   team = 'celtics',
   number = 0,
   pose = 'standing',
@@ -81,40 +115,6 @@ export default function PlayerSprite({
     console.warn(`[PlayerSprite] Invalid pose: ${pose}, defaulting to standing`)
   }
 
-  // Animation variants
-  const variants = useMemo(() => ({
-    idle: {
-      y: [0, -3, 0],
-      transition: {
-        duration: 2,
-        repeat: Infinity,
-        ease: 'easeInOut',
-      },
-    },
-    running: {
-      y: [0, -5, 0, -5, 0],
-      transition: {
-        duration: 0.6,
-        repeat: Infinity,
-        ease: 'linear',
-      },
-    },
-    shooting: {
-      y: [0, -15, -10],
-      transition: {
-        duration: 0.5,
-        ease: 'easeOut',
-      },
-    },
-    active: {
-      scale: [1, 1.05, 1],
-      transition: {
-        duration: 1,
-        repeat: Infinity,
-      },
-    },
-  }), [])
-
   // Glow color based on state
   const glowColor = isVillain && team === 'lakers'
     ? 'rgba(220,38,38,0.8)' // Red for villains
@@ -128,9 +128,9 @@ export default function PlayerSprite({
       animate={{
         opacity: 1,
         scale: 1,
-        ...(pose === 'standing' && variants.idle),
-        ...(pose === 'running' && variants.running),
-        ...(pose === 'shooting' && variants.shooting),
+        ...(pose === 'standing' && ANIMATION_VARIANTS.idle),
+        ...(pose === 'running' && ANIMATION_VARIANTS.running),
+        ...(pose === 'shooting' && ANIMATION_VARIANTS.shooting),
       }}
       exit={{ opacity: 0, scale: 0.5 }}
       style={{
@@ -167,7 +167,7 @@ export default function PlayerSprite({
           transform: facing === 'left' ? 'scaleX(-1)' : 'scaleX(1)',
           filter: isActive ? `drop-shadow(0 0 8px ${colors.glow})` : 'none',
         }}
-        animate={isActive ? variants.active : {}}
+        animate={isActive ? ANIMATION_VARIANTS.active : {}}
       >
         {/* Body silhouette */}
         <path
@@ -239,5 +239,17 @@ export default function PlayerSprite({
   )
 }
 
-// PropTypes for validation (optional but recommended)
-PlayerSprite.displayName = 'PlayerSprite'
+// Memoize to prevent unnecessary re-renders
+export default memo(PlayerSprite, (prev, next) => {
+  return (
+    prev.team === next.team &&
+    prev.number === next.number &&
+    prev.pose === next.pose &&
+    prev.isActive === next.isActive &&
+    prev.hasBall === next.hasBall &&
+    prev.position.x === next.position.x &&
+    prev.position.y === next.position.y &&
+    prev.facing === next.facing &&
+    prev.isVillain === next.isVillain
+  )
+})

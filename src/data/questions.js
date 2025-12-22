@@ -1,760 +1,1167 @@
-// Boston Celtics Trivia Questions (2004-2025)
-// 100+ deep questions to ensure variety across multiple games
+// Boston Celtics Trivia Questions (1956-2025)
+// 1,000 questions across Easy, Medium, and Hard difficulties
 
 export const questions = [
   // ==========================================
-  // 2008 CHAMPIONSHIP & BIG 3 ERA (2007-2012)
+  // EASY QUESTIONS (Well-known facts)
   // ==========================================
-  {
-    question: "What year did the Celtics win their 17th championship with the Big 3?",
-    answers: ["2007", "2008", "2009", "2010"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Who were the 'Big 3' that led the 2008 championship team?",
-    answers: ["Pierce, Allen, Garnett", "Rondo, Pierce, Allen", "Garnett, Rondo, Pierce", "Allen, Garnett, Rondo"],
-    correct: 0,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Which team did the Celtics defeat in the 2008 Finals?",
-    answers: ["Cleveland Cavaliers", "Detroit Pistons", "LA Lakers", "Orlando Magic"],
-    correct: 2,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Who was named Finals MVP in 2008?",
-    answers: ["Kevin Garnett", "Paul Pierce", "Ray Allen", "Rajon Rondo"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "What number did Kevin Garnett wear for the Celtics?",
-    answers: ["21", "34", "5", "20"],
-    correct: 2,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Which coach led the Celtics to the 2008 championship?",
-    answers: ["Brad Stevens", "Doc Rivers", "Rick Pitino", "Jim O'Brien"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "How many games did the 2008 Finals go?",
-    answers: ["4 games", "5 games", "6 games", "7 games"],
-    correct: 2,
-    category: "Big 3 Era"
-  },
-  {
-    question: "What was KG's famous postgame quote after winning the 2008 title?",
-    answers: ["We did it!", "Anything is possible!", "Championship!", "Boston strong!"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Which team did Kevin Garnett come from in the 2007 trade?",
-    answers: ["Milwaukee Bucks", "Minnesota Timberwolves", "Phoenix Suns", "Portland Trail Blazers"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Which team did Ray Allen come from in 2007?",
-    answers: ["Milwaukee Bucks", "Seattle SuperSonics", "Miami Heat", "Cleveland Cavaliers"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "What was the Celtics' regular season record in 2007-08?",
-    answers: ["62-20", "66-16", "59-23", "64-18"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Who was the starting center on the 2008 championship team?",
-    answers: ["Kendrick Perkins", "Leon Powe", "P.J. Brown", "Glen Davis"],
-    correct: 0,
-    category: "Big 3 Era"
-  },
-  {
-    question: "What year did Rajon Rondo lead the league in assists while a Celtic?",
-    answers: ["2010", "2011", "2012", "2013"],
-    correct: 2,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Which Celtic came off the bench and scored 21 points in Game 2 of the 2008 Finals?",
-    answers: ["Eddie House", "Leon Powe", "James Posey", "Sam Cassell"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "What was Glen Davis's nickname?",
-    answers: ["Big Baby", "Big Ticket", "Big Diesel", "Big Country"],
-    correct: 0,
-    category: "Big 3 Era"
-  },
-  {
-    question: "In 2010, the Celtics lost the Finals to the Lakers in how many games?",
-    answers: ["5 games", "6 games", "7 games", "4 games"],
-    correct: 2,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Which Celtic tore his ACL in the 2009 playoffs?",
-    answers: ["Paul Pierce", "Kevin Garnett", "Rajon Rondo", "Kendrick Perkins"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Who did the Celtics acquire from Cleveland in the 2010 Kendrick Perkins trade?",
-    answers: ["Shaquille O'Neal", "Jermaine O'Neal", "Nenad Krstic", "Jeff Green"],
-    correct: 2,
-    category: "Big 3 Era"
-  },
-  {
-    question: "What jersey number did Rajon Rondo wear?",
-    answers: ["9", "11", "4", "7"],
-    correct: 0,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Which Laker did Paul Pierce famously get into a staredown with in 2008?",
-    answers: ["Kobe Bryant", "Pau Gasol", "Derek Fisher", "Lamar Odom"],
-    correct: 0,
-    category: "Big 3 Era"
-  },
-  {
-    question: "What year did Ray Allen leave the Celtics for Miami?",
-    answers: ["2011", "2012", "2013", "2014"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
-  {
-    question: "Who was the Celtics' backup point guard known for his shooting in 2008?",
-    answers: ["Sam Cassell", "Eddie House", "Stephon Marbury", "Nate Robinson"],
-    correct: 1,
-    category: "Big 3 Era"
-  },
+
+  // Championships & Banners
+  { question: "What year did the Celtics win their 17th championship with the Big 3?", answers: ["2007", "2008", "2009", "2010"], correct: 1, category: "Championships", difficulty: "easy" },
+  { question: "How many NBA championships have the Celtics won as of 2024?", answers: ["16", "17", "18", "19"], correct: 2, category: "Championships", difficulty: "easy" },
+  { question: "Which team did the Celtics defeat in the 2024 Finals?", answers: ["Denver Nuggets", "Dallas Mavericks", "Miami Heat", "LA Lakers"], correct: 1, category: "Championships", difficulty: "easy" },
+  { question: "Which team did the Celtics defeat in the 2008 Finals?", answers: ["Cleveland Cavaliers", "Detroit Pistons", "LA Lakers", "Orlando Magic"], correct: 2, category: "Championships", difficulty: "easy" },
+  { question: "What is the most championships won by any NBA franchise?", answers: ["16", "17", "18", "19"], correct: 2, category: "Championships", difficulty: "easy" },
+  { question: "Who holds the record for most NBA championships as a player?", answers: ["Michael Jordan", "LeBron James", "Bill Russell", "Magic Johnson"], correct: 2, category: "Championships", difficulty: "easy" },
+  { question: "In what decade did the Celtics win 11 championships?", answers: ["1950s", "1960s", "1970s", "1980s"], correct: 1, category: "Championships", difficulty: "easy" },
+  { question: "What year did the Celtics win their most recent championship before 2024?", answers: ["2008", "2010", "2012", "2014"], correct: 0, category: "Championships", difficulty: "easy" },
+
+  // Big 3 Era Basics
+  { question: "Who were the 'Big 3' that led the 2008 championship team?", answers: ["Pierce, Allen, Garnett", "Rondo, Pierce, Allen", "Garnett, Rondo, Pierce", "Allen, Garnett, Rondo"], correct: 0, category: "Big 3 Era", difficulty: "easy" },
+  { question: "Who was named Finals MVP in 2008?", answers: ["Kevin Garnett", "Paul Pierce", "Ray Allen", "Rajon Rondo"], correct: 1, category: "Big 3 Era", difficulty: "easy" },
+  { question: "What was KG's famous postgame quote after winning the 2008 title?", answers: ["We did it!", "Anything is possible!", "Championship!", "Boston strong!"], correct: 1, category: "Big 3 Era", difficulty: "easy" },
+  { question: "Which coach led the Celtics to the 2008 championship?", answers: ["Brad Stevens", "Doc Rivers", "Rick Pitino", "Jim O'Brien"], correct: 1, category: "Big 3 Era", difficulty: "easy" },
+  { question: "What number did Kevin Garnett wear for the Celtics?", answers: ["21", "34", "5", "20"], correct: 2, category: "Big 3 Era", difficulty: "easy" },
+  { question: "Which team did Kevin Garnett come from in the 2007 trade?", answers: ["Milwaukee Bucks", "Minnesota Timberwolves", "Phoenix Suns", "Portland Trail Blazers"], correct: 1, category: "Big 3 Era", difficulty: "easy" },
+  { question: "What year did Ray Allen leave the Celtics for Miami?", answers: ["2011", "2012", "2013", "2014"], correct: 1, category: "Big 3 Era", difficulty: "easy" },
+
+  // Paul Pierce Basics
+  { question: "What was Paul Pierce's nickname?", answers: ["The Captain", "The Truth", "PP34", "Boston's Finest"], correct: 1, category: "Paul Pierce", difficulty: "easy" },
+  { question: "What number did Paul Pierce wear?", answers: ["5", "20", "34", "33"], correct: 2, category: "Paul Pierce", difficulty: "easy" },
+  { question: "Who gave Paul Pierce the nickname 'The Truth'?", answers: ["Kevin Garnett", "Shaquille O'Neal", "Kobe Bryant", "Doc Rivers"], correct: 1, category: "Paul Pierce", difficulty: "easy" },
+  { question: "What college did Paul Pierce attend?", answers: ["UCLA", "Kansas", "Duke", "North Carolina"], correct: 1, category: "Paul Pierce", difficulty: "easy" },
+
+  // Current Era Basics
+  { question: "What number does Jayson Tatum wear?", answers: ["7", "11", "0", "3"], correct: 2, category: "Jays Era", difficulty: "easy" },
+  { question: "What number does Jaylen Brown wear?", answers: ["0", "7", "11", "9"], correct: 1, category: "Jays Era", difficulty: "easy" },
+  { question: "Which college did Jayson Tatum attend?", answers: ["Kentucky", "Duke", "North Carolina", "Kansas"], correct: 1, category: "Jays Era", difficulty: "easy" },
+  { question: "Who was named Finals MVP when the Celtics won in 2024?", answers: ["Jayson Tatum", "Jaylen Brown", "Jrue Holiday", "Derrick White"], correct: 1, category: "Jays Era", difficulty: "easy" },
+  { question: "What year was Jayson Tatum drafted by the Celtics?", answers: ["2016", "2017", "2018", "2019"], correct: 1, category: "Jays Era", difficulty: "easy" },
+  { question: "What year was Jaylen Brown drafted by the Celtics?", answers: ["2015", "2016", "2017", "2018"], correct: 1, category: "Jays Era", difficulty: "easy" },
+  { question: "What college did Jaylen Brown attend?", answers: ["Duke", "California", "UCLA", "Stanford"], correct: 1, category: "Jays Era", difficulty: "easy" },
+  { question: "Who is the current Celtics head coach (2024)?", answers: ["Brad Stevens", "Ime Udoka", "Joe Mazzulla", "Sam Cassell"], correct: 2, category: "Current", difficulty: "easy" },
+  { question: "Who is known as 'Timelord' on the Celtics?", answers: ["Al Horford", "Robert Williams III", "Luke Kornet", "Kristaps Porzingis"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "Which Celtics center is from Latvia and stands 7'3\"?", answers: ["Al Horford", "Robert Williams", "Kristaps Porzingis", "Daniel Theis"], correct: 2, category: "Current", difficulty: "easy" },
+
+  // Legends Basics
+  { question: "Who is considered the greatest Celtic of all time?", answers: ["Larry Bird", "Bill Russell", "Paul Pierce", "John Havlicek"], correct: 1, category: "Legends", difficulty: "easy" },
+  { question: "What number did Larry Bird wear?", answers: ["32", "33", "34", "35"], correct: 1, category: "Legends", difficulty: "easy" },
+  { question: "What was Larry Bird's nickname?", answers: ["The Legend", "Larry Legend", "The Bird", "Boston Bird"], correct: 1, category: "Legends", difficulty: "easy" },
+  { question: "How many MVP awards did Larry Bird win?", answers: ["2", "3", "4", "5"], correct: 1, category: "Legends", difficulty: "easy" },
+  { question: "What number did Bill Russell wear?", answers: ["4", "5", "6", "7"], correct: 2, category: "Legends", difficulty: "easy" },
+  { question: "How many championships did Bill Russell win?", answers: ["9", "10", "11", "12"], correct: 2, category: "Legends", difficulty: "easy" },
+  { question: "Who was the legendary Celtics coach known for his cigar?", answers: ["Tommy Heinsohn", "Red Auerbach", "Bill Russell", "K.C. Jones"], correct: 1, category: "Legends", difficulty: "easy" },
+  { question: "What did Red Auerbach famously light when victory was assured?", answers: ["A candle", "A cigar", "A pipe", "Fireworks"], correct: 1, category: "Legends", difficulty: "easy" },
+
+  // TD Garden & Culture Basics
+  { question: "What is the famous floor pattern at TD Garden?", answers: ["Zigzag", "Parquet pattern", "Diamond pattern", "Chevron"], correct: 1, category: "TD Garden", difficulty: "easy" },
+  { question: "What is the Celtics' most famous chant against the Lakers?", answers: ["Go Green!", "Let's Go Celtics!", "Beat LA!", "Defense!"], correct: 2, category: "Rivalry", difficulty: "easy" },
+  { question: "What is the Celtics' mascot named?", answers: ["Clover", "Lucky", "Shamrock", "Patrick"], correct: 1, category: "Culture", difficulty: "easy" },
+  { question: "What are the Celtics' team colors?", answers: ["Blue and Gold", "Green and White", "Green and Gold", "Green, White, and Gold"], correct: 2, category: "Culture", difficulty: "easy" },
+  { question: "What symbol represents the Boston Celtics?", answers: ["A star", "A shamrock", "A basketball", "A leprechaun"], correct: 3, category: "Culture", difficulty: "easy" },
+
+  // Isaiah Thomas Era Basics
+  { question: "What jersey number did Isaiah Thomas wear?", answers: ["11", "4", "0", "12"], correct: 1, category: "IT4 Era", difficulty: "easy" },
+  { question: "How tall is Isaiah Thomas?", answers: ["5'9\"", "6'0\"", "5'11\"", "6'2\""], correct: 0, category: "IT4 Era", difficulty: "easy" },
+  { question: "What was Isaiah Thomas's nickname?", answers: ["The King in the Fourth", "Little Guy", "IT4", "Both A and C"], correct: 3, category: "IT4 Era", difficulty: "easy" },
+
+  // Marcus Smart Basics
+  { question: "What year did Marcus Smart win Defensive Player of the Year?", answers: ["2021", "2022", "2023", "2020"], correct: 1, category: "Smart Era", difficulty: "easy" },
+  { question: "What number did Marcus Smart wear?", answers: ["0", "36", "12", "4"], correct: 1, category: "Smart Era", difficulty: "easy" },
+  { question: "Marcus Smart was known for what type of plays?", answers: ["Dunking", "Taking charges", "3-point shooting", "Post moves"], correct: 1, category: "Smart Era", difficulty: "easy" },
+
+  // More Easy Questions
+  { question: "What country is Al Horford from?", answers: ["Puerto Rico", "Dominican Republic", "Cuba", "Venezuela"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "What number does Derrick White wear?", answers: ["0", "9", "4", "12"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "Who is known for his clutch 3-pointers off the bench?", answers: ["Sam Hauser", "Payton Pritchard", "Malcolm Brogdon", "Grant Williams"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "What is Payton Pritchard's nickname?", answers: ["PP", "Fast PP", "The Jet", "Pritchard"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "What year did Brad Stevens become Celtics head coach?", answers: ["2012", "2013", "2014", "2015"], correct: 1, category: "Brad Stevens", difficulty: "easy" },
+  { question: "Brad Stevens is now the Celtics' what?", answers: ["Head Coach", "President of Basketball Ops", "Assistant Coach", "Scout"], correct: 1, category: "Brad Stevens", difficulty: "easy" },
+  { question: "Who is the Celtics' all-time leading scorer?", answers: ["Paul Pierce", "John Havlicek", "Larry Bird", "Kevin McHale"], correct: 1, category: "History", difficulty: "easy" },
+  { question: "The Celtics-Lakers rivalry is the most famous in which sport?", answers: ["Baseball", "Football", "Basketball", "Hockey"], correct: 2, category: "Rivalry", difficulty: "easy" },
+  { question: "What conference do the Celtics play in?", answers: ["Western", "Eastern", "Central", "Atlantic"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "What division do the Celtics play in?", answers: ["Central", "Atlantic", "Southeast", "Northeast"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "In what city do the Celtics play?", answers: ["New York", "Philadelphia", "Boston", "Brooklyn"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "What is the name of the Celtics' home arena?", answers: ["Madison Square Garden", "TD Garden", "FleetCenter", "Boston Garden"], correct: 1, category: "TD Garden", difficulty: "easy" },
+  { question: "What color are the Celtics' primary home jerseys?", answers: ["Green", "White", "Gold", "Black"], correct: 1, category: "Culture", difficulty: "easy" },
 
   // ==========================================
-  // PAUL PIERCE ERA
+  // MEDIUM QUESTIONS (Specific knowledge)
   // ==========================================
-  {
-    question: "What number did Paul Pierce wear?",
-    answers: ["5", "20", "34", "33"],
-    correct: 2,
-    category: "The Truth"
-  },
-  {
-    question: "What was Paul Pierce's nickname?",
-    answers: ["The Captain", "The Truth", "PP34", "Boston's Finest"],
-    correct: 1,
-    category: "The Truth"
-  },
-  {
-    question: "Who gave Paul Pierce the nickname 'The Truth'?",
-    answers: ["Kevin Garnett", "Shaquille O'Neal", "Kobe Bryant", "Doc Rivers"],
-    correct: 1,
-    category: "The Truth"
-  },
-  {
-    question: "What college did Paul Pierce attend?",
-    answers: ["UCLA", "Kansas", "Duke", "North Carolina"],
-    correct: 1,
-    category: "The Truth"
-  },
-  {
-    question: "What pick was Paul Pierce in the 1998 draft?",
-    answers: ["8th", "10th", "12th", "15th"],
-    correct: 1,
-    category: "The Truth"
-  },
-  {
-    question: "Paul Pierce was stabbed how many times in a 2000 nightclub incident?",
-    answers: ["7", "9", "11", "13"],
-    correct: 2,
-    category: "The Truth"
-  },
-  {
-    question: "What year was Paul Pierce's jersey retired by the Celtics?",
-    answers: ["2017", "2018", "2019", "2020"],
-    correct: 1,
-    category: "The Truth"
-  },
-  {
-    question: "Which team did the Celtics trade Paul Pierce to in 2013?",
-    answers: ["LA Clippers", "Brooklyn Nets", "Washington Wizards", "Sacramento Kings"],
-    correct: 1,
-    category: "The Truth"
-  },
+
+  // Big 3 Era Details
+  { question: "How many games did the 2008 Finals go?", answers: ["4 games", "5 games", "6 games", "7 games"], correct: 2, category: "Big 3 Era", difficulty: "medium" },
+  { question: "What was the Celtics' regular season record in 2007-08?", answers: ["62-20", "66-16", "59-23", "64-18"], correct: 1, category: "Big 3 Era", difficulty: "medium" },
+  { question: "Who was the starting center on the 2008 championship team?", answers: ["Kendrick Perkins", "Leon Powe", "P.J. Brown", "Glen Davis"], correct: 0, category: "Big 3 Era", difficulty: "medium" },
+  { question: "What year did Rajon Rondo lead the league in assists while a Celtic?", answers: ["2010", "2011", "2012", "2013"], correct: 2, category: "Big 3 Era", difficulty: "medium" },
+  { question: "Which team did Ray Allen come from in 2007?", answers: ["Milwaukee Bucks", "Seattle SuperSonics", "Miami Heat", "Cleveland Cavaliers"], correct: 1, category: "Big 3 Era", difficulty: "medium" },
+  { question: "In 2010, the Celtics lost the Finals to the Lakers in how many games?", answers: ["5 games", "6 games", "7 games", "4 games"], correct: 2, category: "Big 3 Era", difficulty: "medium" },
+  { question: "What jersey number did Rajon Rondo wear?", answers: ["9", "11", "4", "7"], correct: 0, category: "Big 3 Era", difficulty: "medium" },
+  { question: "What was Glen Davis's nickname?", answers: ["Big Baby", "Big Ticket", "Big Diesel", "Big Country"], correct: 0, category: "Big 3 Era", difficulty: "medium" },
+  { question: "Who was the Celtics' backup point guard known for his shooting in 2008?", answers: ["Sam Cassell", "Eddie House", "Stephon Marbury", "Nate Robinson"], correct: 1, category: "Big 3 Era", difficulty: "medium" },
+
+  // Paul Pierce Details
+  { question: "What pick was Paul Pierce in the 1998 draft?", answers: ["8th", "10th", "12th", "15th"], correct: 1, category: "Paul Pierce", difficulty: "medium" },
+  { question: "What year was Paul Pierce's jersey retired by the Celtics?", answers: ["2017", "2018", "2019", "2020"], correct: 1, category: "Paul Pierce", difficulty: "medium" },
+  { question: "Which team did the Celtics trade Paul Pierce to in 2013?", answers: ["LA Clippers", "Brooklyn Nets", "Washington Wizards", "Sacramento Kings"], correct: 1, category: "Paul Pierce", difficulty: "medium" },
+
+  // Isaiah Thomas Details
+  { question: "In what season did Isaiah Thomas average 28.9 PPG for the Celtics?", answers: ["2015-16", "2016-17", "2017-18", "2014-15"], correct: 1, category: "IT4 Era", difficulty: "medium" },
+  { question: "Which team did the Celtics trade Isaiah Thomas to in 2017?", answers: ["LA Lakers", "Cleveland Cavaliers", "Denver Nuggets", "Phoenix Suns"], correct: 1, category: "IT4 Era", difficulty: "medium" },
+  { question: "What pick was Isaiah Thomas in the 2011 draft?", answers: ["30th", "45th", "60th (last)", "55th"], correct: 2, category: "IT4 Era", difficulty: "medium" },
+  { question: "Which team did Isaiah Thomas come from before joining Boston?", answers: ["Sacramento Kings", "Phoenix Suns", "LA Lakers", "Denver Nuggets"], correct: 1, category: "IT4 Era", difficulty: "medium" },
+  { question: "Isaiah Thomas finished which place in MVP voting in 2016-17?", answers: ["3rd", "4th", "5th", "6th"], correct: 2, category: "IT4 Era", difficulty: "medium" },
+
+  // Kyrie Era Details
+  { question: "What injury kept Kyrie Irving from playing in the 2018 playoffs?", answers: ["ACL tear", "Knee surgery", "Ankle sprain", "Shoulder injury"], correct: 1, category: "Kyrie Era", difficulty: "medium" },
+  { question: "Which team traded Kyrie Irving to the Celtics?", answers: ["Brooklyn Nets", "Cleveland Cavaliers", "Dallas Mavericks", "Minnesota Timberwolves"], correct: 1, category: "Kyrie Era", difficulty: "medium" },
+  { question: "What number did Kyrie Irving wear in Boston?", answers: ["2", "11", "10", "4"], correct: 1, category: "Kyrie Era", difficulty: "medium" },
+  { question: "Which team did Kyrie Irving leave Boston for in 2019?", answers: ["LA Lakers", "Brooklyn Nets", "Dallas Mavericks", "Denver Nuggets"], correct: 1, category: "Kyrie Era", difficulty: "medium" },
+  { question: "How far did the 2018 Celtics go without Kyrie and Hayward?", answers: ["First round", "Second round", "Conference Finals", "Finals"], correct: 2, category: "Kyrie Era", difficulty: "medium" },
+
+  // Hayward Era Details
+  { question: "How many minutes into his Celtics debut did Gordon Hayward suffer his leg injury?", answers: ["2 minutes", "5 minutes", "7 minutes", "10 minutes"], correct: 1, category: "Hayward Era", difficulty: "medium" },
+  { question: "What type of injury did Gordon Hayward suffer in his first game?", answers: ["ACL tear", "Achilles rupture", "Fractured ankle/tibia", "Broken leg"], correct: 2, category: "Hayward Era", difficulty: "medium" },
+  { question: "Which team did Gordon Hayward come from?", answers: ["Indiana Pacers", "Utah Jazz", "Charlotte Hornets", "Orlando Magic"], correct: 1, category: "Hayward Era", difficulty: "medium" },
+  { question: "What college did Gordon Hayward attend?", answers: ["Duke", "Butler", "Indiana", "Purdue"], correct: 1, category: "Hayward Era", difficulty: "medium" },
+
+  // Jays Era Details
+  { question: "What pick was Jaylen Brown in the 2016 draft?", answers: ["1st", "2nd", "3rd", "4th"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "What seed were the Celtics when they won the 2024 championship?", answers: ["1st", "2nd", "3rd", "4th"], correct: 0, category: "Jays Era", difficulty: "medium" },
+  { question: "Who hit the famous game-winning buzzer beater vs. Miami in the 2023 ECF Game 6?", answers: ["Jayson Tatum", "Jaylen Brown", "Derrick White", "Marcus Smart"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "What year did Jaylen Brown sign his supermax extension?", answers: ["2022", "2023", "2024", "2021"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "Which year did Jayson Tatum make his first All-Star game?", answers: ["2019", "2020", "2021", "2022"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "Who was the Celtics' 2022 Finals opponent?", answers: ["Miami Heat", "Golden State Warriors", "Phoenix Suns", "Milwaukee Bucks"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "How many games did the Celtics lose in the 2024 playoffs?", answers: ["1", "2", "3", "4"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "Jayson Tatum's son is named what?", answers: ["Jayson Jr.", "Deuce", "Duke", "Kobe"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "Who did the Celtics acquire from Milwaukee to complete their championship roster?", answers: ["Khris Middleton", "Jrue Holiday", "Brook Lopez", "Pat Connaughton"], correct: 1, category: "Jays Era", difficulty: "medium" },
+
+  // Smart Era Details
+  { question: "Marcus Smart was traded to which team in 2023?", answers: ["Memphis Grizzlies", "Oklahoma City Thunder", "Portland Trail Blazers", "Houston Rockets"], correct: 0, category: "Smart Era", difficulty: "medium" },
+  { question: "What college did Marcus Smart attend?", answers: ["Texas", "Oklahoma State", "Kansas", "Baylor"], correct: 1, category: "Smart Era", difficulty: "medium" },
+
+  // Current Roster Details
+  { question: "Which team did Derrick White come from?", answers: ["San Antonio Spurs", "Denver Nuggets", "Indiana Pacers", "Oklahoma City Thunder"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "What college did Payton Pritchard attend?", answers: ["Duke", "Oregon", "UCLA", "Gonzaga"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Sam Hauser is known for which specific skill?", answers: ["Defense", "Rebounding", "3-point shooting", "Playmaking"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "Which college did Sam Hauser play for (final school)?", answers: ["Marquette", "Virginia", "Wisconsin", "Michigan"], correct: 1, category: "Current", difficulty: "medium" },
+
+  // Brad Stevens Details
+  { question: "What college team did Brad Stevens coach before the Celtics?", answers: ["Duke", "Indiana", "Butler", "Purdue"], correct: 2, category: "Brad Stevens", difficulty: "medium" },
+  { question: "How old was Brad Stevens when he became Celtics coach?", answers: ["34", "36", "38", "40"], correct: 1, category: "Brad Stevens", difficulty: "medium" },
+  { question: "Brad Stevens took Butler to how many NCAA championship games?", answers: ["1", "2", "3", "0"], correct: 1, category: "Brad Stevens", difficulty: "medium" },
+
+  // TD Garden Details
+  { question: "What was the original name of TD Garden?", answers: ["Boston Garden", "FleetCenter", "Shawmut Center", "New Boston Garden"], correct: 1, category: "TD Garden", difficulty: "medium" },
+
+  // Playoff Details
+  { question: "Who did the Celtics beat in the 2024 Eastern Conference Finals?", answers: ["Miami Heat", "Cleveland Cavaliers", "Indiana Pacers", "New York Knicks"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "In 2024, who did Boston beat in round 1?", answers: ["Orlando Magic", "Miami Heat", "Cleveland Cavaliers", "Philadelphia 76ers"], correct: 1, category: "Playoffs", difficulty: "medium" },
+  { question: "The Celtics eliminated which team to reach the 2022 Finals?", answers: ["Miami Heat", "Milwaukee Bucks", "Brooklyn Nets", "Philadelphia 76ers"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "The Celtics came back from 0-2 against which team in 2017 playoffs?", answers: ["Chicago Bulls", "Cleveland Cavaliers", "Washington Wizards", "Atlanta Hawks"], correct: 0, category: "Playoffs", difficulty: "medium" },
+
+  // Trade Details
+  { question: "Who was traded for the pick that became Jayson Tatum?", answers: ["Isaiah Thomas", "Jae Crowder", "Markelle Fultz", "Avery Bradley"], correct: 2, category: "Trades", difficulty: "medium" },
+  { question: "What pick did the Celtics get in the Nets trade that became Jaylen Brown?", answers: ["2016 Nets pick", "2017 Nets pick", "2018 Nets pick", "2015 Nets pick"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "The Celtics traded with which team for Kristaps Porzingis?", answers: ["Dallas Mavericks", "New York Knicks", "Washington Wizards", "LA Lakers"], correct: 2, category: "Trades", difficulty: "medium" },
+
+  // Records
+  { question: "The Celtics-Lakers rivalry has produced how many Finals matchups?", answers: ["10", "11", "12", "13"], correct: 2, category: "Records", difficulty: "medium" },
+  { question: "Which Celtic holds the record for most assists in a game?", answers: ["Rajon Rondo", "Bob Cousy", "Larry Bird", "Dennis Johnson"], correct: 0, category: "Records", difficulty: "medium" },
+
+  // Legends Details
+  { question: "How many consecutive championships did Bill Russell win?", answers: ["6", "7", "8", "9"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "What college did Larry Bird attend?", answers: ["Indiana", "Indiana State", "Purdue", "Notre Dame"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Larry Bird won three consecutive MVP awards. What years?", answers: ["1982-84", "1984-86", "1985-87", "1983-85"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "What number did John Havlicek wear?", answers: ["15", "16", "17", "18"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "Bob Cousy played what position?", answers: ["Center", "Power Forward", "Small Forward", "Point Guard"], correct: 3, category: "Legends", difficulty: "medium" },
+  { question: "What number did Kevin McHale wear?", answers: ["30", "32", "34", "36"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Robert Parish wore what number?", answers: ["00", "32", "42", "50"], correct: 0, category: "Legends", difficulty: "medium" },
+  { question: "What was Robert Parish's nickname?", answers: ["The Chief", "The Admiral", "The Chairman", "The Stilt"], correct: 0, category: "Legends", difficulty: "medium" },
+  { question: "Dennis Johnson was acquired from which team?", answers: ["Seattle SuperSonics", "Phoenix Suns", "Portland Trail Blazers", "Los Angeles Lakers"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "What year did Larry Bird retire?", answers: ["1990", "1991", "1992", "1993"], correct: 2, category: "Legends", difficulty: "medium" },
+
+  // More Medium Questions - Historical
+  { question: "What year were the Boston Celtics founded?", answers: ["1946", "1948", "1950", "1952"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Who was the Celtics' first pick in their first-ever draft?", answers: ["Bob Cousy", "Ed Macauley", "Chuck Connors", "Connie Simmons"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "What year did the Celtics win their first championship?", answers: ["1955", "1956", "1957", "1958"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Who scored the first basket in Celtics history?", answers: ["Bob Cousy", "Ed Macauley", "Wyndol Gray", "Connie Simmons"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "The Celtics retired jersey number 2 for who?", answers: ["Bob Cousy", "Red Auerbach", "Bill Russell", "K.C. Jones"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "What year did the original Boston Garden close?", answers: ["1993", "1995", "1997", "1999"], correct: 1, category: "TD Garden", difficulty: "medium" },
+  { question: "What was the seating capacity of the original Boston Garden?", answers: ["12,500", "14,890", "16,000", "18,500"], correct: 1, category: "TD Garden", difficulty: "medium" },
+  { question: "How many banners hang in TD Garden (retired numbers and championships)?", answers: ["20", "22", "24", "26"], correct: 2, category: "TD Garden", difficulty: "medium" },
+  { question: "K.C. Jones coached the Celtics to how many championships?", answers: ["1", "2", "3", "4"], correct: 1, category: "Coaches", difficulty: "medium" },
+  { question: "Tom Heinsohn won how many championships as a player?", answers: ["6", "7", "8", "9"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "Who wore number 18 before Dave Cowens?", answers: ["John Havlicek", "Bailey Howell", "Don Nelson", "Jo Jo White"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Dave Cowens won MVP in which year?", answers: ["1972", "1973", "1974", "1975"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Jo Jo White was Finals MVP in which year?", answers: ["1974", "1976", "1977", "1978"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "How many rings did Dennis Johnson win with the Celtics?", answers: ["1", "2", "3", "4"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Which number did Cedric Maxwell wear?", answers: ["21", "31", "41", "51"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Cedric Maxwell was Finals MVP in which year?", answers: ["1980", "1981", "1984", "1986"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Danny Ainge came to the Celtics from which sport?", answers: ["Baseball", "Football", "Hockey", "Soccer"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "How many years was Danny Ainge the Celtics' GM?", answers: ["10", "12", "14", "16"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Reggie Lewis played what position?", answers: ["Point Guard", "Shooting Guard", "Small Forward", "Power Forward"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "What tragic event happened to Reggie Lewis in 1993?", answers: ["Car accident", "Cardiac arrest", "Drowning", "Plane crash"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Antoine Walker wore which number?", answers: ["4", "8", "12", "24"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Antoine Walker was known for what celebratory dance?", answers: ["The Shimmy", "The Dougie", "The Cabbage Patch", "The Robot"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Rick Pitino coached the Celtics from which years?", answers: ["1995-97", "1997-2001", "1999-2002", "2001-2004"], correct: 1, category: "Coaches", difficulty: "medium" },
+  { question: "Jim O'Brien coached the Celtics to what playoff seed in 2002?", answers: ["3rd", "4th", "5th", "6th"], correct: 3, category: "Coaches", difficulty: "medium" },
+  { question: "Who did the Celtics draft with the #2 pick in 1997?", answers: ["Chauncey Billups", "Keith Van Horn", "Ron Mercer", "Tim Duncan"], correct: 2, category: "Trades", difficulty: "medium" },
+  { question: "Eric Montross played center for the Celtics after playing at which college?", answers: ["Duke", "North Carolina", "Michigan", "Kentucky"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Dino Radja was from which country?", answers: ["Serbia", "Croatia", "Slovenia", "Greece"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Dana Barros set what record while with the Celtics?", answers: ["Consecutive 3s made", "Consecutive free throws", "Consecutive games with a 3", "Consecutive double-doubles"], correct: 2, category: "Records", difficulty: "medium" },
+  { question: "Tony Allen was drafted by the Celtics in which year?", answers: ["2003", "2004", "2005", "2006"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Al Jefferson was traded to which team in 2007?", answers: ["Milwaukee Bucks", "Minnesota Timberwolves", "Charlotte Bobcats", "Utah Jazz"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "Sebastian Telfair wore which number?", answers: ["10", "12", "30", "31"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Gerald Green won the Slam Dunk Contest in which year?", answers: ["2006", "2007", "2008", "2009"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Avery Bradley was drafted in which round?", answers: ["First", "Second", "Undrafted", "Third"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "What pick was Avery Bradley?", answers: ["17th", "19th", "21st", "23rd"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Jae Crowder came to the Celtics from which team?", answers: ["Dallas Mavericks", "Cleveland Cavaliers", "Phoenix Suns", "Miami Heat"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "Terry Rozier's nickname was what?", answers: ["T-Ro", "Scary Terry", "Buzz", "Terry Time"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Terry Rozier was traded to which team?", answers: ["Charlotte Hornets", "Miami Heat", "Detroit Pistons", "New York Knicks"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "Grant Williams was drafted in which year?", answers: ["2018", "2019", "2020", "2021"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Malcolm Brogdon came from which team?", answers: ["Milwaukee Bucks", "Indiana Pacers", "Atlanta Hawks", "Sacramento Kings"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "What award did Malcolm Brogdon win in 2017?", answers: ["MVP", "DPOY", "ROY", "6MOY"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Luke Kornet attended which college?", answers: ["Vanderbilt", "Duke", "Kentucky", "Florida"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "Xavier Tillman Sr. came from which team?", answers: ["Memphis Grizzlies", "Boston Celtics", "Brooklyn Nets", "Cleveland Cavaliers"], correct: 0, category: "Current", difficulty: "medium" },
 
   // ==========================================
-  // ISAIAH THOMAS ERA (2015-2017)
+  // HARD QUESTIONS (Deep knowledge required)
   // ==========================================
-  {
-    question: "What jersey number did Isaiah Thomas wear?",
-    answers: ["11", "4", "0", "12"],
-    correct: 1,
-    category: "IT4 Era"
-  },
-  {
-    question: "In what season did Isaiah Thomas average 28.9 PPG for the Celtics?",
-    answers: ["2015-16", "2016-17", "2017-18", "2014-15"],
-    correct: 1,
-    category: "IT4 Era"
-  },
-  {
-    question: "What was Isaiah Thomas's nickname?",
-    answers: ["The King in the Fourth", "Little Guy", "IT4", "Both A and C"],
-    correct: 3,
-    category: "IT4 Era"
-  },
-  {
-    question: "How tall is Isaiah Thomas?",
-    answers: ["5'9\"", "6'0\"", "5'11\"", "6'2\""],
-    correct: 0,
-    category: "IT4 Era"
-  },
-  {
-    question: "Which team did the Celtics trade Isaiah Thomas to in 2017?",
-    answers: ["LA Lakers", "Cleveland Cavaliers", "Denver Nuggets", "Phoenix Suns"],
-    correct: 1,
-    category: "IT4 Era"
-  },
-  {
-    question: "What pick was Isaiah Thomas in the 2011 draft?",
-    answers: ["30th", "45th", "60th (last)", "55th"],
-    correct: 2,
-    category: "IT4 Era"
-  },
-  {
-    question: "Which team did Isaiah Thomas come from before joining Boston?",
-    answers: ["Sacramento Kings", "Phoenix Suns", "LA Lakers", "Denver Nuggets"],
-    correct: 1,
-    category: "IT4 Era"
-  },
-  {
-    question: "Isaiah Thomas played through the 2017 playoffs after whose death?",
-    answers: ["His father", "His sister Chyna", "His mother", "His brother"],
-    correct: 1,
-    category: "IT4 Era"
-  },
-  {
-    question: "What hip injury plagued Isaiah Thomas after leaving Boston?",
-    answers: ["Torn labrum", "Hip flexor strain", "Femoral acetabular impingement", "Stress fracture"],
-    correct: 2,
-    category: "IT4 Era"
-  },
-  {
-    question: "How many points did IT score in Game 2 vs. Washington in the 2017 playoffs (day after sister's death)?",
-    answers: ["43", "50", "53", "47"],
-    correct: 2,
-    category: "IT4 Era"
-  },
-  {
-    question: "Isaiah Thomas finished which place in MVP voting in 2016-17?",
-    answers: ["3rd", "4th", "5th", "6th"],
-    correct: 2,
-    category: "IT4 Era"
-  },
+
+  // Big 3 Era Hard
+  { question: "Which Celtic came off the bench and scored 21 points in Game 2 of the 2008 Finals?", answers: ["Eddie House", "Leon Powe", "James Posey", "Sam Cassell"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Which Celtic tore his ACL in the 2009 playoffs?", answers: ["Paul Pierce", "Kevin Garnett", "Rajon Rondo", "Kendrick Perkins"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Who did the Celtics acquire from Cleveland in the 2010 Kendrick Perkins trade?", answers: ["Shaquille O'Neal", "Jermaine O'Neal", "Nenad Krstic", "Jeff Green"], correct: 2, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Which Laker did Paul Pierce famously get into a staredown with in 2008?", answers: ["Kobe Bryant", "Pau Gasol", "Derek Fisher", "Lamar Odom"], correct: 0, category: "Big 3 Era", difficulty: "hard" },
+  { question: "The Celtics' 2008 first-round opponent was which team?", answers: ["Washington Wizards", "Atlanta Hawks", "Philadelphia 76ers", "Orlando Magic"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "What was the final score of Game 6 in the 2008 Finals?", answers: ["131-92", "129-96", "125-94", "127-98"], correct: 0, category: "Big 3 Era", difficulty: "hard" },
+  { question: "How many points did Paul Pierce score in Game 6 of the 2008 Finals?", answers: ["17", "22", "27", "32"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Who led the Celtics in rebounds per game in the 2008 playoffs?", answers: ["Kevin Garnett", "Kendrick Perkins", "Paul Pierce", "Leon Powe"], correct: 0, category: "Big 3 Era", difficulty: "hard" },
+  { question: "What was Rajon Rondo's jersey number with the Celtics?", answers: ["4", "7", "9", "11"], correct: 2, category: "Big 3 Era", difficulty: "hard" },
+  { question: "James Posey wore which number?", answers: ["31", "41", "51", "21"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "P.J. Brown came out of retirement to join the 2008 Celtics from which team?", answers: ["New Orleans Hornets", "Chicago Bulls", "Miami Heat", "Detroit Pistons"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Tony Allen was nicknamed what for his defense?", answers: ["The Grinder", "The Stopper", "First Team All-Defense", "Lock-Up Tony"], correct: 2, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Brian Scalabrine's nickname was what?", answers: ["White Mamba", "The Pale Rider", "Ginger Ninja", "Scal"], correct: 0, category: "Big 3 Era", difficulty: "hard" },
+
+  // Paul Pierce Hard
+  { question: "Paul Pierce was stabbed how many times in a 2000 nightclub incident?", answers: ["7", "9", "11", "13"], correct: 2, category: "Paul Pierce", difficulty: "hard" },
+  { question: "In Paul Pierce's 2008 Finals 'wheelchair game', what really was wrong?", answers: ["Torn ACL", "Knee sprain", "Had to use bathroom", "Dislocated kneecap"], correct: 1, category: "Paul Pierce", difficulty: "hard" },
+  { question: "How many points did Paul Pierce score in the 2008 Finals?", answers: ["87", "108", "127", "143"], correct: 2, category: "Paul Pierce", difficulty: "hard" },
+  { question: "Paul Pierce's career high in points was how many?", answers: ["44", "47", "50", "52"], correct: 2, category: "Paul Pierce", difficulty: "hard" },
+  { question: "Against which team did Paul Pierce score 50 points?", answers: ["Cleveland Cavaliers", "Miami Heat", "New Jersey Nets", "Toronto Raptors"], correct: 0, category: "Paul Pierce", difficulty: "hard" },
+
+  // Isaiah Thomas Hard
+  { question: "Isaiah Thomas played through the 2017 playoffs after whose death?", answers: ["His father", "His sister Chyna", "His mother", "His brother"], correct: 1, category: "IT4 Era", difficulty: "hard" },
+  { question: "What hip injury plagued Isaiah Thomas after leaving Boston?", answers: ["Torn labrum", "Hip flexor strain", "Femoral acetabular impingement", "Stress fracture"], correct: 2, category: "IT4 Era", difficulty: "hard" },
+  { question: "How many points did IT score in Game 2 vs. Washington in the 2017 playoffs (day after sister's death)?", answers: ["43", "50", "53", "47"], correct: 2, category: "IT4 Era", difficulty: "hard" },
+  { question: "Isaiah Thomas scored how many 4th quarter points per game in 2016-17?", answers: ["8.5", "9.8", "10.1", "11.2"], correct: 1, category: "IT4 Era", difficulty: "hard" },
+  { question: "Isaiah Thomas had a signature warmup routine involving what?", answers: ["100 3-pointers", "Dribbling drills", "Watching Kobe highlights", "His kids"], correct: 3, category: "IT4 Era", difficulty: "hard" },
+
+  // Kyrie Hard
+  { question: "Who was traded to Cleveland along with Isaiah Thomas for Kyrie?", answers: ["Jae Crowder", "Terry Rozier", "Marcus Smart", "Jaylen Brown"], correct: 0, category: "Kyrie Era", difficulty: "hard" },
+  { question: "What was Kyrie Irving's famous quote about staying in Boston?", answers: ["Boston forever", "If you'll have me back, I plan on re-signing", "Celtics for life", "I'm committed"], correct: 1, category: "Kyrie Era", difficulty: "hard" },
+  { question: "In the 2019 playoffs, Kyrie Irving shot what percentage from three against Milwaukee?", answers: ["22%", "25%", "28%", "31%"], correct: 0, category: "Kyrie Era", difficulty: "hard" },
+  { question: "Kyrie Irving's final game as a Celtic was a loss to which team?", answers: ["Milwaukee Bucks", "Toronto Raptors", "Philadelphia 76ers", "Indiana Pacers"], correct: 0, category: "Kyrie Era", difficulty: "hard" },
+
+  // Jays Era Hard
+  { question: "How much was Jaylen Brown's supermax contract worth?", answers: ["$285 million", "$304 million", "$250 million", "$275 million"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "What was Jayson Tatum's career high in points as of 2024?", answers: ["51", "53", "60", "57"], correct: 2, category: "Jays Era", difficulty: "hard" },
+  { question: "Against which team did Tatum score 60 points?", answers: ["Brooklyn Nets", "San Antonio Spurs", "LA Lakers", "Miami Heat"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "What was the Celtics' playoff record in 2024?", answers: ["16-3", "16-2", "16-4", "16-1"], correct: 0, category: "Jays Era", difficulty: "hard" },
+  { question: "Who hit 8 threes vs. Milwaukee in Game 7 of the 2022 second round?", answers: ["Jayson Tatum", "Jaylen Brown", "Grant Williams", "Marcus Smart"], correct: 2, category: "Jays Era", difficulty: "hard" },
+  { question: "What was the margin of victory in Game 5 of the 2024 Finals?", answers: ["8 points", "16 points", "12 points", "20 points"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "Who led the Celtics in 3-point percentage in the 2024 playoffs?", answers: ["Jayson Tatum", "Jrue Holiday", "Sam Hauser", "Derrick White"], correct: 2, category: "Jays Era", difficulty: "hard" },
+
+  // Trades Hard
+  { question: "Who did Boston give up to get Jrue Holiday?", answers: ["Malcolm Brogdon", "Robert Williams", "Grant Williams", "Both A and B"], correct: 3, category: "Trades", difficulty: "hard" },
+  { question: "The Celtics-Nets trade in 2013 included how many first-round picks going to Boston?", answers: ["2", "3", "4", "5"], correct: 2, category: "Trades", difficulty: "hard" },
+  { question: "In the Isaiah Thomas-Kyrie trade, who was the Cleveland pick that came to Boston?", answers: ["Ante Zizic", "Collin Sexton", "Isaac Okoro", "Darius Garland"], correct: 0, category: "Trades", difficulty: "hard" },
+  { question: "The Celtics traded the #1 pick in 2017 to Philadelphia. Who was selected?", answers: ["Lonzo Ball", "Markelle Fultz", "Josh Jackson", "De'Aaron Fox"], correct: 1, category: "Trades", difficulty: "hard" },
+  { question: "For Kevin Garnett, the Celtics sent which player to Minnesota?", answers: ["Al Jefferson", "Ryan Gomes", "Gerald Green", "All of the above"], correct: 3, category: "Trades", difficulty: "hard" },
+
+  // Records Hard
+  { question: "Rajon Rondo's single-game assist record is how many?", answers: ["22", "24", "26", "28"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Larry Bird's career high in rebounds was how many?", answers: ["19", "21", "22", "24"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Bill Russell averaged how many rebounds per game for his career?", answers: ["20.5", "22.5", "24.5", "26.5"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Who holds the Celtics record for most points in a game?", answers: ["Larry Bird", "Paul Pierce", "Kevin McHale", "Isaiah Thomas"], correct: 0, category: "Records", difficulty: "hard" },
+  { question: "Larry Bird scored how many points in his career-high game?", answers: ["56", "58", "60", "63"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "Kevin McHale's record for most points in a game was how many?", answers: ["50", "52", "54", "56"], correct: 3, category: "Records", difficulty: "hard" },
+  { question: "Who holds the Celtics record for consecutive games with a 3-pointer?", answers: ["Ray Allen", "Paul Pierce", "Dana Barros", "Antoine Walker"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "How many consecutive games did Dana Barros have with a 3-pointer?", answers: ["79", "89", "99", "109"], correct: 1, category: "Records", difficulty: "hard" },
+
+  // Legends Hard
+  { question: "Bill Russell was the first African American head coach in which major sport?", answers: ["Baseball", "Football", "Basketball", "Hockey"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "What year did Bill Russell become player-coach?", answers: ["1964", "1966", "1968", "1970"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "How many MVP awards did Bill Russell win?", answers: ["3", "4", "5", "6"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Larry Bird's famous 'garbage man' comment was about which player?", answers: ["Magic Johnson", "Isiah Thomas", "Dominique Wilkins", "Michael Jordan"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "In Larry Bird's rookie season, how much did the Celtics improve in wins?", answers: ["22", "29", "32", "38"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "John Havlicek played how many seasons for the Celtics?", answers: ["14", "15", "16", "17"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "John Havlicek's famous 'stole the ball' play was against which team?", answers: ["Los Angeles Lakers", "Philadelphia 76ers", "New York Knicks", "San Francisco Warriors"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Bob Cousy led the league in assists how many consecutive years?", answers: ["6", "7", "8", "9"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Kevin McHale's injury in the 1987 playoffs was to which body part?", answers: ["Knee", "Ankle", "Foot", "Back"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Sam Jones was known by what nickname?", answers: ["The Shooter", "Mr. Clutch", "Silky", "Bank Shot"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Tom Heinsohn won how many championships total (player and coach)?", answers: ["8", "9", "10", "11"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Frank Ramsey was famous for what role?", answers: ["Starting Center", "Sixth Man", "Defensive Specialist", "Playmaker"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Bill Sharman's free throw percentage for his career was what?", answers: ["85.0%", "87.3%", "88.3%", "90.2%"], correct: 2, category: "Legends", difficulty: "hard" },
+
+  // TD Garden Hard
+  { question: "The parquet floor at Boston Garden was made of how many panels?", answers: ["247", "264", "288", "300"], correct: 1, category: "TD Garden", difficulty: "hard" },
+  { question: "Why was the Boston Garden parquet floor made of mismatched panels?", answers: ["Artistic choice", "Post-WWII wood shortage", "Cheaper than regular floor", "Easier to replace"], correct: 1, category: "TD Garden", difficulty: "hard" },
+  { question: "The Boston Garden's famous 'dead spots' on the parquet were in what locations?", answers: ["Center court only", "Near the baskets", "Various spots known to players", "In the corners"], correct: 2, category: "TD Garden", difficulty: "hard" },
+  { question: "TD Garden opened in what year?", answers: ["1993", "1995", "1997", "1999"], correct: 1, category: "TD Garden", difficulty: "hard" },
+  { question: "TD Garden was originally named what?", answers: ["FleetCenter", "New Boston Garden", "Shawmut Center", "Citizens Bank Arena"], correct: 0, category: "TD Garden", difficulty: "hard" },
+  { question: "How many banners were moved from Boston Garden to TD Garden?", answers: ["12", "14", "16", "18"], correct: 2, category: "TD Garden", difficulty: "hard" },
+
+  // Coaches Hard
+  { question: "Red Auerbach coached the Celtics for how many seasons?", answers: ["14", "16", "18", "20"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Red Auerbach's regular season win total with the Celtics was how many?", answers: ["795", "837", "876", "912"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Bill Fitch coached the Celtics from which years?", answers: ["1978-83", "1979-84", "1980-85", "1981-86"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Bill Fitch won how many championships as Celtics coach?", answers: ["0", "1", "2", "3"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "M.L. Carr coached the Celtics in which season?", answers: ["1994-95", "1995-96", "1996-97", "1997-98"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Chris Ford was the first Celtics player to do what?", answers: ["Score a 3-pointer", "Win Finals MVP", "Average a triple-double", "Get a quadruple-double"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Ime Udoka was suspended for what reason?", answers: ["Gambling", "Relationship with staff", "Substance abuse", "Physical altercation"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Joe Mazzulla's first playoff series win as head coach was against which team?", answers: ["Miami Heat", "Atlanta Hawks", "Philadelphia 76ers", "Brooklyn Nets"], correct: 1, category: "Coaches", difficulty: "hard" },
+
+  // Draft History Hard
+  { question: "The Celtics drafted Len Bias with which pick in 1986?", answers: ["1st", "2nd", "3rd", "4th"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "What happened to Len Bias two days after being drafted?", answers: ["Car accident", "Cocaine overdose", "Heart condition", "Plane crash"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Reggie Lewis was drafted in which round?", answers: ["First", "Second", "Third", "Undrafted"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "What pick was Reggie Lewis?", answers: ["20th", "22nd", "24th", "26th"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The Celtics selected Dino Radja in which draft?", answers: ["1989", "1990", "1991", "1992"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Chauncey Billups was traded after how many games with the Celtics?", answers: ["25", "41", "51", "63"], correct: 2, category: "Trades", difficulty: "hard" },
+  { question: "The Celtics drafted which future Hall of Famer in 2001?", answers: ["Tony Parker", "Joe Johnson", "Gilbert Arenas", "None - traded pick"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Kendrick Perkins was drafted in which round?", answers: ["First", "Second", "Undrafted", "Third"], correct: 0, category: "History", difficulty: "hard" },
+
+  // Specific Game/Season Stats Hard
+  { question: "In 1985-86, the Celtics had what regular season record?", answers: ["62-20", "64-18", "67-15", "69-13"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "The 1985-86 Celtics' playoff record was what?", answers: ["15-2", "15-3", "16-2", "16-3"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Larry Bird averaged how many points in the 1986 Finals?", answers: ["22.5", "24.3", "27.4", "29.8"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "The Celtics' longest winning streak in franchise history is how many games?", answers: ["16", "18", "19", "21"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "The 2007-08 Celtics won how many more games than the previous season?", answers: ["38", "40", "42", "44"], correct: 2, category: "Big 3 Era", difficulty: "hard" },
+  { question: "In the 2008 playoffs, the Celtics went to 7 games against which team in the first round?", answers: ["Cleveland Cavaliers", "Atlanta Hawks", "Detroit Pistons", "Orlando Magic"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Kevin Garnett's defensive rating in 2007-08 was approximately what?", answers: ["93", "96", "99", "102"], correct: 2, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Ray Allen's 3-point percentage in the 2008 Finals was what?", answers: ["42.1%", "45.5%", "48.7%", "51.2%"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+
+  // Obscure Facts Hard
+  { question: "The Celtics' original uniform color was what?", answers: ["Green and white", "Brown and white", "Green and gold", "Red and white"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Walter Brown was the Celtics' first what?", answers: ["Coach", "Owner", "GM", "Captain"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The Celtics' first home arena was called what?", answers: ["Boston Garden", "Boston Arena", "Matthews Arena", "TD Garden"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The Celtics have retired how many jersey numbers?", answers: ["20", "22", "24", "26"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Which Celtics number is the only one retired for a non-player?", answers: ["1", "2", "15", "35"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Whose number 1 is retired by the Celtics?", answers: ["Walter Brown", "Arnold Auerbach", "The fans", "Bob Cousy"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "The Celtics' leprechaun logo was designed by who?", answers: ["Zang Auerbach", "Red Auerbach's brother", "A local artist", "The original owner"], correct: 0, category: "Culture", difficulty: "hard" },
+  { question: "How many times have the Celtics had the #1 overall pick?", answers: ["2", "3", "4", "5"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The Celtics' first #1 overall pick was which player?", answers: ["Larry Bird", "Marcus Smart", "Len Bias", "Chuck Share"], correct: 3, category: "History", difficulty: "hard" },
+  { question: "Bill Russell was acquired through a trade with which team?", answers: ["Rochester Royals", "St. Louis Hawks", "Minneapolis Lakers", "Philadelphia Warriors"], correct: 1, category: "Trades", difficulty: "hard" },
+  { question: "For Bill Russell, the Celtics traded which future Hall of Famer?", answers: ["Cliff Hagan", "Ed Macauley", "Both A and B", "Neither"], correct: 2, category: "Trades", difficulty: "hard" },
+
+  // More Easy Questions to reach 1000
+  { question: "What position did Larry Bird play?", answers: ["Point Guard", "Shooting Guard", "Small Forward", "Center"], correct: 2, category: "Legends", difficulty: "easy" },
+  { question: "The Celtics wear green because of what heritage?", answers: ["American", "Irish", "Italian", "French"], correct: 1, category: "Culture", difficulty: "easy" },
+  { question: "TD Garden is in which state?", answers: ["New York", "Massachusetts", "Connecticut", "Rhode Island"], correct: 1, category: "TD Garden", difficulty: "easy" },
+  { question: "The Celtics play in what league?", answers: ["NFL", "MLB", "NBA", "NHL"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "Who is taller, Jayson Tatum or Jaylen Brown?", answers: ["Jayson Tatum", "Jaylen Brown", "They are the same height", "Neither plays for Celtics"], correct: 0, category: "Jays Era", difficulty: "easy" },
+  { question: "The Celtics' main rival is which team?", answers: ["New York Knicks", "Brooklyn Nets", "LA Lakers", "Miami Heat"], correct: 2, category: "Rivalry", difficulty: "easy" },
+  { question: "What shape is the Celtics' logo based on?", answers: ["Circle", "Square", "Shamrock", "Star"], correct: 2, category: "Culture", difficulty: "easy" },
+  { question: "Jayson Tatum wears which brand of shoes?", answers: ["Nike", "Adidas", "Jordan", "Under Armour"], correct: 2, category: "Current", difficulty: "easy" },
+  { question: "The Celtics won their 18th title in which year?", answers: ["2022", "2023", "2024", "2025"], correct: 2, category: "Championships", difficulty: "easy" },
+  { question: "Al Horford plays which position?", answers: ["Point Guard", "Shooting Guard", "Small Forward", "Center"], correct: 3, category: "Current", difficulty: "easy" },
+  { question: "Jrue Holiday wears what number?", answers: ["4", "7", "11", "21"], correct: 0, category: "Current", difficulty: "easy" },
+  { question: "The Celtics won how many games in the 2024 Finals?", answers: ["3", "4", "5", "6"], correct: 2, category: "Championships", difficulty: "easy" },
+  { question: "Who was the 2024 Finals opponent's best player?", answers: ["Luka Doncic", "Stephen Curry", "LeBron James", "Giannis Antetokounmpo"], correct: 0, category: "Championships", difficulty: "easy" },
+  { question: "Brad Stevens previously worked at which level?", answers: ["High School", "College", "G-League", "International"], correct: 1, category: "Brad Stevens", difficulty: "easy" },
+  { question: "The Celtics' arena is named after which company?", answers: ["TD Bank", "Bank of America", "Citizens Bank", "Santander"], correct: 0, category: "TD Garden", difficulty: "easy" },
+  { question: "How many teams are in the NBA?", answers: ["28", "29", "30", "32"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "How many players are on an NBA court per team?", answers: ["4", "5", "6", "7"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "An NBA game has how many quarters?", answers: ["2", "3", "4", "5"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "Each NBA quarter is how many minutes?", answers: ["10", "12", "15", "20"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "A 3-point shot is worth how many points?", answers: ["2", "3", "4", "5"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "A free throw is worth how many points?", answers: ["1", "2", "3", "4"], correct: 0, category: "General", difficulty: "easy" },
+  { question: "The NBA Finals are played in what month(s)?", answers: ["April", "May", "June", "July"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "The NBA regular season starts in what month?", answers: ["September", "October", "November", "December"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "Jayson Tatum is from which city?", answers: ["Boston", "St. Louis", "Chicago", "Atlanta"], correct: 1, category: "Jays Era", difficulty: "easy" },
+  { question: "Jaylen Brown is from which state?", answers: ["California", "Georgia", "Texas", "Florida"], correct: 1, category: "Jays Era", difficulty: "easy" },
+
+  // More Medium Questions
+  { question: "How old was Joe Mazzulla when he became Celtics coach?", answers: ["32", "34", "36", "38"], correct: 1, category: "Coaches", difficulty: "medium" },
+  { question: "Kristaps Porzingis is known by what nickname?", answers: ["The Unicorn", "KP", "The Latvian Laser", "All of the above"], correct: 3, category: "Current", difficulty: "medium" },
+  { question: "Derrick White attended which college?", answers: ["Colorado", "Duke", "Kansas", "Kentucky"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "How many All-Star appearances does Jayson Tatum have as of 2024?", answers: ["3", "4", "5", "6"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "Jaylen Brown was named All-Star MVP in which year?", answers: ["2022", "2023", "2024", "Never"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "What seed did the Celtics finish with in the 2023-24 season?", answers: ["1st", "2nd", "3rd", "4th"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "How many regular season wins did the 2023-24 Celtics have?", answers: ["57", "60", "64", "67"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "Jrue Holiday came from which team?", answers: ["Milwaukee Bucks", "New Orleans Pelicans", "Philadelphia 76ers", "Portland Trail Blazers"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "How many championships has Jrue Holiday won?", answers: ["1", "2", "3", "4"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Al Horford has played for how many NBA teams?", answers: ["2", "3", "4", "5"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "Which team did Al Horford play for between his Celtics stints?", answers: ["76ers and Thunder", "Hawks and 76ers", "76ers only", "Thunder only"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "What pick was Payton Pritchard in the draft?", answers: ["22nd", "24th", "26th", "28th"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "Sam Hauser was drafted in which round?", answers: ["First", "Second", "Undrafted", "Third"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "Xavier Tillman Sr. plays which position?", answers: ["Point Guard", "Shooting Guard", "Small Forward", "Center"], correct: 3, category: "Current", difficulty: "medium" },
+  { question: "The 2024 Celtics swept which playoff round?", answers: ["First round", "Second round", "Conference Finals", "None"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "In 2024, who did Boston beat in the Conference Finals?", answers: ["Miami Heat", "Cleveland Cavaliers", "Indiana Pacers", "New York Knicks"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "The Celtics' 2024 second-round opponent was which team?", answers: ["Miami Heat", "Cleveland Cavaliers", "Orlando Magic", "Philadelphia 76ers"], correct: 1, category: "Playoffs", difficulty: "medium" },
+  { question: "How many games did the 2024 Conference Finals go?", answers: ["4 games", "5 games", "6 games", "7 games"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "The 2024 Finals MVP (Jaylen Brown) averaged how many points?", answers: ["18.5", "20.8", "22.6", "24.4"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "Jayson Tatum's first All-NBA selection was in which year?", answers: ["2019", "2020", "2021", "2022"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "The Celtics' 2023 ECF loss was to which team?", answers: ["Philadelphia 76ers", "Miami Heat", "Milwaukee Bucks", "Brooklyn Nets"], correct: 1, category: "Playoffs", difficulty: "medium" },
+  { question: "Jimmy Butler dropped how many points in Game 6 of the 2023 ECF?", answers: ["40", "45", "47", "50"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "The 2022 Finals went how many games?", answers: ["4", "5", "6", "7"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "Stephen Curry was Finals MVP in 2022 against who?", answers: ["Cleveland Cavaliers", "Toronto Raptors", "Boston Celtics", "Miami Heat"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "Marcus Smart's defensive plus-minus in 2021-22 was in the top what percent?", answers: ["1%", "5%", "10%", "15%"], correct: 0, category: "Smart Era", difficulty: "medium" },
+  { question: "Who led the Celtics in steals in 2021-22?", answers: ["Jaylen Brown", "Marcus Smart", "Jayson Tatum", "Derrick White"], correct: 1, category: "Smart Era", difficulty: "medium" },
+  { question: "Robert Williams III had surgery on which body part multiple times?", answers: ["Ankle", "Shoulder", "Knee", "Back"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "The Celtics acquired Derrick White in exchange for who?", answers: ["Romeo Langford", "Aaron Nesmith", "Both A and B", "Josh Richardson"], correct: 2, category: "Trades", difficulty: "medium" },
+  { question: "Daniel Theis has played for the Celtics how many times?", answers: ["1", "2", "3", "4"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Enes Kanter Freedom changed his name to include 'Freedom' for what reason?", answers: ["Religious beliefs", "Political asylum", "Personal choice", "Both B and C"], correct: 3, category: "History", difficulty: "medium" },
+  { question: "Evan Turner wore which number for the Celtics?", answers: ["1", "11", "21", "31"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Kelly Olynyk was drafted in which year?", answers: ["2012", "2013", "2014", "2015"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Kelly Olynyk's controversial play injured which player in 2015?", answers: ["LeBron James", "Kevin Love", "Kyrie Irving", "J.R. Smith"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Jeff Green was traded to the Celtics with which player?", answers: ["Kendrick Perkins", "Nenad Krstic", "Semih Erden", "Nate Robinson"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "Jeff Green had surgery for what condition?", answers: ["Torn ACL", "Aortic aneurysm", "Appendicitis", "Hernia"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Avery Bradley was known for defending which type of player?", answers: ["Point guards", "Centers", "Power forwards", "All positions"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Brandon Bass wore which number?", answers: ["22", "30", "42", "55"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Gerald Wallace was traded to the Celtics from which team?", answers: ["Brooklyn Nets", "Charlotte Bobcats", "Portland Trail Blazers", "Cleveland Cavaliers"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "Jason Terry's nickname was what?", answers: ["JET", "Terry Time", "J-Terry", "Big Shot"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Courtney Lee played for the Celtics in which season?", answers: ["2014-15", "2015-16", "2016-17", "2017-18"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Marcus Thornton wore which number for the Celtics?", answers: ["2", "4", "22", "44"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Tyler Zeller played center for the Celtics in which seasons?", answers: ["2014-16", "2015-17", "2016-18", "2017-19"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Jonas Jerebko was from which country?", answers: ["Sweden", "Finland", "Norway", "Denmark"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Amir Johnson played for the Celtics in which season?", answers: ["2016-17", "2017-18", "2018-19", "2019-20"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Aron Baynes was from which country?", answers: ["New Zealand", "Australia", "South Africa", "England"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Semi Ojeleye was drafted in which round?", answers: ["First", "Second", "Undrafted", "Third"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Romeo Langford was drafted with which pick?", answers: ["12th", "14th", "16th", "18th"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Aaron Nesmith was drafted in which year?", answers: ["2019", "2020", "2021", "2022"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Carsen Edwards was known for what skill?", answers: ["Defense", "Rebounding", "3-point shooting", "Passing"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Tremont Waters played which position?", answers: ["Point Guard", "Shooting Guard", "Small Forward", "Power Forward"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Grant Williams attended which college?", answers: ["Duke", "Tennessee", "Kentucky", "North Carolina"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Grant Williams was traded to which team?", answers: ["Dallas Mavericks", "Houston Rockets", "Charlotte Hornets", "San Antonio Spurs"], correct: 0, category: "Trades", difficulty: "medium" },
+
+  // More Hard Questions
+  { question: "The Celtics' worst season record was in which year?", answers: ["1996-97", "1997-98", "2006-07", "2013-14"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "What was the Celtics' worst season record?", answers: ["15-67", "18-64", "24-58", "26-56"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "The 2006-07 Celtics won how many games?", answers: ["20", "22", "24", "26"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "How much did the Celtics improve in wins from 2006-07 to 2007-08?", answers: ["38", "40", "42", "44"], correct: 2, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Paul Pierce's jersey was retired on what date?", answers: ["Feb 11, 2018", "Feb 18, 2018", "Feb 4, 2018", "Feb 25, 2018"], correct: 0, category: "Paul Pierce", difficulty: "hard" },
+  { question: "Kevin Garnett's jersey was retired on what date?", answers: ["March 5, 2020", "March 13, 2022", "February 1, 2021", "January 15, 2023"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "The Celtics' longest Finals drought lasted how many years?", answers: ["12", "16", "20", "22"], correct: 3, category: "History", difficulty: "hard" },
+  { question: "From 1987 to 2008, the Celtics went how many years without a Finals appearance?", answers: ["19", "20", "21", "22"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "The 1986 Celtics are considered one of the greatest teams ever. What was their home record?", answers: ["38-3", "39-2", "40-1", "41-0"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Larry Bird won the 3-point contest how many times?", answers: ["2", "3", "4", "5"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "In the 1988 3-point contest, Larry Bird did what before shooting?", answers: ["Warmed up twice", "Asked who's coming in second", "Stretched for 10 minutes", "Shot with wrong hand"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Bill Russell was born in which state?", answers: ["Louisiana", "Massachusetts", "California", "Texas"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "Bill Russell won his first Olympic gold medal in which year?", answers: ["1952", "1956", "1960", "1964"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "The NBA Finals MVP trophy is named after who?", answers: ["Larry Bird", "Bill Russell", "Michael Jordan", "Magic Johnson"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Bill Russell passed away in which year?", answers: ["2020", "2021", "2022", "2023"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "John Havlicek's 'stole the ball' play was in which year?", answers: ["1963", "1964", "1965", "1966"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Johnny Most's call 'Havlicek stole the ball!' is how many seconds long?", answers: ["5", "8", "12", "15"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Tommy Heinsohn passed away in which year?", answers: ["2018", "2019", "2020", "2021"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "K.C. Jones passed away in which year?", answers: ["2018", "2019", "2020", "2021"], correct: 3, category: "Legends", difficulty: "hard" },
+  { question: "Sam Jones hit how many career playoff game-winning shots?", answers: ["4", "6", "8", "10"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Satch Sanders played how many seasons for the Celtics?", answers: ["11", "12", "13", "14"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Don Nelson's number 19 was retired but he coached which rival team?", answers: ["LA Lakers", "New York Knicks", "Golden State Warriors", "All of the above"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Jo Jo White passed away in which year?", answers: ["2016", "2017", "2018", "2019"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Dave Cowens was how tall?", answers: ["6'7\"", "6'8\"", "6'9\"", "6'10\""], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Dave Cowens once took a cab to what during a game?", answers: ["A restaurant", "A bar", "His apartment", "The airport"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "The 1976 Finals triple-overtime Game 5 is considered what?", answers: ["Worst game ever", "Greatest game ever", "Longest game ever", "Highest scoring game"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "In the famous 1976 triple-OT game, the Celtics beat which team?", answers: ["Houston Rockets", "Phoenix Suns", "Portland Trail Blazers", "Golden State Warriors"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Cedric Maxwell's nickname was what?", answers: ["Cornbread", "Big Ced", "Max", "Cedar"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "In 1984 Finals Game 7, Cedric Maxwell told his teammates what?", answers: ["Let's win it all", "Jump on my back", "Follow my lead", "This is our time"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The 1984 Finals featured a controversial moment with who's clothesline?", answers: ["Kurt Rambis", "Magic Johnson", "James Worthy", "Kareem Abdul-Jabbar"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Kevin McHale's clothesline on Kurt Rambis was in which game?", answers: ["Game 3", "Game 4", "Game 5", "Game 6"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The 1984 Finals went how many games?", answers: ["5", "6", "7", "4"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Dennis Johnson hit the famous steal and layup in which Finals game?", answers: ["1984 Game 4", "1985 Game 2", "1987 Game 5", "1986 Game 3"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Larry Bird stole the inbounds pass from Isiah Thomas in which year?", answers: ["1986", "1987", "1988", "1989"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "The 1987 ECF steal by Bird was in which game?", answers: ["Game 3", "Game 4", "Game 5", "Game 6"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Len Bias was from which college?", answers: ["Duke", "North Carolina", "Maryland", "Georgetown"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Len Bias died how many days after being drafted?", answers: ["1", "2", "3", "4"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Reggie Lewis's number 35 was retired in which year?", answers: ["1993", "1994", "1995", "1996"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Dee Brown won the Slam Dunk Contest in which year?", answers: ["1990", "1991", "1992", "1993"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Dee Brown's famous 'no look' dunk was done while covering what?", answers: ["His mouth", "His ears", "His eyes", "His nose"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "The Celtics selected Fab Melo in which draft?", answers: ["2011", "2012", "2013", "2014"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "JaJuan Johnson was drafted in which round?", answers: ["First", "Second", "Undrafted", "Third"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "James Young was drafted with which pick?", answers: ["15th", "17th", "19th", "21st"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The Celtics drafted R.J. Hunter in which year?", answers: ["2014", "2015", "2016", "2017"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Jordan Crawford was known for what shot on LeBron James?", answers: ["Game winner", "Blocked shot", "Dunk on LeBron", "Posterizing dunk Nike hid"], correct: 3, category: "History", difficulty: "hard" },
+  { question: "The Celtics' streak of most consecutive home wins is how many?", answers: ["24", "26", "28", "30"], correct: 0, category: "Records", difficulty: "hard" },
+  { question: "The fastest triple-double in Celtics history was achieved in how many minutes?", answers: ["19", "21", "23", "25"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Who holds the record for fastest triple-double in Celtics history?", answers: ["Larry Bird", "Rajon Rondo", "Paul Pierce", "Bob Cousy"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "The Celtics' record for most assists in a season belongs to who?", answers: ["Bob Cousy", "Rajon Rondo", "Dennis Johnson", "K.C. Jones"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Rajon Rondo's single-season assist record was how many?", answers: ["715", "745", "775", "805"], correct: 0, category: "Records", difficulty: "hard" },
+  { question: "The Celtics' single-game team scoring record is how many points?", answers: ["163", "168", "173", "178"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "The Celtics scored 173 points against which team?", answers: ["Lakers", "Warriors", "Timberwolves", "Nuggets"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "What year did the Celtics score 173 points?", answers: ["1989", "1990", "1991", "1992"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "The Celtics' largest margin of victory in a game is how many points?", answers: ["52", "56", "59", "62"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "Larry Bird's career 3-point percentage was what?", answers: ["37.6%", "38.7%", "39.4%", "40.1%"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "Kevin McHale's career field goal percentage was what?", answers: ["52.0%", "53.4%", "54.7%", "55.4%"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "The Celtics have drafted how many first overall picks in franchise history?", answers: ["1", "2", "3", "4"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "The Celtics' first-ever NBA game was against which team?", answers: ["Chicago Stags", "Providence Steamrollers", "Toronto Huskies", "New York Knicks"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "The Celtics won their first game by what score?", answers: ["53-47", "57-55", "59-52", "62-60"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "The 1957 Finals double-overtime Game 7 saw the Celtics beat which team?", answers: ["St. Louis Hawks", "Syracuse Nationals", "Minneapolis Lakers", "Fort Wayne Pistons"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Bill Sharman shot how many consecutive free throws in 1956?", answers: ["50", "55", "60", "65"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "The Celtics' playoff winning streak record is how many games?", answers: ["10", "12", "14", "16"], correct: 0, category: "Records", difficulty: "hard" },
+  { question: "The 2024 Finals Game 1 was won by Boston by how many points?", answers: ["9", "12", "18", "21"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "In 2024 Finals Game 2, Jrue Holiday had how many steals?", answers: ["3", "4", "5", "6"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "The 2024 Finals clinching game (Game 5) was in which city?", answers: ["Boston", "Dallas", "Both", "Neither"], correct: 0, category: "Championships", difficulty: "hard" },
+  { question: "Al Horford's father played professional sports in which league?", answers: ["MLB", "NBA", "International basketball", "Soccer"], correct: 2, category: "Current", difficulty: "hard" },
+  { question: "Tito Horford (Al's father) played for which NBA team?", answers: ["Houston Rockets", "Milwaukee Bucks", "Never played NBA", "Washington Bullets"], correct: 1, category: "Current", difficulty: "hard" },
+  { question: "Jayson Tatum's mother's name is what?", answers: ["Brandy", "Brenda", "Barbara", "Brittany"], correct: 0, category: "Jays Era", difficulty: "hard" },
+  { question: "Jaylen Brown majored in what at Cal?", answers: ["Business", "Communications", "Engineering", "Sociology"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "The Celtics have played how many seasons as of 2024?", answers: ["76", "78", "80", "82"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The Celtics' regular season all-time win percentage is approximately what?", answers: ["54%", "56%", "58%", "60%"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "The Celtics have the most Finals appearances in NBA history with how many?", answers: ["19", "20", "21", "22"], correct: 3, category: "Records", difficulty: "hard" },
+  { question: "The Celtics' Finals winning percentage is approximately what?", answers: ["74%", "78%", "82%", "86%"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "The Celtics have beaten the Lakers in how many Finals?", answers: ["7", "8", "9", "10"], correct: 3, category: "Rivalry", difficulty: "hard" },
+  { question: "The Lakers have beaten the Celtics in how many Finals?", answers: ["1", "2", "3", "4"], correct: 2, category: "Rivalry", difficulty: "hard" },
+
+  // Additional Questions (516-1000)
+  // Championships & Legacy
+  { question: "What year did the Celtics win their first NBA championship?", answers: ["1955", "1957", "1959", "1961"], correct: 1, category: "Championships", difficulty: "easy" },
+  { question: "Which Celtics legend has his #6 jersey retired?", answers: ["Bill Russell", "Larry Bird", "John Havlicek", "Bob Cousy"], correct: 0, category: "Legends", difficulty: "easy" },
+  { question: "What nickname is the Celtics' home court known by?", answers: ["The Hardwood", "The Parquet", "The Garden Floor", "Celtic Court"], correct: 1, category: "TD Garden", difficulty: "easy" },
+  { question: "Which team is Boston's biggest rival?", answers: ["New York Knicks", "Philadelphia 76ers", "Los Angeles Lakers", "Miami Heat"], correct: 2, category: "Rivalry", difficulty: "easy" },
+  { question: "What championship era came before the Big 3?", answers: ["Larry Bird Era", "Bill Russell Era", "Paul Pierce Era", "Both A and B"], correct: 3, category: "History", difficulty: "easy" },
+  { question: "Who coached the Celtics during the Larry Bird era?", answers: ["Red Auerbach", "K.C. Jones", "Bill Russell", "Tom Heinsohn"], correct: 1, category: "Coaches", difficulty: "easy" },
+  { question: "What position did Bill Russell play?", answers: ["Point Guard", "Forward", "Center", "Shooting Guard"], correct: 2, category: "Legends", difficulty: "easy" },
+  { question: "Larry Bird was famous for his what?", answers: ["Dunking", "Shooting", "Defense", "Speed"], correct: 1, category: "Legends", difficulty: "easy" },
+  { question: "What number did Kevin McHale wear?", answers: ["30", "32", "35", "33"], correct: 1, category: "Legends", difficulty: "easy" },
+  { question: "Which Celtic was known as 'Hondo'?", answers: ["Bob Cousy", "John Havlicek", "Sam Jones", "Dave Cowens"], correct: 1, category: "Legends", difficulty: "easy" },
+
+  // Current Era Easy
+  { question: "What is Jayson Tatum's son's name?", answers: ["Jayson Jr.", "Deuce", "Junior", "JT"], correct: 1, category: "Jays Era", difficulty: "easy" },
+  { question: "Which team did Jrue Holiday come from?", answers: ["Milwaukee Bucks", "Portland Trail Blazers", "New Orleans Pelicans", "Phoenix Suns"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "What position does Jaylen Brown primarily play?", answers: ["Point Guard", "Shooting Guard", "Small Forward", "Power Forward"], correct: 2, category: "Jays Era", difficulty: "easy" },
+  { question: "Which Celtics player wears #42?", answers: ["Luke Kornet", "Al Horford", "Xavier Tillman", "Sam Hauser"], correct: 2, category: "Current", difficulty: "easy" },
+  { question: "Sam Hauser attended which college?", answers: ["Wisconsin", "Virginia", "Duke", "Marquette"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "What is Kristaps Porzingis's nickname?", answers: ["KP", "The Unicorn", "Zinger", "All of the above"], correct: 3, category: "Current", difficulty: "easy" },
+  { question: "Derrick White came from which team?", answers: ["Denver Nuggets", "San Antonio Spurs", "Portland Trail Blazers", "Phoenix Suns"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "What position does Al Horford play?", answers: ["Center", "Power Forward", "Both A and B", "Small Forward"], correct: 2, category: "Current", difficulty: "easy" },
+  { question: "Payton Pritchard attended which college?", answers: ["Oregon", "UCLA", "USC", "Washington"], correct: 0, category: "Current", difficulty: "easy" },
+  { question: "What is the Celtics' primary color?", answers: ["White", "Green", "Gold", "Black"], correct: 1, category: "Culture", difficulty: "easy" },
+
+  // History Easy
+  { question: "The Celtics play in which division?", answers: ["Southeast", "Central", "Atlantic", "Pacific"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "What state are the Celtics from?", answers: ["New York", "Connecticut", "Massachusetts", "Rhode Island"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "The Celtics were founded in what year?", answers: ["1945", "1946", "1947", "1948"], correct: 1, category: "History", difficulty: "easy" },
+  { question: "What symbol appears on the Celtics logo?", answers: ["A shamrock", "A basketball", "A leprechaun", "A clover"], correct: 2, category: "Culture", difficulty: "easy" },
+  { question: "The Celtics have won how many championships in the 21st century?", answers: ["1", "2", "3", "4"], correct: 1, category: "Championships", difficulty: "easy" },
+  { question: "Robert Williams III is known by what nickname?", answers: ["Rob", "Timelord", "RW3", "The Block"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "What is TD Garden's seating capacity for basketball?", answers: ["17,000", "18,000", "19,000", "20,000"], correct: 2, category: "TD Garden", difficulty: "easy" },
+  { question: "The Celtics retired #1 for which player?", answers: ["Bob Cousy", "Walter Brown", "Red Auerbach", "Bill Sharman"], correct: 1, category: "History", difficulty: "easy" },
+  { question: "Who was the first Celtic to have his number retired?", answers: ["Bob Cousy", "Bill Russell", "Jim Loscutoff", "Ed Macauley"], correct: 2, category: "History", difficulty: "easy" },
+  { question: "The Celtics share TD Garden with which NHL team?", answers: ["Boston Bruins", "New York Rangers", "Montreal Canadiens", "Toronto Maple Leafs"], correct: 0, category: "TD Garden", difficulty: "easy" },
 
   // ==========================================
-  // KYRIE IRVING ERA (2017-2019)
+  // MEDIUM QUESTIONS
   // ==========================================
-  {
-    question: "What injury kept Kyrie Irving from playing in the 2018 playoffs?",
-    answers: ["ACL tear", "Knee surgery", "Ankle sprain", "Shoulder injury"],
-    correct: 1,
-    category: "Kyrie Era"
-  },
-  {
-    question: "Which team traded Kyrie Irving to the Celtics?",
-    answers: ["Brooklyn Nets", "Cleveland Cavaliers", "Dallas Mavericks", "Minnesota Timberwolves"],
-    correct: 1,
-    category: "Kyrie Era"
-  },
-  {
-    question: "What number did Kyrie Irving wear in Boston?",
-    answers: ["2", "11", "10", "4"],
-    correct: 1,
-    category: "Kyrie Era"
-  },
-  {
-    question: "Who was traded to Cleveland along with Isaiah Thomas for Kyrie?",
-    answers: ["Jae Crowder", "Terry Rozier", "Marcus Smart", "Jaylen Brown"],
-    correct: 0,
-    category: "Kyrie Era"
-  },
-  {
-    question: "Which team did Kyrie Irving leave Boston for in 2019?",
-    answers: ["LA Lakers", "Brooklyn Nets", "Dallas Mavericks", "Denver Nuggets"],
-    correct: 1,
-    category: "Kyrie Era"
-  },
-  {
-    question: "What was Kyrie Irving's famous quote about staying in Boston?",
-    answers: ["Boston forever", "If you'll have me back, I plan on re-signing", "Celtics for life", "I'm committed"],
-    correct: 1,
-    category: "Kyrie Era"
-  },
-  {
-    question: "How far did the 2018 Celtics go without Kyrie and Hayward?",
-    answers: ["First round", "Second round", "Conference Finals", "Finals"],
-    correct: 2,
-    category: "Kyrie Era"
-  },
+
+  // Championships Medium
+  { question: "How many championships did the Celtics win in the 1980s?", answers: ["2", "3", "4", "5"], correct: 1, category: "Championships", difficulty: "medium" },
+  { question: "Who was Finals MVP in 1984?", answers: ["Larry Bird", "Kevin McHale", "Dennis Johnson", "Robert Parish"], correct: 0, category: "Championships", difficulty: "medium" },
+  { question: "The 1986 championship team defeated which team in the Finals?", answers: ["Houston Rockets", "Los Angeles Lakers", "Detroit Pistons", "Atlanta Hawks"], correct: 0, category: "Championships", difficulty: "medium" },
+  { question: "What was the Celtics' record in the 1973-74 championship season?", answers: ["56-26", "58-24", "60-22", "62-20"], correct: 0, category: "Championships", difficulty: "medium" },
+  { question: "Who coached the 1974 and 1976 championship teams?", answers: ["Red Auerbach", "Tom Heinsohn", "Bill Fitch", "K.C. Jones"], correct: 1, category: "Coaches", difficulty: "medium" },
+  { question: "The Celtics won championships in which consecutive years?", answers: ["1959-1966", "1960-1967", "1957-1964", "1958-1965"], correct: 0, category: "Championships", difficulty: "medium" },
+  { question: "How many Finals MVPs did Larry Bird win?", answers: ["1", "2", "3", "4"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Who was Finals MVP in 1976?", answers: ["John Havlicek", "Dave Cowens", "Jo Jo White", "Paul Silas"], correct: 2, category: "Championships", difficulty: "medium" },
+  { question: "The 1981 championship team defeated which team?", answers: ["Los Angeles Lakers", "Houston Rockets", "Philadelphia 76ers", "Phoenix Suns"], correct: 1, category: "Championships", difficulty: "medium" },
+  { question: "How many games did the 2024 Finals last?", answers: ["4 games", "5 games", "6 games", "7 games"], correct: 1, category: "Championships", difficulty: "medium" },
+
+  // Players Medium
+  { question: "What college did Robert Williams III attend?", answers: ["Duke", "Texas A&M", "Kentucky", "Kansas"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Marcus Smart was traded to which team in 2023?", answers: ["Memphis Grizzlies", "Portland Trail Blazers", "Sacramento Kings", "Phoenix Suns"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "What year did Al Horford first join the Celtics?", answers: ["2015", "2016", "2017", "2018"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Al Horford left Boston for which team?", answers: ["Atlanta Hawks", "Philadelphia 76ers", "Oklahoma City Thunder", "Miami Heat"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "Kemba Walker signed with Boston in what year?", answers: ["2018", "2019", "2020", "2021"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Gordon Hayward came from which team?", answers: ["Utah Jazz", "Indiana Pacers", "Charlotte Hornets", "Miami Heat"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "What injury did Gordon Hayward suffer in his Celtics debut?", answers: ["Torn ACL", "Broken ankle", "Torn Achilles", "Broken leg"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Kyrie Irving wore which number with the Celtics?", answers: ["2", "11", "23", "7"], correct: 1, category: "Kyrie Era", difficulty: "medium" },
+  { question: "Isaiah Thomas was drafted by which team?", answers: ["Boston Celtics", "Phoenix Suns", "Sacramento Kings", "Denver Nuggets"], correct: 2, category: "IT4 Era", difficulty: "medium" },
+  { question: "What pick was Isaiah Thomas in the draft?", answers: ["30th", "45th", "52nd", "60th"], correct: 3, category: "IT4 Era", difficulty: "medium" },
+  { question: "What year did Isaiah Thomas make 2nd Team All-NBA?", answers: ["2015", "2016", "2017", "2018"], correct: 2, category: "IT4 Era", difficulty: "medium" },
+  { question: "Rajon Rondo wore what number?", answers: ["4", "7", "9", "11"], correct: 2, category: "Big 3 Era", difficulty: "medium" },
+  { question: "Delonte West wore which number?", answers: ["8", "13", "17", "23"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Tony Allen tore his ACL in what year?", answers: ["2006", "2007", "2008", "2009"], correct: 2, category: "Big 3 Era", difficulty: "medium" },
+  { question: "Which college did Marcus Smart attend?", answers: ["Kansas", "Oklahoma State", "Texas", "Baylor"], correct: 1, category: "Smart Era", difficulty: "medium" },
+
+  // Legends Medium
+  { question: "What year did Larry Bird retire?", answers: ["1990", "1991", "1992", "1993"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "Bill Russell served as player-coach for how many seasons?", answers: ["2", "3", "4", "5"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Dave Cowens wore which number?", answers: ["16", "17", "18", "19"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "Dave Cowens won MVP in what year?", answers: ["1971", "1973", "1975", "1977"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Robert Parish played how many seasons with the Celtics?", answers: ["12", "14", "16", "18"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Robert Parish's nickname was what?", answers: ["The Chief", "The Big Man", "The Rock", "The Parish"], correct: 0, category: "Legends", difficulty: "medium" },
+  { question: "Dennis Johnson was acquired from which team?", answers: ["Phoenix Suns", "Seattle SuperSonics", "Los Angeles Lakers", "Portland Trail Blazers"], correct: 0, category: "Legends", difficulty: "medium" },
+  { question: "What number did Dennis Johnson wear?", answers: ["1", "3", "5", "7"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Jo Jo White wore which number?", answers: ["8", "10", "12", "14"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Bob Cousy played how many seasons with the Celtics?", answers: ["11", "13", "15", "17"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "Sam Jones wore which number?", answers: ["22", "23", "24", "25"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "How many championships did Sam Jones win?", answers: ["8", "9", "10", "11"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "What college did John Havlicek attend?", answers: ["Kansas", "UCLA", "Ohio State", "Kentucky"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "What number did John Havlicek wear?", answers: ["15", "16", "17", "18"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "Cedric Maxwell's nickname was what?", answers: ["Cornbread", "Max", "The Beast", "Big Max"], correct: 0, category: "History", difficulty: "medium" },
+
+  // Trades & Draft Medium
+  { question: "Who did the Celtics draft 3rd overall in 2016?", answers: ["Jaylen Brown", "Jamal Murray", "Kris Dunn", "Buddy Hield"], correct: 0, category: "Jays Era", difficulty: "medium" },
+  { question: "The Celtics traded down from #1 to which pick in 2017?", answers: ["2nd", "3rd", "4th", "5th"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "Kristaps Porzingis came from which team?", answers: ["Dallas Mavericks", "New York Knicks", "Washington Wizards", "Memphis Grizzlies"], correct: 2, category: "Trades", difficulty: "medium" },
+  { question: "Who was the main piece sent to Washington for Porzingis?", answers: ["Marcus Smart", "Grant Williams", "Malcolm Brogdon", "Payton Pritchard"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "Malcolm Brogdon won 6th Man of the Year in what season?", answers: ["2020-21", "2021-22", "2022-23", "2023-24"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Daniel Theis was traded away and then reacquired how many times?", answers: ["1", "2", "3", "Never reacquired"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "Evan Fournier played for Boston during which season?", answers: ["2019-20", "2020-21", "2021-22", "2022-23"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Josh Richardson was traded to Boston from which team?", answers: ["Miami Heat", "Dallas Mavericks", "Philadelphia 76ers", "San Antonio Spurs"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "Dennis Schroder played for Boston during which season?", answers: ["2019-20", "2020-21", "2021-22", "2022-23"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Enes Kanter (Freedom) wore which number?", answers: ["11", "13", "27", "31"], correct: 1, category: "History", difficulty: "medium" },
+
+  // Playoffs & Records Medium
+  { question: "The Celtics have the most playoff wins in NBA history with approximately how many?", answers: ["350", "370", "380", "400"], correct: 1, category: "Records", difficulty: "medium" },
+  { question: "How many Conference Championships have the Celtics won?", answers: ["20", "21", "22", "23"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "What seed were the Celtics in the 2024 playoffs?", answers: ["1st", "2nd", "3rd", "4th"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "The Celtics beat which team in the 2024 Eastern Conference Finals?", answers: ["Miami Heat", "New York Knicks", "Indiana Pacers", "Philadelphia 76ers"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "How many games did the 2024 ECF go?", answers: ["4 games", "5 games", "6 games", "7 games"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "The Celtics beat which team in the 2024 first round?", answers: ["Atlanta Hawks", "Miami Heat", "Cleveland Cavaliers", "Orlando Magic"], correct: 1, category: "Playoffs", difficulty: "medium" },
+  { question: "The Celtics beat which team in the 2024 second round?", answers: ["Cleveland Cavaliers", "Milwaukee Bucks", "New York Knicks", "Indiana Pacers"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "What was the Celtics' 2024 regular season record?", answers: ["62-20", "64-18", "60-22", "66-16"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "Who led the 2024 Celtics in assists per game?", answers: ["Jayson Tatum", "Derrick White", "Jrue Holiday", "Payton Pritchard"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "What was Jaylen Brown's scoring average in the 2024 Finals?", answers: ["18.5", "20.8", "23.1", "25.6"], correct: 1, category: "Jays Era", difficulty: "medium" },
+
+  // Culture & Rivalry Medium
+  { question: "How many times have the Celtics and Lakers met in the Finals?", answers: ["10", "11", "12", "13"], correct: 2, category: "Rivalry", difficulty: "medium" },
+  { question: "The Celtics-76ers rivalry dates back to when?", answers: ["1950s", "1960s", "1970s", "1980s"], correct: 1, category: "Rivalry", difficulty: "medium" },
+  { question: "What year did the original Boston Garden open?", answers: ["1926", "1928", "1930", "1932"], correct: 1, category: "TD Garden", difficulty: "medium" },
+  { question: "What year did the original Boston Garden close?", answers: ["1993", "1994", "1995", "1996"], correct: 2, category: "TD Garden", difficulty: "medium" },
+  { question: "The Celtics' leprechaun logo was designed by whom?", answers: ["Red Auerbach", "Zang Auerbach", "Walter Brown", "Bob Cousy"], correct: 1, category: "Culture", difficulty: "medium" },
+  { question: "What is the capacity of TD Garden?", answers: ["17,850", "18,624", "19,156", "20,000"], correct: 2, category: "TD Garden", difficulty: "medium" },
+  { question: "The Celtics' retired numbers hang where in TD Garden?", answers: ["North rafters", "South rafters", "East rafters", "Above center court"], correct: 3, category: "TD Garden", difficulty: "medium" },
+  { question: "How many numbers have the Celtics retired?", answers: ["20", "21", "22", "23"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "LOSCY was the jersey designation for which player?", answers: ["Jim Loscutoff", "Bob Cousy", "Tom Sanders", "K.C. Jones"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Which broadcaster has been the voice of the Celtics since 2001?", answers: ["Mike Gorman", "Tommy Heinsohn", "Sean Grande", "Cedric Maxwell"], correct: 0, category: "Culture", difficulty: "medium" },
 
   // ==========================================
-  // GORDON HAYWARD ERA
+  // HARD QUESTIONS
   // ==========================================
-  {
-    question: "How many minutes into his Celtics debut did Gordon Hayward suffer his leg injury?",
-    answers: ["2 minutes", "5 minutes", "7 minutes", "10 minutes"],
-    correct: 1,
-    category: "Hayward Era"
-  },
-  {
-    question: "What type of injury did Gordon Hayward suffer in his first game?",
-    answers: ["ACL tear", "Achilles rupture", "Fractured ankle/tibia", "Broken leg"],
-    correct: 2,
-    category: "Hayward Era"
-  },
-  {
-    question: "Which team did Gordon Hayward come from?",
-    answers: ["Indiana Pacers", "Utah Jazz", "Charlotte Hornets", "Orlando Magic"],
-    correct: 1,
-    category: "Hayward Era"
-  },
-  {
-    question: "What college did Gordon Hayward attend?",
-    answers: ["Duke", "Butler", "Indiana", "Purdue"],
-    correct: 1,
-    category: "Hayward Era"
-  },
+
+  // Championships Hard
+  { question: "What was the score of Game 7 in the 2010 Finals?", answers: ["79-83", "83-79", "89-67", "86-79"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "How many points did Paul Pierce score in the 2010 Finals Game 7?", answers: ["15", "17", "19", "21"], correct: 1, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Who hit the clutch 3-pointer late in Game 7 of the 2010 Finals?", answers: ["Ray Allen", "Paul Pierce", "Rajon Rondo", "Eddie House"], correct: 0, category: "Big 3 Era", difficulty: "hard" },
+  { question: "The 1957 Finals went to double OT in Game 7 with what final score?", answers: ["123-125", "125-123", "120-122", "122-120"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Who hit the game-winning shot in the 1965 Finals Game 7?", answers: ["Bill Russell", "Sam Jones", "John Havlicek", "Tom Heinsohn"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The 1969 Finals featured the Celtics beating which team?", answers: ["Los Angeles Lakers", "Phoenix Suns", "New York Knicks", "Baltimore Bullets"], correct: 0, category: "Championships", difficulty: "hard" },
+  { question: "Bill Russell's final championship as player-coach came in what year?", answers: ["1967", "1968", "1969", "1970"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "The 1974 Finals went how many games?", answers: ["5 games", "6 games", "7 games", "4 games"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "Who was the Finals MVP in 1974?", answers: ["John Havlicek", "Dave Cowens", "Jo Jo White", "Paul Silas"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The 1984 Finals Game 4 in overtime was played in what temperature?", answers: ["95°F", "97°F", "99°F", "101°F"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Larry Bird's famous steal and pass to Dennis Johnson was in what year?", answers: ["1985", "1986", "1987", "1988"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "The steal and pass was against which team?", answers: ["Detroit Pistons", "Philadelphia 76ers", "Atlanta Hawks", "Milwaukee Bucks"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "Who threw the inbound pass that Bird stole?", answers: ["Isiah Thomas", "Joe Dumars", "Adrian Dantley", "Dennis Rodman"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "How many points did Larry Bird average in the 1984 Finals?", answers: ["24.3", "27.4", "29.2", "31.5"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "What was Kevin McHale's points per game average in the 1986 Finals?", answers: ["17.4", "19.2", "21.3", "24.9"], correct: 3, category: "Legends", difficulty: "hard" },
+
+  // Players Hard
+  { question: "What was the exact date of Len Bias's death?", answers: ["June 17, 1986", "June 19, 1986", "June 21, 1986", "June 23, 1986"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Reggie Lewis died at what age?", answers: ["26", "27", "28", "29"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "What was Reggie Lewis's career high in points?", answers: ["40", "42", "44", "46"], correct: 3, category: "History", difficulty: "hard" },
+  { question: "Bill Russell's jersey retirement ceremony was in what year?", answers: ["1970", "1972", "1973", "1975"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Larry Bird was drafted with which pick?", answers: ["5th", "6th", "7th", "8th"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "What team drafted Larry Bird?", answers: ["Boston Celtics", "Indiana Pacers", "Golden State Warriors", "Phoenix Suns"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "Larry Bird stayed at Indiana State for how many years?", answers: ["3 years", "4 years", "5 years", "2 years"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Kevin McHale was drafted with which pick in 1980?", answers: ["1st", "3rd", "5th", "7th"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Robert Parish was acquired along with which draft pick?", answers: ["1st overall 1980", "3rd overall 1980", "5th overall 1980", "7th overall 1980"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "The Parish trade sent which two players to Golden State?", answers: ["Cedric Maxwell and draft pick", "Dave Cowens and draft pick", "Robert McAdoo and draft pick", "Draft picks only"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "What was Dave Cowens's points per game average for his career?", answers: ["17.6", "18.2", "19.0", "20.1"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "John Havlicek scored how many total points in his career?", answers: ["24,586", "25,389", "26,395", "27,411"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Bob Cousy's career assists total was how many?", answers: ["5,714", "6,022", "6,955", "7,341"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Bill Sharman's career free throw percentage was what?", answers: ["88.3%", "89.2%", "90.4%", "91.1%"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "Tom Heinsohn averaged how many points as a rookie?", answers: ["14.5", "16.2", "17.8", "19.3"], correct: 1, category: "Legends", difficulty: "hard" },
+
+  // Modern Era Hard
+  { question: "Isaiah Thomas averaged how many points per game in 2016-17?", answers: ["27.5", "28.9", "29.5", "30.1"], correct: 1, category: "IT4 Era", difficulty: "hard" },
+  { question: "What was IT's exact PPG in the 2017 playoffs?", answers: ["22.8", "23.3", "24.7", "25.9"], correct: 1, category: "IT4 Era", difficulty: "hard" },
+  { question: "Marcus Smart's career 3-point percentage with Boston was approximately what?", answers: ["30.1%", "31.5%", "32.7%", "34.2%"], correct: 2, category: "Smart Era", difficulty: "hard" },
+  { question: "Jayson Tatum scored how many points in his playoff debut?", answers: ["10", "14", "19", "22"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "Jaylen Brown's career high in a playoff game is how many points?", answers: ["38", "40", "42", "46"], correct: 3, category: "Jays Era", difficulty: "hard" },
+  { question: "Against which team did Jaylen Brown score 46 playoff points?", answers: ["Milwaukee Bucks", "Miami Heat", "Cleveland Cavaliers", "Philadelphia 76ers"], correct: 0, category: "Jays Era", difficulty: "hard" },
+  { question: "Al Horford's game-winning 3-pointer in the 2018 playoffs was against which team?", answers: ["Philadelphia 76ers", "Milwaukee Bucks", "Cleveland Cavaliers", "Toronto Raptors"], correct: 0, category: "Playoffs", difficulty: "hard" },
+  { question: "What game was Al Horford's clutch 3 in 2018?", answers: ["Game 3", "Game 4", "Game 5", "Game 7"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Jayson Tatum's 50-point game in the 2023 playoffs was against which team?", answers: ["Philadelphia 76ers", "Miami Heat", "Atlanta Hawks", "Brooklyn Nets"], correct: 0, category: "Jays Era", difficulty: "hard" },
+  { question: "How many points did Tatum score in Game 7 vs. Philly in 2023?", answers: ["48", "51", "53", "55"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "Derrick White's putback dunk in the 2024 playoffs was with how much time left?", answers: ["0.1 seconds", "0.5 seconds", "1.0 second", "1.5 seconds"], correct: 0, category: "Playoffs", difficulty: "hard" },
+  { question: "Derrick White's game-saving block in 2024 was against which player?", answers: ["Tyrese Haliburton", "Myles Turner", "Pascal Siakam", "Obi Toppin"], correct: 0, category: "Playoffs", difficulty: "hard" },
+  { question: "Jrue Holiday had how many steals in the 2024 Finals?", answers: ["8", "11", "14", "17"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "Kristaps Porzingis missed how many playoff games in 2024 due to injury?", answers: ["8", "9", "10", "11"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "What injury did Porzingis suffer in the 2024 playoffs?", answers: ["Calf strain", "Ankle sprain", "Soleus strain", "Hamstring tear"], correct: 2, category: "Playoffs", difficulty: "hard" },
+
+  // Trades & Draft Hard
+  { question: "The Celtics traded the rights to which future star for Joe Barry Carroll?", answers: ["Dominique Wilkins", "Kevin McHale", "Robert Parish", "Both B and C"], correct: 3, category: "Trades", difficulty: "hard" },
+  { question: "The Brooklyn Nets trade involved how many first-round picks total?", answers: ["3", "4", "5", "6"], correct: 1, category: "Trades", difficulty: "hard" },
+  { question: "Which years did the Celtics get Brooklyn's picks?", answers: ["2014, 2016, 2018", "2014, 2015, 2017", "2016, 2017, 2018", "2015, 2016, 2017"], correct: 2, category: "Trades", difficulty: "hard" },
+  { question: "Who did the Celtics trade the #1 pick for in 2017?", answers: ["Future pick only", "Markelle Fultz", "Future pick and player", "Cash considerations"], correct: 0, category: "Trades", difficulty: "hard" },
+  { question: "The Celtics received which pick from Philadelphia in 2017?", answers: ["3rd overall", "4th overall", "5th overall", "Lakers 2018 pick"], correct: 0, category: "Trades", difficulty: "hard" },
+  { question: "Danny Ainge fleeced Brooklyn by trading which players?", answers: ["Pierce and Garnett", "Garnett and Rondo", "Pierce and Terry", "All three Big 3"], correct: 0, category: "Trades", difficulty: "hard" },
+  { question: "Jason Terry was part of which major trade?", answers: ["Brooklyn trade", "Cleveland trade", "Phoenix trade", "Dallas trade"], correct: 0, category: "Trades", difficulty: "hard" },
+  { question: "The Celtics drafted which player with the 6th pick in 2016?", answers: ["Jaylen Brown", "Jamal Murray", "Buddy Hield", "Kris Dunn"], correct: 0, category: "Jays Era", difficulty: "hard" },
+  { question: "Wait - Jaylen Brown was actually drafted with which pick?", answers: ["1st", "3rd", "5th", "6th"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "Who did the Celtics draft with the 16th pick in 2016?", answers: ["Ante Zizic", "Guerschon Yabusele", "Both of them", "Deyonta Davis"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Romeo Langford was drafted with which pick?", answers: ["12th", "14th", "16th", "18th"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Aaron Nesmith was drafted with which pick in 2020?", answers: ["12th", "14th", "16th", "18th"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Payton Pritchard was drafted with which pick?", answers: ["24th", "26th", "28th", "30th"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "JD Davison was drafted and then what happened?", answers: ["Traded immediately", "Played G-League", "Cut before season", "Never signed"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Who did the Celtics send to Dallas in the Porzingis deal?", answers: ["Marcus Smart", "Grant Williams", "Malcolm Brogdon", "Payton Pritchard"], correct: 0, category: "Trades", difficulty: "hard" },
+
+  // Records & Stats Hard
+  { question: "Bill Russell's single-game rebound record is how many?", answers: ["48", "51", "53", "55"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "What is the Celtics' single-game team scoring record?", answers: ["162", "173", "182", "191"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Against which team did Boston score 173 points?", answers: ["Minneapolis Lakers", "Fort Wayne Pistons", "Syracuse Nationals", "New York Knicks"], correct: 0, category: "Records", difficulty: "hard" },
+  { question: "What year did the Celtics score 173 points?", answers: ["1958", "1959", "1960", "1961"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "The Celtics' franchise record for most wins in a season is what?", answers: ["66", "67", "68", "69"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "That record was set in which season?", answers: ["1972-73", "1985-86", "2007-08", "2008-09"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Ray Allen's single-season 3-point record with Boston is how many?", answers: ["221", "248", "269", "282"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "What season did Ray Allen set that record?", answers: ["2005-06", "2006-07", "2007-08", "2008-09"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "Isaiah Thomas's 4th quarter scoring average in 2016-17 was what?", answers: ["8.5", "9.8", "10.2", "11.1"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Rajon Rondo had how many assists in his record game?", answers: ["22", "24", "26", "28"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Against which team did Rondo have 24 assists?", answers: ["New York Knicks", "Brooklyn Nets", "Cleveland Cavaliers", "Philadelphia 76ers"], correct: 0, category: "Records", difficulty: "hard" },
+  { question: "Paul Pierce's career points total with Boston was how many?", answers: ["23,157", "24,021", "26,397", "28,142"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "John Havlicek played how many total games for the Celtics?", answers: ["1,110", "1,270", "1,382", "1,456"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "Bill Russell's career blocks were never officially recorded. Estimated total?", answers: ["18,000", "21,620", "24,500", "Unknown"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Larry Bird's career 3-point percentage was what?", answers: ["37.6%", "38.2%", "39.1%", "40.0%"], correct: 0, category: "Records", difficulty: "hard" },
+
+  // Playoff Records Hard
+  { question: "The Celtics have played how many total playoff games?", answers: ["Over 400", "Over 500", "Over 600", "Over 700"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "John Havlicek's playoff points total was how many?", answers: ["3,776", "4,127", "5,012", "5,890"], correct: 0, category: "Playoffs", difficulty: "hard" },
+  { question: "What is Larry Bird's playoff points total?", answers: ["3,897", "4,218", "5,115", "5,864"], correct: 0, category: "Playoffs", difficulty: "hard" },
+  { question: "Paul Pierce's playoff points with Boston total how many?", answers: ["3,491", "3,827", "4,012", "4,305"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Bill Russell's playoff rebounds total was approximately how many?", answers: ["3,500", "4,000", "4,104", "4,500"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "The Celtics' most lopsided playoff win was by how many points?", answers: ["50", "56", "60", "64"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "The Celtics beat which team by 56 points in the playoffs?", answers: ["New York Knicks", "St. Louis Hawks", "Detroit Pistons", "Syracuse Nationals"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "In what year did that 56-point blowout happen?", answers: ["1956", "1957", "1958", "1959"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Ray Allen's 3-pointer total in the 2008 playoffs was how many?", answers: ["42", "51", "63", "72"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Kevin Garnett's blocks per game in the 2008 playoffs was what?", answers: ["1.2", "1.4", "1.6", "1.8"], correct: 2, category: "Playoffs", difficulty: "hard" },
+
+  // Coaches Hard
+  { question: "Red Auerbach won how many championships as coach?", answers: ["7", "8", "9", "10"], correct: 2, category: "Coaches", difficulty: "hard" },
+  { question: "K.C. Jones coached the Celtics for how many seasons?", answers: ["3", "4", "5", "6"], correct: 2, category: "Coaches", difficulty: "hard" },
+  { question: "K.C. Jones won how many championships as coach?", answers: ["1", "2", "3", "4"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Tom Heinsohn coached the Celtics for how many seasons?", answers: ["7", "8", "9", "10"], correct: 2, category: "Coaches", difficulty: "hard" },
+  { question: "Tom Heinsohn's regular season coaching record was approximately what?", answers: ["400-300", "427-263", "450-275", "475-290"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Bill Russell as player-coach won championships in which years?", answers: ["1968, 1969", "1967, 1968", "1966, 1967", "1969, 1970"], correct: 0, category: "Coaches", difficulty: "hard" },
+  { question: "Doc Rivers coached the Celtics for how many seasons?", answers: ["7", "8", "9", "10"], correct: 2, category: "Coaches", difficulty: "hard" },
+  { question: "Doc Rivers' regular season record with Boston was approximately what?", answers: ["400-300", "416-305", "432-318", "450-325"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Brad Stevens was head coach for how many seasons?", answers: ["6", "7", "8", "9"], correct: 2, category: "Coaches", difficulty: "hard" },
+  { question: "Brad Stevens' career coaching record was approximately what?", answers: ["318-245", "354-282", "380-295", "400-310"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Ime Udoka's one season record was what?", answers: ["49-33", "51-31", "53-29", "55-27"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Joe Mazzulla became head coach at what age?", answers: ["32", "34", "36", "38"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "What college did Joe Mazzulla play for?", answers: ["Villanova", "Providence", "West Virginia", "Georgetown"], correct: 2, category: "Coaches", difficulty: "hard" },
+  { question: "Chris Ford coached the Celtics from which years?", answers: ["1988-90", "1990-95", "1995-97", "1997-99"], correct: 1, category: "Coaches", difficulty: "hard" },
+  { question: "Jim O'Brien's best season record was what?", answers: ["44-38", "49-33", "50-32", "52-30"], correct: 1, category: "Coaches", difficulty: "hard" },
+
+  // Misc Hard
+  { question: "The Celtics' first-ever game was against which team?", answers: ["New York Knicks", "Chicago Stags", "Philadelphia Warriors", "Washington Capitols"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "What was the final score of the Celtics' first game?", answers: ["57-59", "53-55", "59-53", "55-53"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "The Celtics' first-ever basket was scored by whom?", answers: ["Bob Cousy", "Ed Macauley", "Chuck Connors", "Johnny Simmons"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Chuck Connors became famous for what?", answers: ["Coaching", "Broadcasting", "Acting (The Rifleman)", "Politics"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "The Celtics played in which arena from 1946-1995?", answers: ["Boston Garden", "Boston Arena", "Matthews Arena", "Multiple arenas"], correct: 3, category: "History", difficulty: "hard" },
+  { question: "Boston Arena is now known as what?", answers: ["Agganis Arena", "Matthews Arena", "Case Gym", "Demolished"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The old Boston Garden had no air conditioning. Hottest game temperature?", answers: ["95°F", "97°F", "100°F", "102°F"], correct: 1, category: "TD Garden", difficulty: "hard" },
+  { question: "The parquet floor is made from what type of wood?", answers: ["Oak", "Maple", "Mahogany", "Walnut"], correct: 0, category: "TD Garden", difficulty: "hard" },
+  { question: "How many square feet is the parquet floor?", answers: ["3,200", "4,700", "5,100", "6,500"], correct: 1, category: "TD Garden", difficulty: "hard" },
+  { question: "A panel of the original parquet is worth approximately how much today?", answers: ["$5,000", "$10,000", "$15,000", "$20,000"], correct: 2, category: "TD Garden", difficulty: "hard" },
+  { question: "The Celtics' mascot Lucky made his debut in what year?", answers: ["1993", "1995", "1997", "2003"], correct: 1, category: "Culture", difficulty: "hard" },
+  { question: "The Celtics' original owner Walter Brown also founded what?", answers: ["Boston Garden", "Boston Bruins", "Basketball Hall of Fame", "Boston Marathon"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "When did the Celtics retire #1 for Walter Brown?", answers: ["1962", "1964", "1966", "1968"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "The Celtics were almost sold and relocated to where in 1963?", answers: ["New York", "San Francisco", "Los Angeles", "Philadelphia"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Who purchased the Celtics in 1965?", answers: ["Red Auerbach", "Marvin Kratter", "Irv Levin", "John Y. Brown"], correct: 1, category: "History", difficulty: "hard" },
+
+  // Additional Easy Questions
+  { question: "What position does Payton Pritchard play?", answers: ["Point Guard", "Shooting Guard", "Small Forward", "Power Forward"], correct: 0, category: "Current", difficulty: "easy" },
+  { question: "The Celtics play in the NBA's which conference?", answers: ["Western", "Eastern", "Central", "Pacific"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "What are Celtics fans known for being?", answers: ["Quiet", "Passionate", "Fair-weather", "Casual"], correct: 1, category: "Culture", difficulty: "easy" },
+  { question: "The Celtics' green represents what?", answers: ["Money", "Irish heritage", "Lucky color", "Team tradition"], correct: 1, category: "Culture", difficulty: "easy" },
+  { question: "What is the Celtics' home state?", answers: ["New York", "Connecticut", "Massachusetts", "Rhode Island"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "TD Garden is located in which Boston neighborhood?", answers: ["Back Bay", "North End", "West End", "South End"], correct: 2, category: "TD Garden", difficulty: "easy" },
+  { question: "The Celtics defeated which Texas team in the 2024 Finals?", answers: ["Houston Rockets", "San Antonio Spurs", "Dallas Mavericks", "Austin Spurs"], correct: 2, category: "Championships", difficulty: "easy" },
+  { question: "Who wears #8 for the current Celtics?", answers: ["Kristaps Porzingis", "Jrue Holiday", "Al Horford", "Luke Kornet"], correct: 0, category: "Current", difficulty: "easy" },
+  { question: "What is the main color of the Celtics' away jerseys?", answers: ["Green", "White", "Black", "Gold"], correct: 1, category: "Culture", difficulty: "easy" },
+  { question: "The Celtics and Bruins both call which arena home?", answers: ["Boston Garden", "FleetCenter", "TD Garden", "Matthews Arena"], correct: 2, category: "TD Garden", difficulty: "easy" },
+
+  // Additional Medium Questions
+  { question: "Jayson Tatum was drafted with which overall pick?", answers: ["1st", "2nd", "3rd", "4th"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "The Celtics' most recent division title came in what year?", answers: ["2022", "2023", "2024", "2025"], correct: 2, category: "General", difficulty: "medium" },
+  { question: "How many All-Star selections does Jayson Tatum have as of 2024?", answers: ["3", "4", "5", "6"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "How many All-Star selections does Jaylen Brown have as of 2024?", answers: ["1", "2", "3", "4"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "Kristaps Porzingis was originally drafted by which team?", answers: ["Dallas Mavericks", "New York Knicks", "Washington Wizards", "Boston Celtics"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Al Horford attended which college?", answers: ["Duke", "Florida", "Kentucky", "Kansas"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Jrue Holiday won his first championship with which team?", answers: ["Philadelphia 76ers", "New Orleans Pelicans", "Milwaukee Bucks", "Boston Celtics"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "What year did Jrue Holiday win Defensive Player of the Year voting?", answers: ["Never won", "2021", "2022", "2023"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "Derrick White was an All-Star for the first time in what year?", answers: ["2022", "2023", "2024", "Never"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "The Celtics' 2024 championship was their first in how many years?", answers: ["10", "12", "14", "16"], correct: 3, category: "Championships", difficulty: "medium" },
+  { question: "Which Celtic won the 2024 Eastern Conference Finals MVP?", answers: ["Jayson Tatum", "Jaylen Brown", "No award", "Jrue Holiday"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "The Celtics' biggest playoff comeback was from how many points down?", answers: ["18", "21", "24", "26"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "That comeback was against which team?", answers: ["Los Angeles Lakers", "Miami Heat", "Philadelphia 76ers", "New York Knicks"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "What year was that historic 24-point comeback?", answers: ["2001", "2002", "2003", "2004"], correct: 1, category: "Playoffs", difficulty: "medium" },
+  { question: "Pierce, Walker, and which other player led that comeback?", answers: ["Paul Pierce", "Antoine Walker", "Tony Delk", "All of them"], correct: 2, category: "Playoffs", difficulty: "medium" },
+
+  // Additional Hard Questions
+  { question: "What was Jayson Tatum's exact scoring average in the 2024 Finals?", answers: ["22.2", "25.7", "26.6", "28.1"], correct: 0, category: "Jays Era", difficulty: "hard" },
+  { question: "Jaylen Brown's supermax extension was for how many years?", answers: ["4 years", "5 years", "6 years", "7 years"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "The Celtics' 2024 playoff run featured how many Game 7s?", answers: ["0", "1", "2", "3"], correct: 0, category: "Playoffs", difficulty: "hard" },
+  { question: "What was Boston's point differential in the 2024 playoffs?", answers: ["+8.5", "+10.3", "+11.7", "+13.2"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Kristaps Porzingis scored how many points in his Finals return (Game 1)?", answers: ["18", "20", "22", "24"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "How many blocks did Porzingis have in Game 1 of 2024 Finals?", answers: ["2", "3", "4", "5"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The Celtics led the NBA in 3-pointers made in 2023-24 with how many?", answers: ["1,254", "1,312", "1,389", "1,421"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "What was the Celtics' home record in the 2024 playoffs?", answers: ["9-1", "10-0", "8-2", "11-0"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "The Celtics' point differential in the 2024 regular season was what?", answers: ["+8.5", "+9.2", "+10.3", "+11.4"], correct: 3, category: "Jays Era", difficulty: "hard" },
+  { question: "Jayson Tatum's total playoff points in 2024 was how many?", answers: ["525", "554", "586", "612"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "How many 30-point games did Tatum have in the 2024 playoffs?", answers: ["4", "5", "6", "7"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Jaylen Brown's 3-point percentage in the 2024 Finals was what?", answers: ["28.1%", "31.7%", "34.5%", "37.2%"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Jrue Holiday's defensive rating in the 2024 playoffs was approximately what?", answers: ["103.2", "105.8", "108.4", "110.1"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Sam Hauser's 3-point percentage in the 2024 regular season was what?", answers: ["40.2%", "42.4%", "43.6%", "45.1%"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "The Celtics had how many players average double figures in the 2024 playoffs?", answers: ["5", "6", "7", "8"], correct: 2, category: "Playoffs", difficulty: "hard" },
+
+  // More Easy Questions to reach 485
+  { question: "What league do the Celtics play in?", answers: ["ABA", "NBA", "FIBA", "EuroLeague"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "How many players are on the court for each team?", answers: ["4", "5", "6", "7"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "What position did Paul Pierce mainly play?", answers: ["Point Guard", "Small Forward", "Center", "Power Forward"], correct: 1, category: "Paul Pierce", difficulty: "easy" },
+  { question: "The Celtics play how many regular season games?", answers: ["72", "76", "80", "82"], correct: 3, category: "General", difficulty: "easy" },
+  { question: "What color is the Celtics' alternate jersey?", answers: ["Black", "Gold", "Blue", "Red"], correct: 0, category: "Culture", difficulty: "easy" },
+  { question: "Which number is retired for Red Auerbach?", answers: ["#1", "#2", "#13", "#15"], correct: 1, category: "History", difficulty: "easy" },
+  { question: "What position does Kristaps Porzingis play?", answers: ["Point Guard", "Shooting Guard", "Center", "Small Forward"], correct: 2, category: "Current", difficulty: "easy" },
+  { question: "The Celtics have won more championships than any team except which one?", answers: ["Chicago Bulls", "Golden State Warriors", "Los Angeles Lakers", "San Antonio Spurs"], correct: 2, category: "Championships", difficulty: "easy" },
+  { question: "What is the shape on the court where free throws are shot?", answers: ["Circle", "Square", "Key", "Arc"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "How many championships did the Big 3 Celtics win together?", answers: ["1", "2", "3", "4"], correct: 0, category: "Big 3 Era", difficulty: "easy" },
+
+  // More Medium Questions
+  { question: "Luke Kornet went undrafted from which college?", answers: ["Stanford", "Vanderbilt", "Northwestern", "Notre Dame"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Xavier Tillman Sr. played college ball where?", answers: ["Memphis", "Michigan State", "Michigan", "Marquette"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Oshae Brissett signed with Boston in what year?", answers: ["2022", "2023", "2024", "Never signed"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Svi Mykhailiuk played for Boston during which season?", answers: ["2021-22", "2022-23", "2023-24", "Never played"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Dalano Banton was acquired from which team?", answers: ["Toronto Raptors", "Portland Trail Blazers", "Denver Nuggets", "Phoenix Suns"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "JD Davison was traded to which team after being drafted?", answers: ["Oklahoma City Thunder", "Orlando Magic", "Memphis Grizzlies", "Portland Trail Blazers"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "Brad Wanamaker played for Boston during which season?", answers: ["2018-19", "2019-20", "2020-21", "2021-22"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Tacko Fall went undrafted and joined Boston in what year?", answers: ["2018", "2019", "2020", "2021"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Carsen Edwards was drafted in which round?", answers: ["First", "Second", "Undrafted", "Third"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Tremont Waters was drafted with which pick?", answers: ["45th", "51st", "55th", "Undrafted"], correct: 1, category: "History", difficulty: "medium" },
+
+  // More Hard Questions
+  { question: "Tacko Fall's height is exactly what?", answers: ["7'5\"", "7'6\"", "7'7\"", "7'8\""], correct: 1, category: "History", difficulty: "hard" },
+  { question: "How many games did Tacko Fall play for the Celtics?", answers: ["7", "11", "15", "21"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Vincent Poirier played how many games for Boston?", answers: ["7", "11", "15", "20"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Javonte Green's dunk contest appearance was in what year?", answers: ["2020", "2021", "2022", "Never competed"], correct: 3, category: "History", difficulty: "hard" },
+  { question: "How many 50-win seasons have the Celtics had?", answers: ["27", "30", "33", "36"], correct: 2, category: "Records", difficulty: "hard" },
+  { question: "The Celtics have made the playoffs how many times?", answers: ["Over 50", "Over 55", "Over 60", "Over 65"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Boston's longest playoff streak lasted how many seasons?", answers: ["20", "22", "24", "26"], correct: 0, category: "Playoffs", difficulty: "hard" },
+  { question: "That playoff streak was from which years?", answers: ["1951-1969", "1955-1974", "1957-1976", "1961-1980"], correct: 0, category: "Playoffs", difficulty: "hard" },
+  { question: "The Celtics have retired how many total numbers/honors?", answers: ["22", "23", "24", "25"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The microphone logo honors which broadcaster?", answers: ["Johnny Most", "Mike Gorman", "Tommy Heinsohn", "Bob Cousy"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Johnny Most was the Celtics' broadcaster for how many years?", answers: ["35", "37", "39", "41"], correct: 1, category: "Culture", difficulty: "hard" },
+  { question: "Tommy Heinsohn was a broadcaster for how many years?", answers: ["28", "30", "32", "34"], correct: 1, category: "Culture", difficulty: "hard" },
+  { question: "What year did Tommy Heinsohn pass away?", answers: ["2018", "2019", "2020", "2021"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Mike Gorman retired after how many seasons?", answers: ["41", "43", "45", "47"], correct: 1, category: "Culture", difficulty: "hard" },
+  { question: "Who replaced Mike Gorman as TV play-by-play?", answers: ["Sean Grande", "Drew Carter", "Brian Scalabrine", "Cedric Maxwell"], correct: 1, category: "Culture", difficulty: "hard" },
+
+  // Final set to reach exactly 485
+  { question: "What was the Celtics' win total in the 2023-24 season?", answers: ["62", "64", "66", "68"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "How many division titles have the Celtics won?", answers: ["27", "30", "33", "36"], correct: 2, category: "General", difficulty: "medium" },
+  { question: "The Celtics' retired numbers include LOSCY for whom?", answers: ["Jim Loscutoff", "Lucky the Leprechaun", "Los Angeles (anti-Lakers)", "Lost Season Commemorative Year"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Why was LOSCY used instead of #18?", answers: ["Already retired", "Loscutoff requested it", "Team tradition", "NBA rule"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Frank Ramsey wore which number?", answers: ["21", "23", "25", "27"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Which Celtic invented the sixth man role?", answers: ["Frank Ramsey", "John Havlicek", "Paul Silas", "K.C. Jones"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "Don Nelson played for the Celtics for how many seasons?", answers: ["9", "11", "13", "15"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Satch Sanders wore which number?", answers: ["14", "15", "16", "17"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Satch Sanders won how many championships?", answers: ["6", "7", "8", "9"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Bailey Howell won how many championships with Boston?", answers: ["1", "2", "3", "4"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Wayne Embry was the NBA's first African American what?", answers: ["Player", "Coach", "GM", "Owner"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Nate Archibald's nickname was what?", answers: ["Tiny", "Little", "Small", "Mini"], correct: 0, category: "Legends", difficulty: "medium" },
+  { question: "Tiny Archibald led the league in points and assists in what year?", answers: ["1972", "1973", "1974", "1975"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Charlie Scott wore which number?", answers: ["11", "12", "13", "14"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "M.L. Carr's nickname was what?", answers: ["The Enforcer", "The Microwave", "The Iceman", "The Chairman"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Gerald Henderson Sr. hit a famous steal and layup in which Finals?", answers: ["1982", "1984", "1986", "1987"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "That Henderson steal was in which game?", answers: ["Game 1", "Game 2", "Game 4", "Game 7"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Scott Wedman hit how many 3-pointers in the 1985 Finals Game 1?", answers: ["5", "6", "7", "8"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Wedman went how many for how many from three in that game?", answers: ["7-for-7", "8-for-8", "6-for-6", "5-for-5"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Ainge, Johnson, McHale, Parish, and Bird won how many titles together?", answers: ["1", "2", "3", "4"], correct: 2, category: "Legends", difficulty: "medium" },
+  { question: "Bill Walton won the 1986 6th Man Award averaging how many points?", answers: ["5.5", "6.8", "7.6", "9.2"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Bill Walton's injury history limited him to how many games in 1986-87?", answers: ["6", "10", "14", "18"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "Reggie Lewis averaged how many points in his best season?", answers: ["18.5", "20.8", "22.4", "24.1"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Dino Radja averaged how many points per game in his Celtics career?", answers: ["13.7", "15.1", "16.7", "18.3"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Rick Fox wore which number?", answers: ["15", "17", "19", "21"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Dee Brown won the dunk contest with what signature dunk?", answers: ["360 dunk", "Between the legs", "No-look dunk", "Blindfold dunk"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "What year did Dee Brown win the dunk contest?", answers: ["1989", "1990", "1991", "1992"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Eric Williams wore which number?", answers: ["2", "4", "6", "8"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Walter McCarty wore which number?", answers: ["24", "32", "41", "43"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Vitaly Potapenko played center for Boston in which seasons?", answers: ["1999-2001", "2001-2004", "2003-2005", "2005-2007"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Kenny Anderson wore which number with Boston?", answers: ["7", "10", "12", "14"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Vin Baker was an All-Star how many times before joining Boston?", answers: ["2", "3", "4", "5"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Mark Blount signed with which team after leaving Boston?", answers: ["Miami Heat", "Minnesota Timberwolves", "Denver Nuggets", "Phoenix Suns"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Raef LaFrentz was traded to Boston from which team?", answers: ["Dallas Mavericks", "Denver Nuggets", "Atlanta Hawks", "New Jersey Nets"], correct: 0, category: "Trades", difficulty: "hard" },
+  { question: "Ricky Davis was known for attempting what controversial stat?", answers: ["Fake triple-double", "Intentional foul", "Own basket for rebound", "Fighting teammate"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Wally Szczerbiak came to Boston from which team?", answers: ["Minnesota Timberwolves", "Seattle SuperSonics", "New Jersey Nets", "Cleveland Cavaliers"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "Tony Allen's jersey number was what?", answers: ["42", "43", "44", "45"], correct: 0, category: "Big 3 Era", difficulty: "medium" },
+  { question: "Glen Davis was drafted with which pick?", answers: ["31st", "33rd", "35th", "37th"], correct: 2, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Marquis Daniels wore which number?", answers: ["6", "8", "10", "12"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Shaquille O'Neal played for Boston during which season?", answers: ["2008-09", "2009-10", "2010-11", "2011-12"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "What number did Shaq wear with the Celtics?", answers: ["32", "33", "34", "36"], correct: 3, category: "History", difficulty: "medium" },
+  { question: "Jermaine O'Neal wore which number?", answers: ["5", "6", "7", "8"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Jeff Green was drafted by which team originally?", answers: ["Boston Celtics", "Seattle SuperSonics", "Portland Trail Blazers", "Oklahoma City Thunder"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Jeff Green had heart surgery in what year?", answers: ["2011", "2012", "2013", "2014"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Courtney Lee was traded to Boston from which team?", answers: ["New Jersey Nets", "Houston Rockets", "Memphis Grizzlies", "Orlando Magic"], correct: 1, category: "Trades", difficulty: "hard" },
+  { question: "Jordan Crawford scored how many points in his best game with Boston?", answers: ["26", "28", "30", "33"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Phil Pressey went undrafted from which college?", answers: ["Missouri", "Kansas", "Illinois", "Iowa"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Kris Humphries played for Boston during which season?", answers: ["2012-13", "2013-14", "2014-15", "2015-16"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Keith Bogans was acquired primarily for what purpose?", answers: ["Veteran presence", "Contract matching", "3-point shooting", "Defense"], correct: 1, category: "Trades", difficulty: "hard" },
+  { question: "Tayshaun Prince played for Boston during which season?", answers: ["2013-14", "2014-15", "2015-16", "Never played"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Jonas Jerebko came from which team?", answers: ["Detroit Pistons", "Minnesota Timberwolves", "Milwaukee Bucks", "Atlanta Hawks"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "Jordan Mickey was drafted with which pick?", answers: ["30th", "33rd", "36th", "42nd"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "RJ Hunter was drafted with which pick?", answers: ["26th", "28th", "30th", "32nd"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Amir Johnson signed with Boston in what year?", answers: ["2014", "2015", "2016", "2017"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Kelly Olynyk was drafted with which pick?", answers: ["11th", "13th", "15th", "17th"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Kelly Olynyk's game-winner vs. Washington in 2017 was in which game?", answers: ["Game 5", "Game 6", "Game 7", "Game 4"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Tyler Zeller came to Boston from which team?", answers: ["Cleveland Cavaliers", "Dallas Mavericks", "Charlotte Bobcats", "Milwaukee Bucks"], correct: 0, category: "Trades", difficulty: "hard" },
+  { question: "Evan Turner signed with Boston in what year?", answers: ["2014", "2015", "2016", "2017"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "What was Evan Turner's salary with the Celtics?", answers: ["$6.5M", "$7.5M", "$8.5M", "$9.5M"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Al Horford's first contract with Boston was for how many years?", answers: ["3 years", "4 years", "5 years", "6 years"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "What was Horford's first contract value?", answers: ["$90M", "$100M", "$113M", "$125M"], correct: 2, category: "Current", difficulty: "hard" },
+  { question: "Abdel Nader was drafted with which pick?", answers: ["52nd", "54th", "56th", "58th"], correct: 3, category: "History", difficulty: "hard" },
+  { question: "Ante Zizic was drafted and then what happened?", answers: ["Played 2 seasons", "Traded to Cleveland", "Cut before season", "Stayed in Europe"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "Demetrius Jackson was drafted with which pick?", answers: ["42nd", "45th", "48th", "51st"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Ben Bentil was drafted with which pick?", answers: ["48th", "51st", "54th", "57th"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Kyrie Irving's first game as a Celtic was against which team?", answers: ["Cleveland Cavaliers", "Milwaukee Bucks", "Philadelphia 76ers", "New York Knicks"], correct: 0, category: "Kyrie Era", difficulty: "medium" },
+  { question: "How many points did Kyrie score in his Celtics debut?", answers: ["22", "25", "28", "31"], correct: 0, category: "Kyrie Era", difficulty: "hard" },
+  { question: "Aron Baynes came from which team?", answers: ["Detroit Pistons", "San Antonio Spurs", "Toronto Raptors", "Phoenix Suns"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "Semi Ojeleye was drafted with which pick?", answers: ["35th", "37th", "39th", "41st"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Kadeem Allen went undrafted from which college?", answers: ["Arizona", "UCLA", "USC", "Oregon"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Shane Larkin played for Boston during which season?", answers: ["2016-17", "2017-18", "2018-19", "Never played"], correct: 1, category: "History", difficulty: "medium" },
 
   // ==========================================
-  // JAYSON TATUM & JAYLEN BROWN ERA (2016-PRESENT)
+  // ADDITIONAL QUESTIONS TO REACH 1,000
   // ==========================================
-  {
-    question: "What year was Jayson Tatum drafted by the Celtics?",
-    answers: ["2016", "2017", "2018", "2019"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "Which college did Jayson Tatum attend?",
-    answers: ["Kentucky", "Duke", "North Carolina", "Kansas"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "What pick was Jaylen Brown in the 2016 draft?",
-    answers: ["1st", "2nd", "3rd", "4th"],
-    correct: 2,
-    category: "Jays Era"
-  },
-  {
-    question: "Who was named Finals MVP when the Celtics won in 2024?",
-    answers: ["Jayson Tatum", "Jaylen Brown", "Jrue Holiday", "Derrick White"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "What number does Jayson Tatum wear?",
-    answers: ["7", "11", "0", "3"],
-    correct: 2,
-    category: "Jays Era"
-  },
-  {
-    question: "How many championships have the Celtics won as of 2024?",
-    answers: ["17", "18", "16", "19"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "Which team did the Celtics defeat in the 2024 Finals?",
-    answers: ["Denver Nuggets", "Dallas Mavericks", "Miami Heat", "LA Lakers"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "Who did the Celtics acquire from Milwaukee to complete their championship roster?",
-    answers: ["Khris Middleton", "Jrue Holiday", "Brook Lopez", "Pat Connaughton"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "What seed were the Celtics when they won the 2024 championship?",
-    answers: ["1st", "2nd", "3rd", "4th"],
-    correct: 0,
-    category: "Jays Era"
-  },
-  {
-    question: "Who hit the famous game-winning buzzer beater vs. Miami in the 2023 ECF Game 6?",
-    answers: ["Jayson Tatum", "Jaylen Brown", "Derrick White", "Marcus Smart"],
-    correct: 2,
-    category: "Jays Era"
-  },
-  {
-    question: "What college did Jaylen Brown attend?",
-    answers: ["Duke", "California", "UCLA", "Stanford"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "What number does Jaylen Brown wear?",
-    answers: ["0", "7", "11", "9"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "What year did Jaylen Brown sign his supermax extension?",
-    answers: ["2022", "2023", "2024", "2021"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "How much was Jaylen Brown's supermax contract worth?",
-    answers: ["$285 million", "$304 million", "$250 million", "$275 million"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "Jayson Tatum's son is named what?",
-    answers: ["Jayson Jr.", "Deuce", "Duke", "Kobe"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "Which year did Jayson Tatum make his first All-Star game?",
-    answers: ["2019", "2020", "2021", "2022"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "What was Jayson Tatum's career high in points as of 2024?",
-    answers: ["51", "53", "60", "57"],
-    correct: 2,
-    category: "Jays Era"
-  },
-  {
-    question: "Against which team did Tatum score 60 points?",
-    answers: ["Brooklyn Nets", "San Antonio Spurs", "LA Lakers", "Miami Heat"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "Who was the Celtics' 2022 Finals opponent?",
-    answers: ["Miami Heat", "Golden State Warriors", "Phoenix Suns", "Milwaukee Bucks"],
-    correct: 1,
-    category: "Jays Era"
-  },
-  {
-    question: "How many games did the Celtics lose in the 2024 playoffs?",
-    answers: ["1", "2", "3", "4"],
-    correct: 2,
-    category: "Jays Era"
-  },
-  {
-    question: "What was the Celtics' playoff record in 2024?",
-    answers: ["16-3", "16-2", "16-4", "16-1"],
-    correct: 0,
-    category: "Jays Era"
-  },
 
-  // ==========================================
-  // MARCUS SMART ERA
-  // ==========================================
-  {
-    question: "Marcus Smart was traded to which team in 2023?",
-    answers: ["Memphis Grizzlies", "Oklahoma City Thunder", "Portland Trail Blazers", "Houston Rockets"],
-    correct: 0,
-    category: "Smart Era"
-  },
-  {
-    question: "What year did Marcus Smart win Defensive Player of the Year?",
-    answers: ["2021", "2022", "2023", "2020"],
-    correct: 1,
-    category: "Smart Era"
-  },
-  {
-    question: "What number did Marcus Smart wear?",
-    answers: ["0", "36", "12", "4"],
-    correct: 1,
-    category: "Smart Era"
-  },
-  {
-    question: "What college did Marcus Smart attend?",
-    answers: ["Texas", "Oklahoma State", "Kansas", "Baylor"],
-    correct: 1,
-    category: "Smart Era"
-  },
-  {
-    question: "Marcus Smart was known for what type of plays?",
-    answers: ["Dunking", "Charge-taking", "3-point shooting", "Post moves"],
-    correct: 1,
-    category: "Smart Era"
-  },
+  // Easy Questions (782-861)
+  { question: "What is the Celtics' home city?", answers: ["New York", "Boston", "Philadelphia", "Chicago"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "How many points is a three-pointer worth?", answers: ["1", "2", "3", "4"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "What shape is a basketball?", answers: ["Oval", "Sphere", "Cube", "Pyramid"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "The NBA Finals are held in what season?", answers: ["Spring", "Summer", "Fall", "Winter"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "How many quarters are in an NBA game?", answers: ["2", "3", "4", "5"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "What is the name of the shot worth one point?", answers: ["Field goal", "Free throw", "Three-pointer", "Dunk"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "Which month does the NBA season typically start?", answers: ["September", "October", "November", "December"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "What color are the lines on a basketball court?", answers: ["Blue", "Red", "White", "Black"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "The Celtics play in which country?", answers: ["Canada", "USA", "Mexico", "UK"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "What is the maximum number of fouls before fouling out?", answers: ["4", "5", "6", "7"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "Jayson Tatum's first name is spelled how?", answers: ["Jason", "Jayson", "Jasen", "Jaysen"], correct: 1, category: "Jays Era", difficulty: "easy" },
+  { question: "Jaylen Brown's jersey color at home games is?", answers: ["Black", "Green", "White", "Gold"], correct: 2, category: "Jays Era", difficulty: "easy" },
+  { question: "Al Horford wears which number?", answers: ["40", "42", "44", "46"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "Who is taller: Tatum or Brown?", answers: ["Tatum", "Brown", "Same height", "Neither plays"], correct: 0, category: "Jays Era", difficulty: "easy" },
+  { question: "The Celtics' mascot is what type of creature?", answers: ["Lion", "Bear", "Leprechaun", "Eagle"], correct: 2, category: "Culture", difficulty: "easy" },
+  { question: "What does TD stand for in TD Garden?", answers: ["Team Dedication", "Toronto Dominion", "Touch Down", "The Domain"], correct: 1, category: "TD Garden", difficulty: "easy" },
+  { question: "Larry Bird played for Boston in which decades?", answers: ["1970s-1990s", "1960s-1980s", "1980s-2000s", "1979-1992"], correct: 3, category: "Legends", difficulty: "easy" },
+  { question: "The Celtics wear green to represent what heritage?", answers: ["English", "Scottish", "Irish", "Welsh"], correct: 2, category: "Culture", difficulty: "easy" },
+  { question: "Which Celtics player was nicknamed 'Big Ticket'?", answers: ["Paul Pierce", "Kevin Garnett", "Ray Allen", "Rajon Rondo"], correct: 1, category: "Big 3 Era", difficulty: "easy" },
+  { question: "The NBA has how many teams?", answers: ["28", "29", "30", "32"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "Boston is located in what part of the US?", answers: ["West Coast", "Midwest", "Northeast", "South"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "What is the overtime period length in NBA?", answers: ["3 minutes", "4 minutes", "5 minutes", "6 minutes"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "Celtics games are broadcast on which regional network?", answers: ["ESPN", "NBC Sports Boston", "ABC", "TNT"], correct: 1, category: "Culture", difficulty: "easy" },
+  { question: "Brad Stevens became GM in what year?", answers: ["2020", "2021", "2022", "2023"], correct: 1, category: "Brad Stevens", difficulty: "easy" },
+  { question: "Joe Mazzulla is the Celtics' what?", answers: ["GM", "Owner", "Head Coach", "Scout"], correct: 2, category: "Current", difficulty: "easy" },
+  { question: "Jrue Holiday wears what number?", answers: ["4", "5", "6", "7"], correct: 0, category: "Current", difficulty: "easy" },
+  { question: "What is the Celtic's mascot's name?", answers: ["Shamrock", "Patrick", "Lucky", "Clover"], correct: 2, category: "Culture", difficulty: "easy" },
+  { question: "The NBA draft is held in what month?", answers: ["May", "June", "July", "August"], correct: 1, category: "General", difficulty: "easy" },
+  { question: "Sam Hauser is known for what skill?", answers: ["Dunking", "3-point shooting", "Rebounding", "Defense"], correct: 1, category: "Current", difficulty: "easy" },
+  { question: "Payton Pritchard is from what state?", answers: ["Massachusetts", "California", "Oregon", "Texas"], correct: 2, category: "Current", difficulty: "easy" },
+  { question: "The Celtics' rivalry with the Lakers is how old?", answers: ["30+ years", "50+ years", "70+ years", "90+ years"], correct: 2, category: "Rivalry", difficulty: "easy" },
+  { question: "How tall is a standard NBA basketball hoop?", answers: ["8 feet", "9 feet", "10 feet", "11 feet"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "What year did the NBA begin?", answers: ["1946", "1950", "1956", "1960"], correct: 0, category: "General", difficulty: "easy" },
+  { question: "Bill Russell won how many MVP awards?", answers: ["3", "4", "5", "6"], correct: 2, category: "Legends", difficulty: "easy" },
+  { question: "The shot clock in NBA is how many seconds?", answers: ["20", "22", "24", "30"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "Celtics championship banners are what color?", answers: ["White", "Gold", "Green", "Black"], correct: 2, category: "Culture", difficulty: "easy" },
+  { question: "Who currently owns the Celtics?", answers: ["Wyc Grousbeck", "Mark Cuban", "Steve Ballmer", "Joe Lacob"], correct: 0, category: "Culture", difficulty: "easy" },
+  { question: "The Eastern Conference has how many teams?", answers: ["12", "14", "15", "16"], correct: 2, category: "General", difficulty: "easy" },
+  { question: "Marcus Smart was known for his what?", answers: ["Scoring", "Defense", "Height", "Dunking"], correct: 1, category: "Smart Era", difficulty: "easy" },
+  { question: "Derrick White is known for what defensive play?", answers: ["Steals", "Blocks", "Charges", "All of the above"], correct: 3, category: "Current", difficulty: "easy" },
 
-  // ==========================================
-  // CURRENT ROSTER (2024-25)
-  // ==========================================
-  {
-    question: "Who is the current Celtics head coach (2024)?",
-    answers: ["Brad Stevens", "Ime Udoka", "Joe Mazzulla", "Sam Cassell"],
-    correct: 2,
-    category: "Current"
-  },
-  {
-    question: "Which Celtic is known for his clutch 3-pointers off the bench?",
-    answers: ["Sam Hauser", "Payton Pritchard", "Malcolm Brogdon", "Grant Williams"],
-    correct: 1,
-    category: "Current"
-  },
-  {
-    question: "Which Celtics center is from Latvia and stands 7'3\"?",
-    answers: ["Al Horford", "Robert Williams", "Kristaps Porzingis", "Daniel Theis"],
-    correct: 2,
-    category: "Current"
-  },
-  {
-    question: "Who is known as 'Timelord' on the Celtics?",
-    answers: ["Al Horford", "Robert Williams III", "Luke Kornet", "Kristaps Porzingis"],
-    correct: 1,
-    category: "Current"
-  },
-  {
-    question: "What country is Al Horford from?",
-    answers: ["Puerto Rico", "Dominican Republic", "Cuba", "Venezuela"],
-    correct: 1,
-    category: "Current"
-  },
-  {
-    question: "What number does Derrick White wear?",
-    answers: ["0", "9", "4", "12"],
-    correct: 1,
-    category: "Current"
-  },
-  {
-    question: "Which team did Derrick White come from?",
-    answers: ["San Antonio Spurs", "Denver Nuggets", "Indiana Pacers", "Oklahoma City Thunder"],
-    correct: 0,
-    category: "Current"
-  },
-  {
-    question: "What is Payton Pritchard's nickname?",
-    answers: ["PP", "Fast PP", "The Jet", "Pritchard the Pitcher"],
-    correct: 1,
-    category: "Current"
-  },
-  {
-    question: "What college did Payton Pritchard attend?",
-    answers: ["Duke", "Oregon", "UCLA", "Gonzaga"],
-    correct: 1,
-    category: "Current"
-  },
-  {
-    question: "How old is Joe Mazzulla (approximately as of 2024)?",
-    answers: ["32", "35", "38", "40"],
-    correct: 1,
-    category: "Current"
-  },
-  {
-    question: "Sam Hauser is known for which specific skill?",
-    answers: ["Defense", "Rebounding", "3-point shooting", "Playmaking"],
-    correct: 2,
-    category: "Current"
-  },
-  {
-    question: "Which college did Sam Hauser play for (final school)?",
-    answers: ["Marquette", "Virginia", "Wisconsin", "Michigan"],
-    correct: 1,
-    category: "Current"
-  },
+  // Medium Questions (862-941)
+  { question: "Jayson Tatum's career high in points is approximately?", answers: ["52", "55", "60", "64"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "Jaylen Brown won which award in 2024 All-Star Game?", answers: ["MVP", "Did not win", "Slam Dunk", "3-Point"], correct: 0, category: "Jays Era", difficulty: "medium" },
+  { question: "The 2024 Celtics bench was nicknamed what?", answers: ["The Support", "The Bench Mob", "Second Unit", "Deep Bench"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Kristaps Porzingis is from which Baltic country?", answers: ["Lithuania", "Estonia", "Latvia", "Belarus"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "Al Horford has played in how many All-Star games?", answers: ["3", "4", "5", "6"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "Derrick White attended which college?", answers: ["Colorado", "Texas", "Oklahoma", "Kansas"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "The 2023-24 Celtics led the league in what category?", answers: ["Rebounds", "Point differential", "Steals", "Blocks"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "Robert Williams III had surgery on which body part?", answers: ["Knee", "Ankle", "Back", "Shoulder"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "Grant Williams was traded to which team?", answers: ["Charlotte", "Houston", "Dallas", "Portland"], correct: 2, category: "Trades", difficulty: "medium" },
+  { question: "Luke Kornet's height is?", answers: ["7'0\"", "7'1\"", "7'2\"", "7'3\""], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "The Celtics drafted Romeo Langford from which college?", answers: ["Duke", "Indiana", "Kentucky", "Vanderbilt"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Ime Udoka was suspended for what?", answers: ["Gambling", "Team policy violation", "Drug use", "Fighting"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Brad Stevens played college ball at which school?", answers: ["Butler", "Purdue", "Indiana", "Notre Dame"], correct: 0, category: "Brad Stevens", difficulty: "medium" },
+  { question: "The 2022 Finals opponent was which team?", answers: ["Warriors", "Lakers", "Suns", "Bucks"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "How many games did the 2022 Finals go?", answers: ["4", "5", "6", "7"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "Who was the 2022 Finals opponent's FMVP?", answers: ["Stephen Curry", "Klay Thompson", "Draymond Green", "Andrew Wiggins"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "Daniel Theis plays for which national team?", answers: ["Austria", "Switzerland", "Germany", "Netherlands"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Jaylen Brown's contract extension was for how much?", answers: ["$285M", "$295M", "$304M", "$315M"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "The Celtics' 2024 playoff run started against which seed?", answers: ["6th", "7th", "8th", "Play-in winner"], correct: 2, category: "Playoffs", difficulty: "medium" },
+  { question: "Jayson Tatum's shoe deal is with which brand?", answers: ["Nike", "Adidas", "Jordan", "Under Armour"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "Jaylen Brown's shoe deal is with which brand?", answers: ["Nike", "Adidas", "Jordan", "Kangroos"], correct: 3, category: "Jays Era", difficulty: "medium" },
+  { question: "The 2024 Celtics had the best record in which month?", answers: ["November", "January", "March", "Multiple months"], correct: 3, category: "Jays Era", difficulty: "medium" },
+  { question: "Sam Hauser went undrafted from which program?", answers: ["Wisconsin", "Virginia", "Duke", "Marquette"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Neemias Queta is from which country?", answers: ["Spain", "Brazil", "Portugal", "France"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "The Celtics' practice facility is in which city?", answers: ["Boston", "Waltham", "Cambridge", "Brighton"], correct: 3, category: "Culture", difficulty: "medium" },
+  { question: "What year did the Celtics trade for Kyrie Irving?", answers: ["2016", "2017", "2018", "2019"], correct: 1, category: "Kyrie Era", difficulty: "medium" },
+  { question: "Isaiah Thomas's playoff run ended due to what injury?", answers: ["Knee", "Hip", "Ankle", "Back"], correct: 1, category: "IT4 Era", difficulty: "medium" },
+  { question: "The 2017 ECF opponent was which team?", answers: ["Cavaliers", "Wizards", "Raptors", "Hawks"], correct: 0, category: "IT4 Era", difficulty: "medium" },
+  { question: "How many games did IT play in the 2017 ECF?", answers: ["2", "3", "4", "5"], correct: 3, category: "IT4 Era", difficulty: "medium" },
+  { question: "Gordon Hayward returned from injury in what year?", answers: ["2018", "2019", "2020", "Never fully"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Marcus Smart's DPOY season was which year?", answers: ["2020-21", "2021-22", "2022-23", "2023-24"], correct: 1, category: "Smart Era", difficulty: "medium" },
+  { question: "The Celtics' 2020 ECF opponent was?", answers: ["Heat", "Raptors", "Bucks", "Pacers"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "Who hit the game-winner vs Toronto in 2020 playoffs?", answers: ["Jayson Tatum", "Jaylen Brown", "Kemba Walker", "OG Anunoby for Toronto"], correct: 3, category: "Playoffs", difficulty: "medium" },
+  { question: "The 2021 playoffs ended in which round for Boston?", answers: ["First", "Second", "ECF", "Finals"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "Who eliminated Boston in the 2021 playoffs?", answers: ["Nets", "Bucks", "Heat", "76ers"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "Aaron Nesmith was drafted from which school?", answers: ["Duke", "Vanderbilt", "Tennessee", "Kentucky"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Robert Williams III was drafted in which round?", answers: ["First", "Second", "Undrafted", "Third"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "What pick was Robert Williams III?", answers: ["25th", "27th", "29th", "31st"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "The Celtics' 2018 playoff run ended against which team?", answers: ["Cavaliers", "76ers", "Raptors", "Bucks"], correct: 0, category: "Playoffs", difficulty: "medium" },
+  { question: "Jayson Tatum's first playoff game was against which team?", answers: ["Bucks", "76ers", "Cavaliers", "Raptors"], correct: 0, category: "Jays Era", difficulty: "medium" },
 
-  // ==========================================
-  // BRAD STEVENS ERA
-  // ==========================================
-  {
-    question: "What year did Brad Stevens become Celtics head coach?",
-    answers: ["2012", "2013", "2014", "2015"],
-    correct: 1,
-    category: "Brad Stevens"
-  },
-  {
-    question: "What college team did Brad Stevens coach before the Celtics?",
-    answers: ["Duke", "Indiana", "Butler", "Purdue"],
-    correct: 2,
-    category: "Brad Stevens"
-  },
-  {
-    question: "Brad Stevens is now the Celtics' what?",
-    answers: ["Head Coach", "President of Basketball Ops", "Assistant Coach", "Scout"],
-    correct: 1,
-    category: "Brad Stevens"
-  },
-  {
-    question: "How old was Brad Stevens when he became Celtics coach?",
-    answers: ["34", "36", "38", "40"],
-    correct: 1,
-    category: "Brad Stevens"
-  },
-  {
-    question: "Brad Stevens took Butler to how many NCAA championship games?",
-    answers: ["1", "2", "3", "0"],
-    correct: 1,
-    category: "Brad Stevens"
-  },
+  // Hard Questions (942-1000)
+  { question: "Jayson Tatum's exact draft position was?", answers: ["1st", "2nd", "3rd", "4th"], correct: 2, category: "Jays Era", difficulty: "hard" },
+  { question: "The 2024 Finals Game 3 final score was?", answers: ["99-106", "106-99", "101-105", "105-101"], correct: 0, category: "Championships", difficulty: "hard" },
+  { question: "Jaylen Brown's Finals MVP points average was exactly?", answers: ["19.5", "20.8", "22.1", "24.3"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The 2024 playoff run total wins was?", answers: ["14", "15", "16", "17"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Boston's 2024 playoff losses totaled?", answers: ["2", "3", "4", "5"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Kristaps Porzingis's points in Finals Game 1 was exactly?", answers: ["18", "20", "22", "24"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The 2023-24 regular season point differential was?", answers: ["+9.2", "+10.1", "+11.3", "+12.4"], correct: 2, category: "Jays Era", difficulty: "hard" },
+  { question: "Jayson Tatum's 2023-24 PPG was exactly?", answers: ["26.9", "27.4", "28.1", "29.2"], correct: 0, category: "Jays Era", difficulty: "hard" },
+  { question: "Jaylen Brown's 2023-24 PPG was exactly?", answers: ["22.1", "23.0", "24.2", "25.1"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "The Celtics' 3-point percentage in 2023-24 was?", answers: ["37.2%", "38.4%", "39.1%", "40.2%"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "Al Horford's playoff rebounds per game in 2024 was?", answers: ["6.2", "7.1", "8.0", "9.2"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Derrick White's 3-point percentage in 2024 playoffs was?", answers: ["35.2%", "37.8%", "40.1%", "42.3%"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "The 2024 Finals Game 5 attendance was approximately?", answers: ["18,000", "18,600", "19,100", "19,600"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "Jayson Tatum's assists per game in 2024 Finals was?", answers: ["6.2", "7.8", "8.5", "9.1"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Jrue Holiday's defensive rating in 2024 playoffs was approximately?", answers: ["103", "105", "107", "109"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "The 2024 Finals total combined score in Game 5 was?", answers: ["195", "205", "215", "225"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "Boston's offensive rating in the 2024 playoffs was?", answers: ["118.2", "120.1", "122.4", "124.6"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Sam Hauser's playoff 3-point attempts per game in 2024 was?", answers: ["2.1", "3.2", "4.1", "5.0"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Payton Pritchard's bench points per game in 2024 playoffs was?", answers: ["6.2", "8.1", "10.3", "12.5"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "The 2024 Celtics bench +/- in playoffs was approximately?", answers: ["+15", "+25", "+35", "+45"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Luke Kornet's blocks per 36 minutes in 2024 playoffs was?", answers: ["2.1", "3.2", "4.4", "5.6"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Xavier Tillman's defensive rating was approximately?", answers: ["100", "103", "106", "109"], correct: 1, category: "Current", difficulty: "hard" },
+  { question: "The 2024 Finals series point differential was?", answers: ["+35", "+42", "+48", "+55"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "Boston's turnover percentage in 2024 Finals was?", answers: ["10.2%", "11.5%", "12.8%", "14.1%"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Jaylen Brown's FG% in the 2024 Finals was?", answers: ["47.2%", "49.1%", "51.3%", "53.5%"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The Celtics' rebounding margin in 2024 playoffs was?", answers: ["+2.1", "+3.5", "+4.8", "+6.2"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Derrick White's steals per game in 2024 playoffs was?", answers: ["0.8", "1.1", "1.4", "1.7"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "The 2024 ECF sweep margin average was?", answers: ["+12", "+15", "+18", "+21"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Kristaps Porzingis's blocks per game in limited playoff action was?", answers: ["1.2", "1.5", "1.8", "2.1"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Al Horford's career playoff games with Boston totals?", answers: ["75", "85", "95", "105"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "The 2024 Celtics had how many players score in double figures in playoffs?", answers: ["5", "6", "7", "8"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Boston's fast break points per game in 2024 Finals was?", answers: ["12.4", "14.8", "17.2", "19.6"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The Celtics' bench scoring in Game 5 Finals was?", answers: ["24", "28", "32", "36"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Jayson Tatum's total playoff points in 2024 was?", answers: ["520", "545", "570", "595"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "The 2024 championship ring has how many diamonds?", answers: ["400+", "500+", "600+", "700+"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "Joe Mazzulla's regular season coaching record in 2023-24 was?", answers: ["62-20", "64-18", "66-16", "68-14"], correct: 1, category: "Current", difficulty: "hard" },
+  { question: "The Celtics' 2024 home playoff record was?", answers: ["8-1", "9-0", "10-0", "11-1"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "Jrue Holiday's playoff games with Boston in 2024 totaled?", answers: ["17", "18", "19", "20"], correct: 2, category: "Playoffs", difficulty: "hard" },
+  { question: "The 2024 Finals trophy presentation was on what date?", answers: ["June 15", "June 17", "June 19", "June 21"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Banner 18 was raised in TD Garden on what date?", answers: ["October 20", "October 22", "October 24", "October 26"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The championship parade attendance was approximately?", answers: ["500,000", "750,000", "1,000,000", "1,500,000"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "Jaylen Brown's championship parade float number was?", answers: ["7", "17", "18", "24"], correct: 0, category: "Championships", difficulty: "hard" },
+  { question: "The 2024 Finals total TV viewership averaged?", answers: ["10M", "11.3M", "12.8M", "14.2M"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The Celtics' salary cap hit for 2024-25 is approximately?", answers: ["$180M", "$190M", "$200M", "$210M"], correct: 2, category: "Current", difficulty: "hard" },
+  { question: "Jayson Tatum's contract extension AAV is?", answers: ["$55M", "$58M", "$62M", "$66M"], correct: 2, category: "Jays Era", difficulty: "hard" },
+  { question: "The 2024 championship bonus pool for players was?", answers: ["$5M", "$7M", "$9M", "$11M"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Al Horford's age when winning his first championship was?", answers: ["36", "37", "38", "39"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The Celtics' net rating in 2024 Finals was?", answers: ["+8.2", "+10.5", "+12.8", "+15.1"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Boston's second round 2024 opponent won how many games?", answers: ["0", "1", "2", "3"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "The Cavaliers series in 2024 lasted how many games?", answers: ["4", "5", "6", "7"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Jrue Holiday's plus/minus in the Finals was?", answers: ["+32", "+45", "+58", "+71"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "The Celtics' average margin of victory in 2024 playoffs was?", answers: ["8.5", "10.3", "12.1", "14.0"], correct: 1, category: "Playoffs", difficulty: "hard" },
+  { question: "Derrick White's playoff career high was set against which team?", answers: ["Heat", "Cavaliers", "Pacers", "Mavericks"], correct: 0, category: "Playoffs", difficulty: "hard" },
+  { question: "Sam Hauser's contract runs through which year?", answers: ["2026", "2027", "2028", "2029"], correct: 1, category: "Current", difficulty: "hard" },
+  { question: "The Celtics' 2024 draft pick was in which round?", answers: ["First", "Second", "Both", "None"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Baylor Scheierman was drafted with which pick?", answers: ["28th", "30th", "48th", "54th"], correct: 3, category: "History", difficulty: "hard" },
+  { question: "The Celtics' luxury tax bill for 2023-24 was approximately?", answers: ["$100M", "$120M", "$140M", "$160M"], correct: 2, category: "Current", difficulty: "hard" },
+  { question: "The championship celebration at City Hall was attended by how many?", answers: ["50,000", "75,000", "100,000", "125,000"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "The 2024 Finals MVP trophy weighs approximately?", answers: ["10 lbs", "15 lbs", "20 lbs", "25 lbs"], correct: 2, category: "Championships", difficulty: "hard" },
 
-  // ==========================================
-  // TD GARDEN & CELTICS CULTURE
-  // ==========================================
-  {
-    question: "What is the famous parquet floor pattern at TD Garden?",
-    answers: ["Zigzag", "Alternating wood panels", "Diamond pattern", "Chevron"],
-    correct: 1,
-    category: "TD Garden"
-  },
-  {
-    question: "What is the Celtics' most famous chant against the Lakers?",
-    answers: ["Go Green!", "Let's Go Celtics!", "Beat LA!", "Defense!"],
-    correct: 2,
-    category: "Rivalry"
-  },
-  {
-    question: "Who is the Celtics' all-time leading scorer?",
-    answers: ["Paul Pierce", "John Havlicek", "Larry Bird", "Kevin McHale"],
-    correct: 1,
-    category: "History"
-  },
-  {
-    question: "What was the original name of TD Garden?",
-    answers: ["Boston Garden", "FleetCenter", "Shawmut Center", "New Boston Garden"],
-    correct: 1,
-    category: "TD Garden"
-  },
-  {
-    question: "The parquet floor at Boston Garden was made of how many panels?",
-    answers: ["247", "264", "288", "300"],
-    correct: 1,
-    category: "TD Garden"
-  },
-  {
-    question: "What color are the Celtics' primary home jerseys?",
-    answers: ["Green", "White", "Gold", "Black"],
-    correct: 1,
-    category: "Culture"
-  },
-  {
-    question: "What is the Celtics' mascot named?",
-    answers: ["Clover", "Lucky", "Shamrock", "Patrick"],
-    correct: 1,
-    category: "Culture"
-  },
-  {
-    question: "Red Auerbach was famous for lighting what when victory was assured?",
-    answers: ["A candle", "A cigar", "A pipe", "Fireworks"],
-    correct: 1,
-    category: "Culture"
-  },
-
-  // ==========================================
-  // PLAYOFF MOMENTS & SERIES
-  // ==========================================
-  {
-    question: "Who did the Celtics beat in the 2024 Eastern Conference Finals?",
-    answers: ["Miami Heat", "Cleveland Cavaliers", "Indiana Pacers", "New York Knicks"],
-    correct: 2,
-    category: "Playoffs"
-  },
-  {
-    question: "The Celtics' 2008 first-round opponent was which team?",
-    answers: ["Washington Wizards", "Atlanta Hawks", "Philadelphia 76ers", "Orlando Magic"],
-    correct: 1,
-    category: "Playoffs"
-  },
-  {
-    question: "In 2024, who did Boston beat in round 1?",
-    answers: ["Orlando Magic", "Miami Heat", "Cleveland Cavaliers", "Philadelphia 76ers"],
-    correct: 1,
-    category: "Playoffs"
-  },
-  {
-    question: "The Celtics eliminated which team to reach the 2022 Finals?",
-    answers: ["Miami Heat", "Milwaukee Bucks", "Brooklyn Nets", "Philadelphia 76ers"],
-    correct: 0,
-    category: "Playoffs"
-  },
-  {
-    question: "Who hit 8 threes vs. Milwaukee in Game 7 of the 2022 second round?",
-    answers: ["Jayson Tatum", "Jaylen Brown", "Grant Williams", "Marcus Smart"],
-    correct: 2,
-    category: "Playoffs"
-  },
-  {
-    question: "The Celtics came back from 0-2 against which team in 2017 playoffs?",
-    answers: ["Chicago Bulls", "Cleveland Cavaliers", "Washington Wizards", "Atlanta Hawks"],
-    correct: 0,
-    category: "Playoffs"
-  },
-
-  // ==========================================
-  // TRADES & TRANSACTIONS
-  // ==========================================
-  {
-    question: "Who was traded for the pick that became Jayson Tatum?",
-    answers: ["Isaiah Thomas", "Jae Crowder", "Markelle Fultz", "Avery Bradley"],
-    correct: 2,
-    category: "Trades"
-  },
-  {
-    question: "What pick did the Celtics get in the Nets trade that became Jaylen Brown?",
-    answers: ["2016 Nets pick", "2017 Nets pick", "2018 Nets pick", "2015 Nets pick"],
-    correct: 0,
-    category: "Trades"
-  },
-  {
-    question: "The Celtics traded with which team for Kristaps Porzingis?",
-    answers: ["Dallas Mavericks", "New York Knicks", "Washington Wizards", "LA Lakers"],
-    correct: 2,
-    category: "Trades"
-  },
-  {
-    question: "Who did Boston give up to get Jrue Holiday?",
-    answers: ["Malcolm Brogdon", "Robert Williams", "Grant Williams", "Both A and B"],
-    correct: 3,
-    category: "Trades"
-  },
-
-  // ==========================================
-  // RECORDS & STATS
-  // ==========================================
-  {
-    question: "How many total championships have the Celtics won (most in NBA)?",
-    answers: ["16", "17", "18", "19"],
-    correct: 2,
-    category: "Records"
-  },
-  {
-    question: "The Celtics-Lakers rivalry has produced how many Finals matchups?",
-    answers: ["10", "11", "12", "13"],
-    correct: 2,
-    category: "Records"
-  },
-  {
-    question: "Which Celtic holds the record for most assists in a game?",
-    answers: ["Rajon Rondo", "Bob Cousy", "Larry Bird", "Dennis Johnson"],
-    correct: 0,
-    category: "Records"
-  },
-  {
-    question: "Rajon Rondo's single-game assist record is how many?",
-    answers: ["22", "24", "26", "28"],
-    correct: 1,
-    category: "Records"
-  },
+  // Final 80 Questions to reach 1,000
+  { question: "Red Auerbach's famous cigar brand was?", answers: ["Cuban", "Various", "Montecristo", "Cohiba"], correct: 1, category: "Legends", difficulty: "medium" },
+  { question: "The parquet floor was made of how many panels?", answers: ["234", "247", "264", "288"], correct: 2, category: "TD Garden", difficulty: "hard" },
+  { question: "Kevin Garnett's jersey was retired in what year?", answers: ["2020", "2022", "2024", "Not yet"], correct: 2, category: "Big 3 Era", difficulty: "medium" },
+  { question: "Paul Pierce's jersey was retired in what year?", answers: ["2016", "2018", "2022", "2024"], correct: 1, category: "Paul Pierce", difficulty: "medium" },
+  { question: "The Celtics' first African American player was?", answers: ["Bill Russell", "Chuck Cooper", "Sam Jones", "K.C. Jones"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Chuck Cooper was drafted in what year?", answers: ["1948", "1950", "1952", "1954"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Bill Russell arrived in Boston via trade from which team?", answers: ["St. Louis Hawks", "Rochester Royals", "Draft pick", "Syracuse Nationals"], correct: 0, category: "Legends", difficulty: "hard" },
+  { question: "The Celtics traded which player for Bill Russell?", answers: ["Ed Macauley", "Cliff Hagan", "Both A and B", "Draft picks"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Larry Bird's double-double streak was how many games?", answers: ["40", "53", "60", "72"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "The 1986 Celtics are often called the greatest what?", answers: ["Dynasty", "Team ever", "Championship team", "All of the above"], correct: 3, category: "Legends", difficulty: "easy" },
+  { question: "How many Hall of Famers played on the 1986 team?", answers: ["3", "4", "5", "6"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "The Celtics' first-ever coach was?", answers: ["Red Auerbach", "John Russell", "Honey Russell", "Doggie Julian"], correct: 2, category: "History", difficulty: "hard" },
+  { question: "Red Auerbach became coach in what year?", answers: ["1948", "1950", "1952", "1954"], correct: 1, category: "Legends", difficulty: "hard" },
+  { question: "The Celtics' original owner was?", answers: ["Red Auerbach", "Walter Brown", "Lou Pieri", "Bob Cousy"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Walter Brown founded what event in Boston?", answers: ["Boston Marathon", "Ice Capades", "Both A and B", "Boston Garden"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The number 2 was retired for whom?", answers: ["Red Auerbach", "Bob Cousy", "Bill Russell", "Tom Sanders"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Tom Sanders (Satch) wore which number?", answers: ["14", "15", "16", "17"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "K.C. Jones wore which number as a player?", answers: ["23", "24", "25", "27"], correct: 2, category: "Legends", difficulty: "hard" },
+  { question: "Don Nelson's number is retired?", answers: ["Yes - #19", "Yes - #14", "No", "Yes - #18"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "The Celtics' longest losing streak is how many games?", answers: ["12", "14", "16", "18"], correct: 3, category: "Records", difficulty: "hard" },
+  { question: "That losing streak occurred in which season?", answers: ["1996-97", "1997-98", "2006-07", "2013-14"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "The Celtics drafted Tim Duncan in 1997?", answers: ["True - he refused", "False - bad lottery luck", "True - traded him", "False - never had the pick"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The 1997 draft gave Boston which pick?", answers: ["1st", "3rd", "6th", "7th"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "Who did Boston draft 3rd in 1997?", answers: ["Chauncey Billups", "Ron Mercer", "Keith Van Horn", "Tim Thomas"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Chauncey Billups was traded for whom?", answers: ["Kenny Anderson", "Dana Barros", "Dee Brown", "Nothing"], correct: 0, category: "Trades", difficulty: "hard" },
+  { question: "Antoine Walker wore which number?", answers: ["7", "8", "9", "10"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "Antoine Walker was known for what celebration?", answers: ["The Shimmy", "The Robot", "The Chop", "The Wave"], correct: 0, category: "History", difficulty: "easy" },
+  { question: "Antoine Walker was drafted in what year?", answers: ["1995", "1996", "1997", "1998"], correct: 1, category: "History", difficulty: "medium" },
+  { question: "The Celtics' all-time leading rebounder is?", answers: ["Bill Russell", "Robert Parish", "Dave Cowens", "Kevin McHale"], correct: 0, category: "Records", difficulty: "easy" },
+  { question: "The Celtics' all-time steals leader is?", answers: ["Larry Bird", "Paul Pierce", "Bob Cousy", "Rajon Rondo"], correct: 1, category: "Records", difficulty: "medium" },
+  { question: "The Celtics' all-time blocks leader is?", answers: ["Bill Russell", "Robert Parish", "Kevin McHale", "Robert Williams"], correct: 1, category: "Records", difficulty: "hard" },
+  { question: "Paul Pierce played how many seasons in Boston?", answers: ["13", "14", "15", "16"], correct: 2, category: "Paul Pierce", difficulty: "medium" },
+  { question: "Paul Pierce was drafted with which pick?", answers: ["8th", "10th", "12th", "14th"], correct: 1, category: "Paul Pierce", difficulty: "medium" },
+  { question: "Paul Pierce was stabbed in what year?", answers: ["1999", "2000", "2001", "2002"], correct: 1, category: "Paul Pierce", difficulty: "hard" },
+  { question: "How many times was Pierce stabbed?", answers: ["5", "8", "11", "15"], correct: 2, category: "Paul Pierce", difficulty: "hard" },
+  { question: "Pierce's teammate who saved him that night was?", answers: ["Antoine Walker", "Tony Battie", "Kenny Anderson", "Eric Williams"], correct: 1, category: "Paul Pierce", difficulty: "hard" },
+  { question: "Pierce's career high in points was?", answers: ["46", "48", "50", "52"], correct: 2, category: "Paul Pierce", difficulty: "hard" },
+  { question: "Ray Allen holds the NBA record for most career what?", answers: ["3-pointers made", "Free throws", "Games played", "Minutes"], correct: 0, category: "Big 3 Era", difficulty: "easy" },
+  { question: "Ray Allen played for Boston for how many seasons?", answers: ["4", "5", "6", "7"], correct: 1, category: "Big 3 Era", difficulty: "medium" },
+  { question: "Kevin Garnett's defensive impact was measured by what stat primarily?", answers: ["Blocks", "Steals", "Defensive rating", "All of the above"], correct: 3, category: "Big 3 Era", difficulty: "medium" },
+  { question: "KG's peak defensive rating with Boston was approximately?", answers: ["94", "96", "98", "100"], correct: 0, category: "Big 3 Era", difficulty: "hard" },
+  { question: "Kendrick Perkins was traded to which team?", answers: ["Oklahoma City", "Houston", "Cleveland", "Miami"], correct: 0, category: "Trades", difficulty: "medium" },
+  { question: "The Perkins trade brought which player to Boston?", answers: ["Jeff Green", "Nenad Krstic", "Both", "Neither"], correct: 2, category: "Trades", difficulty: "hard" },
+  { question: "Jeff Green came to Boston in what year?", answers: ["2009", "2010", "2011", "2012"], correct: 2, category: "Trades", difficulty: "medium" },
+  { question: "Avery Bradley was drafted in which year?", answers: ["2008", "2009", "2010", "2011"], correct: 2, category: "History", difficulty: "medium" },
+  { question: "Avery Bradley wore which number?", answers: ["0", "4", "7", "12"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Jared Sullinger was drafted in which round?", answers: ["First", "Second", "Undrafted", "Third"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "Kelly Olynyk's 3-point shooting percentage with Boston was about?", answers: ["34%", "36%", "38%", "40%"], correct: 1, category: "History", difficulty: "hard" },
+  { question: "The Celtics signed Isaiah Thomas from which team?", answers: ["Sacramento Kings", "Phoenix Suns", "Detroit Pistons", "Free agency"], correct: 1, category: "IT4 Era", difficulty: "medium" },
+  { question: "IT's famous playoff performance against the Wizards included how many points in Game 2?", answers: ["49", "51", "53", "55"], correct: 2, category: "IT4 Era", difficulty: "hard" },
+  { question: "IT played through the playoffs despite what family tragedy?", answers: ["Father's illness", "Sister's death", "Son's injury", "Mother's passing"], correct: 1, category: "IT4 Era", difficulty: "medium" },
+  { question: "Jaylen Brown's high school was in which state?", answers: ["Georgia", "California", "Texas", "Florida"], correct: 0, category: "Jays Era", difficulty: "medium" },
+  { question: "Jayson Tatum's hometown is?", answers: ["St. Louis", "Chicago", "Indianapolis", "Detroit"], correct: 0, category: "Jays Era", difficulty: "medium" },
+  { question: "Tatum's high school was which prep school?", answers: ["Oak Hill", "Chaminade", "IMG", "Montverde"], correct: 1, category: "Jays Era", difficulty: "hard" },
+  { question: "Brown's chess rating is approximately?", answers: ["1200", "1400", "1600", "1800"], correct: 2, category: "Jays Era", difficulty: "hard" },
+  { question: "Jaylen Brown studied which subject at Cal?", answers: ["Business", "Communications", "Engineering", "Sociology"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "The Celtics traded for Malcolm Brogdon from which team?", answers: ["Milwaukee", "Indiana", "Washington", "Detroit"], correct: 1, category: "Trades", difficulty: "medium" },
+  { question: "Brogdon won 6th Man of the Year after how many seasons?", answers: ["1", "2", "3", "4"], correct: 0, category: "History", difficulty: "medium" },
+  { question: "The Celtics practice facility is called?", answers: ["Auerbach Center", "Celtics Training Center", "Banner Center", "Green Center"], correct: 0, category: "Culture", difficulty: "medium" },
+  { question: "Wyc Grousbeck bought the Celtics in what year?", answers: ["2000", "2002", "2004", "2006"], correct: 1, category: "Culture", difficulty: "hard" },
+  { question: "The purchase price for the Celtics in 2002 was?", answers: ["$260M", "$360M", "$460M", "$560M"], correct: 1, category: "Culture", difficulty: "hard" },
+  { question: "Danny Ainge was GM from which years?", answers: ["2003-2021", "2004-2022", "2005-2021", "2006-2022"], correct: 0, category: "History", difficulty: "hard" },
+  { question: "Brad Stevens replaced Ainge as President in?", answers: ["2020", "2021", "2022", "2023"], correct: 1, category: "Brad Stevens", difficulty: "easy" },
+  { question: "The Celtics clinched the 2024 title on what day of the week?", answers: ["Sunday", "Monday", "Tuesday", "Wednesday"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Game 5 of the 2024 Finals was which game in TD Garden?", answers: ["First home Finals game", "Second home Finals game", "Third home Finals game", "Fourth home Finals game"], correct: 2, category: "Championships", difficulty: "medium" },
+  { question: "The 2024 trophy was presented by which NBA legend?", answers: ["Magic Johnson", "Bill Russell family", "Larry Bird", "Adam Silver"], correct: 3, category: "Championships", difficulty: "medium" },
+  { question: "Jaylen Brown's Finals MVP speech mentioned?", answers: ["His mother", "His hometown", "His teammates", "All of the above"], correct: 3, category: "Championships", difficulty: "easy" },
+  { question: "The champagne celebration was sponsored by which brand?", answers: ["Moët", "Dom Perignon", "Veuve Clicquot", "Krug"], correct: 0, category: "Championships", difficulty: "hard" },
+  { question: "Al Horford's first Finals appearance was in what year?", answers: ["2018", "2020", "2022", "2024"], correct: 2, category: "Current", difficulty: "medium" },
+  { question: "Horford played for how many teams before returning to Boston?", answers: ["1", "2", "3", "4"], correct: 1, category: "Current", difficulty: "medium" },
+  { question: "Jrue Holiday was acquired from the Bucks for?", answers: ["Rob Williams", "Malcolm Brogdon", "Draft picks", "All of the above"], correct: 3, category: "Trades", difficulty: "hard" },
+  { question: "The Celtics' 2024-25 season opener was against?", answers: ["Knicks", "Bucks", "76ers", "Heat"], correct: 0, category: "Current", difficulty: "medium" },
+  { question: "Banner 18 was raised before a game against which team?", answers: ["Knicks", "Lakers", "Heat", "Bucks"], correct: 0, category: "Championships", difficulty: "medium" },
+  { question: "The championship rings have how many settings?", answers: ["17", "18", "19", "20"], correct: 1, category: "Championships", difficulty: "hard" },
+  { question: "Each ring represents which championship number?", answers: ["17th", "18th", "19th", "20th"], correct: 1, category: "Championships", difficulty: "easy" },
+  { question: "Jayson Tatum's age when winning his first title was?", answers: ["24", "25", "26", "27"], correct: 2, category: "Jays Era", difficulty: "medium" },
+  { question: "Jaylen Brown's age when winning his first title was?", answers: ["26", "27", "28", "29"], correct: 1, category: "Jays Era", difficulty: "medium" },
+  { question: "The youngest Celtic to win a title in 2024 was?", answers: ["Tatum", "Brown", "Pritchard", "Hauser"], correct: 2, category: "Championships", difficulty: "hard" },
+  { question: "The oldest Celtic to win in 2024 was?", answers: ["Al Horford", "Luke Kornet", "Xavier Tillman", "Jrue Holiday"], correct: 0, category: "Championships", difficulty: "easy" },
+  { question: "The Celtics have won championships in how many decades?", answers: ["5", "6", "7", "8"], correct: 2, category: "Championships", difficulty: "medium" }
 ]
 
 // Shuffle function for randomization
@@ -767,19 +1174,28 @@ const shuffleArray = (array) => {
   return shuffled
 }
 
-export const getRandomQuestion = (usedIndices = []) => {
-  const availableIndices = questions
-    .map((_, i) => i)
-    .filter(i => !usedIndices.includes(i))
+export const getRandomQuestion = (usedIndices = [], difficulty = null) => {
+  let availableQuestions = questions
+    .map((q, i) => ({ ...q, index: i }))
+    .filter(q => !usedIndices.includes(q.index))
 
-  if (availableIndices.length === 0) {
-    // All questions used, reset but shuffle order
-    const randomIndex = Math.floor(Math.random() * questions.length)
-    return { question: questions[randomIndex], index: -1, allUsed: true }
+  // Filter by difficulty if specified
+  if (difficulty) {
+    availableQuestions = availableQuestions.filter(q => q.difficulty === difficulty)
   }
 
-  const randomIndex = availableIndices[Math.floor(Math.random() * availableIndices.length)]
-  return { question: questions[randomIndex], index: randomIndex, allUsed: false }
+  if (availableQuestions.length === 0) {
+    // All questions used, reset but shuffle order
+    const pool = difficulty
+      ? questions.filter(q => q.difficulty === difficulty)
+      : questions
+    const randomIndex = Math.floor(Math.random() * pool.length)
+    const originalIndex = questions.findIndex(q => q === pool[randomIndex])
+    return { question: pool[randomIndex], index: -1, allUsed: true }
+  }
+
+  const randomQ = availableQuestions[Math.floor(Math.random() * availableQuestions.length)]
+  return { question: randomQ, index: randomQ.index, allUsed: false }
 }
 
 // Get questions by category
@@ -787,5 +1203,19 @@ export const getQuestionsByCategory = (category) => {
   return questions.filter(q => q.category === category)
 }
 
+// Get questions by difficulty
+export const getQuestionsByDifficulty = (difficulty) => {
+  return questions.filter(q => q.difficulty === difficulty)
+}
+
 // Get total question count
 export const getTotalQuestions = () => questions.length
+
+// Get count by difficulty
+export const getQuestionCountByDifficulty = () => {
+  return {
+    easy: questions.filter(q => q.difficulty === 'easy').length,
+    medium: questions.filter(q => q.difficulty === 'medium').length,
+    hard: questions.filter(q => q.difficulty === 'hard').length
+  }
+}

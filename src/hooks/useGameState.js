@@ -203,7 +203,7 @@ function gameReducer(state, action) {
       return { ...newState, quarterLength: action.payload }
 
     case 'START_GAME': {
-      const { question, index } = getRandomQuestion([])
+      const { question, index } = getRandomQuestion([], state.difficulty)
       return {
         ...initialState,
         difficulty: state.difficulty,
@@ -303,7 +303,7 @@ function gameReducer(state, action) {
         return newState
       }
 
-      const { question, index } = getRandomQuestion(state.usedQuestionIndices)
+      const { question, index } = getRandomQuestion(state.usedQuestionIndices, state.difficulty)
 
       return {
         ...newState,
@@ -624,7 +624,7 @@ function gameReducer(state, action) {
 
       let currentQuestion = null
       if (nextPhase === 'offense-trivia') {
-        const { question, index } = getRandomQuestion(state.usedQuestionIndices)
+        const { question, index } = getRandomQuestion(state.usedQuestionIndices, state.difficulty)
         currentQuestion = { ...question, index }
       }
 
@@ -649,7 +649,7 @@ function gameReducer(state, action) {
 
       let currentQuestion = null
       if (nextPhase === 'offense-trivia') {
-        const { question, index } = getRandomQuestion(state.usedQuestionIndices)
+        const { question, index } = getRandomQuestion(state.usedQuestionIndices, state.difficulty)
         currentQuestion = { ...question, index }
       }
 

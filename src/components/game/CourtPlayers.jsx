@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useMemo, useState, useEffect, useCallback } from 'react'
+import { useMemo, useState, useEffect, useCallback, memo } from 'react'
 import PlayerSprite from './PlayerSprite'
 import BallSprite from './BallSprite'
 
@@ -19,7 +19,7 @@ import BallSprite from './BallSprite'
  *
  * Coordinate system: Percentage-based (0-100%) for responsive layout
  */
-export default function CourtPlayers({
+function CourtPlayers({
   possession,
   celticsPlayers = [],
   lakersPlayers = [],
@@ -30,6 +30,10 @@ export default function CourtPlayers({
 }) {
   const [ballState, setBallState] = useState('held')
   const [ballPosition, setBallPosition] = useState({ x: 50, y: 50 })
+
+  // Memoize player slices to avoid recreating arrays
+  const celticsOnCourt = useMemo(() => celticsPlayers.slice(0, 5), [celticsPlayers])
+  const lakersOnCourt = useMemo(() => lakersPlayers.slice(0, 5), [lakersPlayers])
   // Calculate player positions based on play type and possession (percentage-based)
   const playerPositions = useMemo(() => {
     const isCelticsOffense = possession === 'celtics'
@@ -123,12 +127,12 @@ export default function CourtPlayers({
 
     try {
       const allPlayers = [
-        ...celticsPlayers.slice(0, 5).map((p, i) => ({
+        ...celticsOnCourt.map((p, i) => ({
           ...p,
           team: 'celtics',
           pos: playerPositions.celtics[i] || { x: 50, y: 50 }
         })),
-        ...lakersPlayers.slice(0, 5).map((p, i) => ({
+        ...lakersOnCourt.map((p, i) => ({
           ...p,
           team: 'lakers',
           pos: playerPositions.lakers[i] || { x: 50, y: 50 }
@@ -141,7 +145,7 @@ export default function CourtPlayers({
     } catch (error) {
       console.error('[CourtPlayers] Error updating ball position:', error)
     }
-  }, [activePlayer, celticsPlayers, lakersPlayers, playerPositions])
+  }, [activePlayer, celticsOnCourt, lakersOnCourt, playerPositions])
 
   // Ball state management based on phase
   useEffect(() => {
@@ -185,7 +189,7 @@ export default function CourtPlayers({
     <div className="absolute inset-0 pointer-events-none">
       <AnimatePresence mode="wait">
         {/* Celtics players */}
-        {celticsPlayers.slice(0, 5).map((player, index) => {
+        {celticsOnCourt.map((player, index) => {
           const isActive = possession === 'celtics' && index === activeCelticsIndex
           const position = playerPositions.celtics[index] || { x: 50, y: 50 }
           const isOffense = possession === 'celtics'
@@ -206,7 +210,7 @@ export default function CourtPlayers({
         })}
 
         {/* Lakers players */}
-        {lakersPlayers.slice(0, 5).map((player, index) => {
+        {lakersOnCourt.map((player, index) => {
           const isActive = possession === 'lakers' && index === activeLakersIndex
           const position = playerPositions.lakers[index] || { x: 50, y: 50 }
           const isOffense = possession === 'lakers'
@@ -253,3 +257,16 @@ export default function CourtPlayers({
     </div>
   )
 }
+
+// Memoize component to prevent unnecessary re-renders
+export default memo(CourtPlayers, (prev, next) => {
+  // Custom comparison - only re-render if these props actually change
+  return (
+    prev.possession === next.possession &&
+    prev.playType === next.playType &&
+    prev.phase === next.phase &&
+    prev.activePlayer?.name === next.activePlayer?.name &&
+    prev.celticsPlayers.length === next.celticsPlayers.length &&
+    prev.lakersPlayers.length === next.lakersPlayers.length
+  )
+})

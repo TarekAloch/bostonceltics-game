@@ -1,9 +1,9 @@
 import { motion } from 'framer-motion'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, memo } from 'react'
 import CourtPlayers from './CourtPlayers'
 import ShotArc from './ShotArc'
 
-export default function Court({
+function Court({
   children,
   possession,
   playType,
@@ -206,3 +206,15 @@ export default function Court({
     </div>
   )
 }
+
+// Memoize to prevent re-renders when props haven't changed
+export default memo(Court, (prev, next) => {
+  return (
+    prev.possession === next.possession &&
+    prev.playType === next.playType &&
+    prev.phase === next.phase &&
+    prev.showShotArc === next.showShotArc &&
+    prev.lastPlay?.type === next.lastPlay?.type &&
+    prev.activePlayer?.name === next.activePlayer?.name
+  )
+})
