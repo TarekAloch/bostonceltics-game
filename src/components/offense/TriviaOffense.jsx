@@ -103,6 +103,14 @@ export default function TriviaOffense({ question, player, onComplete }) {
     }
   }, [])
 
+  // Handle timeout - defined before useEffect that uses it
+  const handleTimeout = useCallback(() => {
+    setIsCorrect(false)
+    setShowResult(true)
+    playResultSound(false)
+    setTimeout(() => onComplete(false, question?.index ?? 0), 2500)
+  }, [onComplete, question, playResultSound])
+
   // Countdown timer
   useEffect(() => {
     if (showResult) return
@@ -129,13 +137,6 @@ export default function TriviaOffense({ question, player, onComplete }) {
       }
     }
   }, [showResult, playTick, handleTimeout])
-
-  const handleTimeout = useCallback(() => {
-    setIsCorrect(false)
-    setShowResult(true)
-    playResultSound(false)
-    setTimeout(() => onComplete(false, question?.index ?? 0), 2500)
-  }, [onComplete, question, playResultSound])
 
   const handleAnswer = useCallback((answerIndex) => {
     if (selectedAnswer !== null || showResult || !question) return

@@ -107,6 +107,30 @@ export default function PlayCallOffense({ question, player, onComplete }) {
     }
   }, [])
 
+  // Define callbacks BEFORE useEffects that reference them
+  const handlePlaySelect = useCallback((playId) => {
+    if (selectedPlay) return
+
+    const play = PLAYS.find(p => p.id === playId)
+    setSelectedPlay(play)
+    playSound(880, 0.2, 0.1)
+
+    if (playTimerRef.current) {
+      clearInterval(playTimerRef.current)
+    }
+
+    setTimeout(() => {
+      setPhase('trivia')
+    }, 1000)
+  }, [selectedPlay, playSound])
+
+  const handleTimeout = useCallback(() => {
+    setIsCorrect(false)
+    setShowResult(true)
+    playSound(220, 0.3, 0.1)
+    setTimeout(() => onComplete(false, selectedPlay?.id || 'pick-roll', question?.index ?? 0), 2500)
+  }, [onComplete, selectedPlay, question, playSound])
+
   // Play selection timer
   useEffect(() => {
     if (phase !== 'play-select' || selectedPlay) return
@@ -148,29 +172,6 @@ export default function PlayCallOffense({ question, player, onComplete }) {
       if (triviaTimerRef.current) clearInterval(triviaTimerRef.current)
     }
   }, [phase, showResult, playSound, handleTimeout])
-
-  const handlePlaySelect = useCallback((playId) => {
-    if (selectedPlay) return
-
-    const play = PLAYS.find(p => p.id === playId)
-    setSelectedPlay(play)
-    playSound(880, 0.2, 0.1)
-
-    if (playTimerRef.current) {
-      clearInterval(playTimerRef.current)
-    }
-
-    setTimeout(() => {
-      setPhase('trivia')
-    }, 1000)
-  }, [selectedPlay, playSound])
-
-  const handleTimeout = useCallback(() => {
-    setIsCorrect(false)
-    setShowResult(true)
-    playSound(220, 0.3, 0.1)
-    setTimeout(() => onComplete(false, selectedPlay?.id || 'pick-roll', question?.index ?? 0), 2500)
-  }, [onComplete, selectedPlay, question, playSound])
 
   const handleAnswer = useCallback((answerIndex) => {
     if (selectedAnswer !== null || showResult || !question) return
