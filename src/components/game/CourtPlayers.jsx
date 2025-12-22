@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion'
-import { useMemo, useState, useEffect, useCallback, memo } from 'react'
+import { useMemo, useState, useEffect, useCallback } from 'react'
 import PlayerSprite from './PlayerSprite'
 import BallSprite from './BallSprite'
 
@@ -19,7 +19,7 @@ import BallSprite from './BallSprite'
  *
  * Coordinate system: Percentage-based (0-100%) for responsive layout
  */
-function CourtPlayers({
+export default function CourtPlayers({
   possession,
   celticsPlayers = [],
   lakersPlayers = [],
@@ -257,16 +257,3 @@ function CourtPlayers({
     </div>
   )
 }
-
-// Memoize component to prevent unnecessary re-renders
-export default memo(CourtPlayers, (prev, next) => {
-  // Custom comparison - only re-render if these props actually change
-  return (
-    prev.possession === next.possession &&
-    prev.playType === next.playType &&
-    prev.phase === next.phase &&
-    prev.activePlayer?.name === next.activePlayer?.name &&
-    prev.celticsPlayers.length === next.celticsPlayers.length &&
-    prev.lakersPlayers.length === next.lakersPlayers.length
-  )
-})

@@ -1,5 +1,4 @@
 import { motion } from 'framer-motion'
-import { memo } from 'react'
 
 // Team colors
 const TEAM_COLORS = {
@@ -92,7 +91,7 @@ const ANIMATION_VARIANTS = {
  * @param {boolean} props.isVillain - Red glow for LeBron/AD
  * @param {string} props.className - Additional CSS classes
  */
-function PlayerSprite({
+export default function PlayerSprite({
   team = 'celtics',
   number = 0,
   pose = 'standing',
@@ -238,18 +237,3 @@ function PlayerSprite({
     </motion.div>
   )
 }
-
-// Memoize to prevent unnecessary re-renders
-export default memo(PlayerSprite, (prev, next) => {
-  return (
-    prev.team === next.team &&
-    prev.number === next.number &&
-    prev.pose === next.pose &&
-    prev.isActive === next.isActive &&
-    prev.hasBall === next.hasBall &&
-    prev.position.x === next.position.x &&
-    prev.position.y === next.position.y &&
-    prev.facing === next.facing &&
-    prev.isVillain === next.isVillain
-  )
-})
